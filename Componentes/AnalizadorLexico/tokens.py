@@ -1,3 +1,4 @@
+import reserved_words
 tokens = (
    'INTEGER',
    "FLOAT",
