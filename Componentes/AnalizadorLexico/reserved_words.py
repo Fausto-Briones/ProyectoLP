@@ -1,3 +1,4 @@
+//@author Fausto-Briones
 reserved = {
   'if': 'IF',
   'else': 'ELSE',
