@@ -1,4 +1,4 @@
-//@author Fausto-Briones
+#@author Fausto-Briones
 reserved = {
   'if': 'IF',
   'else': 'ELSE',
@@ -41,7 +41,6 @@ reserved = {
   'continue':'CONTINUE',
   'crate':'CRATE',
   'enum':'ENUM',
-  'continue':'CONTINUE',
   'loop':'LOOP',
   'mod':'MOD',
   'move':'MOVE',
@@ -58,4 +57,25 @@ reserved = {
   'unsafe':'UNSAFE',
   'where':'WHERE',
   'use':'USE',
+  #Contribución Emilio
+  'async': 'ASYNC',
+  'await': 'AWAIT',
+  'dyn': 'DYN',
+  'try': 'TRY',
+  'abstract': 'ABSTRACT',
+  'become': 'BECOME',
+  'box': 'BOX',
+  'do': 'DO',
+  'final': 'FINAL',
+  'macro': 'MACRO',
+  'override': 'OVERRIDE',
+  'priv': 'PRIV',
+  'typeof': 'TYPEOF',
+  'unsized': 'UNSIZED',
+  'virtual': 'VIRTUAL',
+  'yield': 'YIELD',
+
+  'macro_rules': 'MACRO_RULES',
+  'union': 'UNION',
+  '\'static': '\'STATIC',
 }
