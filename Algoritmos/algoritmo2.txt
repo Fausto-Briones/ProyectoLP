@@ -1,0 +1,19 @@
+use std::io;
+
+fn main() {
+    println!("Ingrese el primer número: ");
+
+    let mut input_1 = String::new();
+    io::stdin().read_line(&mut input_1).expect("Fallo al leer la entrada.");
+    let num1: f64 = input_1.trim().parse().expect("Entrada no válida. Ingrese un número.");
+
+    println!("Ingrese el segundo número: ");
+
+    let mut input_2 = String::new();
+    io::stdin().read_line(&mut input_2).expect("Fallo al leer la entrada.");
+    let num2: f64 = input_2.trim().parse().expect("Entrada no válida. Ingrese un número.");
+
+    let suma = num1 + num2;
+
+    println!("La suma de {} y {} es: {}", num1, num2, suma);
+}
