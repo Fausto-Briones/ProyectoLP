@@ -34,4 +34,10 @@ reserved = {
   'bool':'BOOL',
   'f32':'F32',
   'f64':'F64',
+  'main':'MAIN',
+  'not':'NOT',
+  'return':'RETURN',
+  'std':'STD',
+  'io':'IO',
+  'rand':'RAND'
 }
