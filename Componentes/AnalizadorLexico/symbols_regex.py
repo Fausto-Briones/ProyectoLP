@@ -1,4 +1,3 @@
-//@author Fausto-Briones
 import ply.lex as lex
 
 t_PLUS    = r'\+'
@@ -25,4 +24,3 @@ t_COMMA = r","
 t_QUOTATION_MARK = r"'"
 t_DOUBLE_QUOTATION_MARK = r'"'
 
-//LLENAR

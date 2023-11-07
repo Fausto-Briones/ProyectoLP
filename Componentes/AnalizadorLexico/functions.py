@@ -1,5 +1,3 @@
-#//LLENAR CON FUNCIONES POR TOKEN
-#@author Fausto-Briones
 import ply.lex as lex
 
 def t_IDENTIFIER(t):
