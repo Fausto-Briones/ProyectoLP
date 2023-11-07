@@ -1,4 +1,4 @@
-//LLENAR CON FUNCIONES POR TOKEN
+#//LLENAR CON FUNCIONES POR TOKEN
 #@author Fausto-Briones
 import ply.lex as lex
 
