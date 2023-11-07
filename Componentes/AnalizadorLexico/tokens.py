@@ -1,12 +1,12 @@
-import reserved_words
+from reserved_words import reserved
 tokens = (
    'INTEGER',
    "FLOAT",
    "PLUS",
    "MINUS",
    "DIVIDE",
-   "LPARENT",
-   "RPARENT",
+   "LPAREN",
+   "RPAREN",
    "ASIG",
    "LEQ",
    "GEQ",
@@ -22,6 +22,9 @@ tokens = (
    "DOUBLE_COLON",
    "COMMA",
    "QUOTATION_MARK",
-   "DOUBLE_QUOTATION_MARK"
-) + tuple(reserved.values)
+   "DOUBLE_QUOTATION_MARK",
+   "INTD",
+   "MOD",
+   "IDENTIFIER"
+) + tuple(reserved.values())
 

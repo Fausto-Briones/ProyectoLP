@@ -1,5 +1,5 @@
 import ply.lex as lex
-
+from reserved_words import reserved
 def t_IDENTIFIER(t):
   r'[a-zA-Z_][a-zA-Z_0-9]*'
   t.type = reserved.get(t.value,'IDENTIFIER')

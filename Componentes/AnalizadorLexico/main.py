@@ -1,18 +1,21 @@
 #Programa que recibe codigo en Rust
 import ply.lex as lex
-import functions,tokens, reserved_words,symbols_regex
+from reserved_words import reserved
+from tokens import *
+from functions import *
+from symbols_regex import *
 
 if __name__ == "__main__":
   lexer = lex.lex()
-  numero=0
+  numero= 0
   while (numero < 1 or numero > 3):
-    numero = input("Ingrese número del 1 al 3")
+    numero = int(input("Ingrese número del 1 al 3\n"))
 
-  archivo = open ("Algoritmos/Algoritmo"+numero+".txt")
-  while(r"[^END]"):
-    lexer.input(archivo.read())
+  archivo = open ("Algoritmos/Algoritmo"+str(numero)+".txt")
+  #while(r"[^END]"):
+  lexer.input(archivo.read())
   # Enviando el código
-  lexer.input(code)
+  #lexer.input(code)
 
   # Tokenizar
   for token in lexer:

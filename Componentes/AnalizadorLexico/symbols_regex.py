@@ -13,7 +13,7 @@ t_GEQ = r">="
 t_NEQ = r"!="
 t_INTD = r"//"
 t_ASIG = r"="
-t_LCORCH = r"["
+t_LCORCH = r"\["
 t_RCORCH = r"]"
 t_LLLAVE = r"{"
 t_RLLAVE = r"}"
@@ -23,4 +23,3 @@ t_DOUBLE_COLON = r"::"
 t_COMMA = r","
 t_QUOTATION_MARK = r"'"
 t_DOUBLE_QUOTATION_MARK = r'"'
-
