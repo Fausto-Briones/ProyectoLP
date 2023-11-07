@@ -25,6 +25,11 @@ tokens = (
    "DOUBLE_QUOTATION_MARK",
    "INTD",
    "MOD",
-   "IDENTIFIER"
+   "IDENTIFIER",
+   "SEMICOLON",
+   "EXCLAMATION",
+   "REFERENCE",
+   "LEFTARROW",
+   "RIGHTARROW"
 ) + tuple(reserved.values())
 
