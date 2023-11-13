@@ -39,5 +39,7 @@ reserved = {
   'return':'RETURN',
   'std':'STD',
   'io':'IO',
-  'rand':'RAND'
+  'rand':'RAND',
+  'read_lline': 'READLINE',
+  'stdin':'STDIN'
 }

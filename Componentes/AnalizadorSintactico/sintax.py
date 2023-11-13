@@ -18,14 +18,19 @@ def p_sentencias(p):
   '''
 def p_impresion(p):
   '''
-  impresion : PRINTLN LPAREN IDENTIFIER RPAREN
+  impresion : PRINTLN LPAREN ( " IDENTIFIER | impresion_valor " ) RPAREN
   
   '''
 
 def p_funcion(p):
   '''
-  funcion: FN IDENTIFICADOR LPAR RPAR LLLAVE programa RLLAVE
+  funcion: FN IDENTIFIER LPAR RPAR LLLAVE programa RLLAVE
   
+  '''
+
+def p_ingreso(p):
+  '''
+  ingreso_datos: STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN"
   '''
 
 def p_error(p):
