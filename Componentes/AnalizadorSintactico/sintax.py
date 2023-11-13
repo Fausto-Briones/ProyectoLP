@@ -5,7 +5,7 @@ def p_programa(p):
   'programa : sentencias | sentencias programa'
 
 def p_asignacion(p):
-  'asignacion : IDENTIFIER EQ valor'
+  'asignacion : LET IDENTIFIER EQ valor'
 
 def p_valor(p):
   '''
@@ -18,7 +18,13 @@ def p_sentencias(p):
   '''
 def p_impresion(p):
   '''
-  impresion : PRINT LPAREN IDENTIFIER RPAREN
+  impresion : PRINTLN LPAREN IDENTIFIER RPAREN
+  
+  '''
+
+def p_funcion(p):
+  '''
+  funcion: FN IDENTIFICADOR LPAR RPAR LLLAVE programa RLLAVE
   
   '''
 
