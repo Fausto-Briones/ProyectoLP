@@ -58,17 +58,17 @@ Unused terminals:
 Grammar
 
 Rule 0     S' -> programa
-Rule 1     programa -> sentencias SEMICOLON
+Rule 1     programa -> sentencias
 Rule 2     programa -> sentencias programa
 Rule 3     asignacion -> LET IDENTIFIER EQ valor
 Rule 4     valor -> INTEGER
 Rule 5     valor -> FLOAT
 Rule 6     valor -> IDENTIFIER
-Rule 7     sentencias -> asignacion
-Rule 8     sentencias -> impresion
-Rule 9     sentencias -> funcion
-Rule 10    sentencias -> ingreso_datos
-Rule 11    sentencias -> arreglos
+Rule 7     sentencias -> asignacion SEMICOLON
+Rule 8     sentencias -> impresion SEMICOLON
+Rule 9     sentencias -> funcion SEMICOLON
+Rule 10    sentencias -> ingreso_datos SEMICOLON
+Rule 11    sentencias -> arreglos SEMICOLON
 Rule 12    impresion -> PRINTLN LPAREN valor RPAREN
 Rule 13    funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE
 Rule 14    ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
@@ -135,7 +135,7 @@ RIGHTARROW           :
 RLLAVE               : 13
 RPAREN               : 12 13 14 14
 SELF                 : 
-SEMICOLON            : 1
+SEMICOLON            : 7 8 9 10 11
 STD                  : 14
 STDIN                : 14
 STR                  : 
@@ -168,13 +168,13 @@ Parsing method: LALR
 state 0
 
     (0) S' -> . programa
-    (1) programa -> . sentencias SEMICOLON
+    (1) programa -> . sentencias
     (2) programa -> . sentencias programa
-    (7) sentencias -> . asignacion
-    (8) sentencias -> . impresion
-    (9) sentencias -> . funcion
-    (10) sentencias -> . ingreso_datos
-    (11) sentencias -> . arreglos
+    (7) sentencias -> . asignacion SEMICOLON
+    (8) sentencias -> . impresion SEMICOLON
+    (9) sentencias -> . funcion SEMICOLON
+    (10) sentencias -> . ingreso_datos SEMICOLON
+    (11) sentencias -> . arreglos SEMICOLON
     (3) asignacion -> . LET IDENTIFIER EQ valor
     (12) impresion -> . PRINTLN LPAREN valor RPAREN
     (13) funcion -> . FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE
@@ -203,22 +203,23 @@ state 1
 
 state 2
 
-    (1) programa -> sentencias . SEMICOLON
+    (1) programa -> sentencias .
     (2) programa -> sentencias . programa
-    (1) programa -> . sentencias SEMICOLON
+    (1) programa -> . sentencias
     (2) programa -> . sentencias programa
-    (7) sentencias -> . asignacion
-    (8) sentencias -> . impresion
-    (9) sentencias -> . funcion
-    (10) sentencias -> . ingreso_datos
-    (11) sentencias -> . arreglos
+    (7) sentencias -> . asignacion SEMICOLON
+    (8) sentencias -> . impresion SEMICOLON
+    (9) sentencias -> . funcion SEMICOLON
+    (10) sentencias -> . ingreso_datos SEMICOLON
+    (11) sentencias -> . arreglos SEMICOLON
     (3) asignacion -> . LET IDENTIFIER EQ valor
     (12) impresion -> . PRINTLN LPAREN valor RPAREN
     (13) funcion -> . FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE
     (14) ingreso_datos -> . STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
     (15) arreglos -> . LCORCH valor RCORCH
 
-    SEMICOLON       shift and go to state 13
+    $end            reduce using rule 1 (programa -> sentencias .)
+    RLLAVE          reduce using rule 1 (programa -> sentencias .)
     LET             shift and go to state 8
     PRINTLN         shift and go to state 9
     FN              shift and go to state 10
@@ -226,7 +227,7 @@ state 2
     LCORCH          shift and go to state 12
 
     sentencias                     shift and go to state 2
-    programa                       shift and go to state 14
+    programa                       shift and go to state 13
     asignacion                     shift and go to state 3
     impresion                      shift and go to state 4
     funcion                        shift and go to state 5
@@ -235,90 +236,65 @@ state 2
 
 state 3
 
-    (7) sentencias -> asignacion .
+    (7) sentencias -> asignacion . SEMICOLON
 
-    SEMICOLON       reduce using rule 7 (sentencias -> asignacion .)
-    LET             reduce using rule 7 (sentencias -> asignacion .)
-    PRINTLN         reduce using rule 7 (sentencias -> asignacion .)
-    FN              reduce using rule 7 (sentencias -> asignacion .)
-    STD             reduce using rule 7 (sentencias -> asignacion .)
-    LCORCH          reduce using rule 7 (sentencias -> asignacion .)
+    SEMICOLON       shift and go to state 14
 
 
 state 4
 
-    (8) sentencias -> impresion .
+    (8) sentencias -> impresion . SEMICOLON
 
-    SEMICOLON       reduce using rule 8 (sentencias -> impresion .)
-    LET             reduce using rule 8 (sentencias -> impresion .)
-    PRINTLN         reduce using rule 8 (sentencias -> impresion .)
-    FN              reduce using rule 8 (sentencias -> impresion .)
-    STD             reduce using rule 8 (sentencias -> impresion .)
-    LCORCH          reduce using rule 8 (sentencias -> impresion .)
+    SEMICOLON       shift and go to state 15
 
 
 state 5
 
-    (9) sentencias -> funcion .
+    (9) sentencias -> funcion . SEMICOLON
 
-    SEMICOLON       reduce using rule 9 (sentencias -> funcion .)
-    LET             reduce using rule 9 (sentencias -> funcion .)
-    PRINTLN         reduce using rule 9 (sentencias -> funcion .)
-    FN              reduce using rule 9 (sentencias -> funcion .)
-    STD             reduce using rule 9 (sentencias -> funcion .)
-    LCORCH          reduce using rule 9 (sentencias -> funcion .)
+    SEMICOLON       shift and go to state 16
 
 
 state 6
 
-    (10) sentencias -> ingreso_datos .
+    (10) sentencias -> ingreso_datos . SEMICOLON
 
-    SEMICOLON       reduce using rule 10 (sentencias -> ingreso_datos .)
-    LET             reduce using rule 10 (sentencias -> ingreso_datos .)
-    PRINTLN         reduce using rule 10 (sentencias -> ingreso_datos .)
-    FN              reduce using rule 10 (sentencias -> ingreso_datos .)
-    STD             reduce using rule 10 (sentencias -> ingreso_datos .)
-    LCORCH          reduce using rule 10 (sentencias -> ingreso_datos .)
+    SEMICOLON       shift and go to state 17
 
 
 state 7
 
-    (11) sentencias -> arreglos .
+    (11) sentencias -> arreglos . SEMICOLON
 
-    SEMICOLON       reduce using rule 11 (sentencias -> arreglos .)
-    LET             reduce using rule 11 (sentencias -> arreglos .)
-    PRINTLN         reduce using rule 11 (sentencias -> arreglos .)
-    FN              reduce using rule 11 (sentencias -> arreglos .)
-    STD             reduce using rule 11 (sentencias -> arreglos .)
-    LCORCH          reduce using rule 11 (sentencias -> arreglos .)
+    SEMICOLON       shift and go to state 18
 
 
 state 8
 
     (3) asignacion -> LET . IDENTIFIER EQ valor
 
-    IDENTIFIER      shift and go to state 15
+    IDENTIFIER      shift and go to state 19
 
 
 state 9
 
     (12) impresion -> PRINTLN . LPAREN valor RPAREN
 
-    LPAREN          shift and go to state 16
+    LPAREN          shift and go to state 20
 
 
 state 10
 
     (13) funcion -> FN . IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE
 
-    IDENTIFIER      shift and go to state 17
+    IDENTIFIER      shift and go to state 21
 
 
 state 11
 
     (14) ingreso_datos -> STD . DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
 
-    DOUBLE_COLON    shift and go to state 18
+    DOUBLE_COLON    shift and go to state 22
 
 
 state 12
@@ -328,21 +304,13 @@ state 12
     (5) valor -> . FLOAT
     (6) valor -> . IDENTIFIER
 
-    INTEGER         shift and go to state 20
-    FLOAT           shift and go to state 21
-    IDENTIFIER      shift and go to state 22
+    INTEGER         shift and go to state 24
+    FLOAT           shift and go to state 25
+    IDENTIFIER      shift and go to state 26
 
-    valor                          shift and go to state 19
+    valor                          shift and go to state 23
 
 state 13
-
-    (1) programa -> sentencias SEMICOLON .
-
-    $end            reduce using rule 1 (programa -> sentencias SEMICOLON .)
-    RLLAVE          reduce using rule 1 (programa -> sentencias SEMICOLON .)
-
-
-state 14
 
     (2) programa -> sentencias programa .
 
@@ -350,183 +318,218 @@ state 14
     RLLAVE          reduce using rule 2 (programa -> sentencias programa .)
 
 
+state 14
+
+    (7) sentencias -> asignacion SEMICOLON .
+
+    LET             reduce using rule 7 (sentencias -> asignacion SEMICOLON .)
+    PRINTLN         reduce using rule 7 (sentencias -> asignacion SEMICOLON .)
+    FN              reduce using rule 7 (sentencias -> asignacion SEMICOLON .)
+    STD             reduce using rule 7 (sentencias -> asignacion SEMICOLON .)
+    LCORCH          reduce using rule 7 (sentencias -> asignacion SEMICOLON .)
+    $end            reduce using rule 7 (sentencias -> asignacion SEMICOLON .)
+    RLLAVE          reduce using rule 7 (sentencias -> asignacion SEMICOLON .)
+
+
 state 15
 
-    (3) asignacion -> LET IDENTIFIER . EQ valor
+    (8) sentencias -> impresion SEMICOLON .
 
-    EQ              shift and go to state 23
+    LET             reduce using rule 8 (sentencias -> impresion SEMICOLON .)
+    PRINTLN         reduce using rule 8 (sentencias -> impresion SEMICOLON .)
+    FN              reduce using rule 8 (sentencias -> impresion SEMICOLON .)
+    STD             reduce using rule 8 (sentencias -> impresion SEMICOLON .)
+    LCORCH          reduce using rule 8 (sentencias -> impresion SEMICOLON .)
+    $end            reduce using rule 8 (sentencias -> impresion SEMICOLON .)
+    RLLAVE          reduce using rule 8 (sentencias -> impresion SEMICOLON .)
 
 
 state 16
+
+    (9) sentencias -> funcion SEMICOLON .
+
+    LET             reduce using rule 9 (sentencias -> funcion SEMICOLON .)
+    PRINTLN         reduce using rule 9 (sentencias -> funcion SEMICOLON .)
+    FN              reduce using rule 9 (sentencias -> funcion SEMICOLON .)
+    STD             reduce using rule 9 (sentencias -> funcion SEMICOLON .)
+    LCORCH          reduce using rule 9 (sentencias -> funcion SEMICOLON .)
+    $end            reduce using rule 9 (sentencias -> funcion SEMICOLON .)
+    RLLAVE          reduce using rule 9 (sentencias -> funcion SEMICOLON .)
+
+
+state 17
+
+    (10) sentencias -> ingreso_datos SEMICOLON .
+
+    LET             reduce using rule 10 (sentencias -> ingreso_datos SEMICOLON .)
+    PRINTLN         reduce using rule 10 (sentencias -> ingreso_datos SEMICOLON .)
+    FN              reduce using rule 10 (sentencias -> ingreso_datos SEMICOLON .)
+    STD             reduce using rule 10 (sentencias -> ingreso_datos SEMICOLON .)
+    LCORCH          reduce using rule 10 (sentencias -> ingreso_datos SEMICOLON .)
+    $end            reduce using rule 10 (sentencias -> ingreso_datos SEMICOLON .)
+    RLLAVE          reduce using rule 10 (sentencias -> ingreso_datos SEMICOLON .)
+
+
+state 18
+
+    (11) sentencias -> arreglos SEMICOLON .
+
+    LET             reduce using rule 11 (sentencias -> arreglos SEMICOLON .)
+    PRINTLN         reduce using rule 11 (sentencias -> arreglos SEMICOLON .)
+    FN              reduce using rule 11 (sentencias -> arreglos SEMICOLON .)
+    STD             reduce using rule 11 (sentencias -> arreglos SEMICOLON .)
+    LCORCH          reduce using rule 11 (sentencias -> arreglos SEMICOLON .)
+    $end            reduce using rule 11 (sentencias -> arreglos SEMICOLON .)
+    RLLAVE          reduce using rule 11 (sentencias -> arreglos SEMICOLON .)
+
+
+state 19
+
+    (3) asignacion -> LET IDENTIFIER . EQ valor
+
+    EQ              shift and go to state 27
+
+
+state 20
 
     (12) impresion -> PRINTLN LPAREN . valor RPAREN
     (4) valor -> . INTEGER
     (5) valor -> . FLOAT
     (6) valor -> . IDENTIFIER
 
-    INTEGER         shift and go to state 20
-    FLOAT           shift and go to state 21
-    IDENTIFIER      shift and go to state 22
+    INTEGER         shift and go to state 24
+    FLOAT           shift and go to state 25
+    IDENTIFIER      shift and go to state 26
 
-    valor                          shift and go to state 24
+    valor                          shift and go to state 28
 
-state 17
+state 21
 
     (13) funcion -> FN IDENTIFIER . LPAREN RPAREN LLLAVE programa RLLAVE
 
-    LPAREN          shift and go to state 25
+    LPAREN          shift and go to state 29
 
 
-state 18
+state 22
 
     (14) ingreso_datos -> STD DOUBLE_COLON . IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
 
-    IO              shift and go to state 26
+    IO              shift and go to state 30
 
 
-state 19
+state 23
 
     (15) arreglos -> LCORCH valor . RCORCH
 
-    RCORCH          shift and go to state 27
+    RCORCH          shift and go to state 31
 
 
-state 20
+state 24
 
     (4) valor -> INTEGER .
 
     RCORCH          reduce using rule 4 (valor -> INTEGER .)
     RPAREN          reduce using rule 4 (valor -> INTEGER .)
     SEMICOLON       reduce using rule 4 (valor -> INTEGER .)
-    LET             reduce using rule 4 (valor -> INTEGER .)
-    PRINTLN         reduce using rule 4 (valor -> INTEGER .)
-    FN              reduce using rule 4 (valor -> INTEGER .)
-    STD             reduce using rule 4 (valor -> INTEGER .)
-    LCORCH          reduce using rule 4 (valor -> INTEGER .)
 
 
-state 21
+state 25
 
     (5) valor -> FLOAT .
 
     RCORCH          reduce using rule 5 (valor -> FLOAT .)
     RPAREN          reduce using rule 5 (valor -> FLOAT .)
     SEMICOLON       reduce using rule 5 (valor -> FLOAT .)
-    LET             reduce using rule 5 (valor -> FLOAT .)
-    PRINTLN         reduce using rule 5 (valor -> FLOAT .)
-    FN              reduce using rule 5 (valor -> FLOAT .)
-    STD             reduce using rule 5 (valor -> FLOAT .)
-    LCORCH          reduce using rule 5 (valor -> FLOAT .)
 
 
-state 22
+state 26
 
     (6) valor -> IDENTIFIER .
 
     RCORCH          reduce using rule 6 (valor -> IDENTIFIER .)
     RPAREN          reduce using rule 6 (valor -> IDENTIFIER .)
     SEMICOLON       reduce using rule 6 (valor -> IDENTIFIER .)
-    LET             reduce using rule 6 (valor -> IDENTIFIER .)
-    PRINTLN         reduce using rule 6 (valor -> IDENTIFIER .)
-    FN              reduce using rule 6 (valor -> IDENTIFIER .)
-    STD             reduce using rule 6 (valor -> IDENTIFIER .)
-    LCORCH          reduce using rule 6 (valor -> IDENTIFIER .)
 
 
-state 23
+state 27
 
     (3) asignacion -> LET IDENTIFIER EQ . valor
     (4) valor -> . INTEGER
     (5) valor -> . FLOAT
     (6) valor -> . IDENTIFIER
 
-    INTEGER         shift and go to state 20
-    FLOAT           shift and go to state 21
-    IDENTIFIER      shift and go to state 22
+    INTEGER         shift and go to state 24
+    FLOAT           shift and go to state 25
+    IDENTIFIER      shift and go to state 26
 
-    valor                          shift and go to state 28
-
-state 24
-
-    (12) impresion -> PRINTLN LPAREN valor . RPAREN
-
-    RPAREN          shift and go to state 29
-
-
-state 25
-
-    (13) funcion -> FN IDENTIFIER LPAREN . RPAREN LLLAVE programa RLLAVE
-
-    RPAREN          shift and go to state 30
-
-
-state 26
-
-    (14) ingreso_datos -> STD DOUBLE_COLON IO . DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
-
-    DOUBLE_COLON    shift and go to state 31
-
-
-state 27
-
-    (15) arreglos -> LCORCH valor RCORCH .
-
-    SEMICOLON       reduce using rule 15 (arreglos -> LCORCH valor RCORCH .)
-    LET             reduce using rule 15 (arreglos -> LCORCH valor RCORCH .)
-    PRINTLN         reduce using rule 15 (arreglos -> LCORCH valor RCORCH .)
-    FN              reduce using rule 15 (arreglos -> LCORCH valor RCORCH .)
-    STD             reduce using rule 15 (arreglos -> LCORCH valor RCORCH .)
-    LCORCH          reduce using rule 15 (arreglos -> LCORCH valor RCORCH .)
-
+    valor                          shift and go to state 32
 
 state 28
 
-    (3) asignacion -> LET IDENTIFIER EQ valor .
+    (12) impresion -> PRINTLN LPAREN valor . RPAREN
 
-    SEMICOLON       reduce using rule 3 (asignacion -> LET IDENTIFIER EQ valor .)
-    LET             reduce using rule 3 (asignacion -> LET IDENTIFIER EQ valor .)
-    PRINTLN         reduce using rule 3 (asignacion -> LET IDENTIFIER EQ valor .)
-    FN              reduce using rule 3 (asignacion -> LET IDENTIFIER EQ valor .)
-    STD             reduce using rule 3 (asignacion -> LET IDENTIFIER EQ valor .)
-    LCORCH          reduce using rule 3 (asignacion -> LET IDENTIFIER EQ valor .)
+    RPAREN          shift and go to state 33
 
 
 state 29
 
-    (12) impresion -> PRINTLN LPAREN valor RPAREN .
+    (13) funcion -> FN IDENTIFIER LPAREN . RPAREN LLLAVE programa RLLAVE
 
-    SEMICOLON       reduce using rule 12 (impresion -> PRINTLN LPAREN valor RPAREN .)
-    LET             reduce using rule 12 (impresion -> PRINTLN LPAREN valor RPAREN .)
-    PRINTLN         reduce using rule 12 (impresion -> PRINTLN LPAREN valor RPAREN .)
-    FN              reduce using rule 12 (impresion -> PRINTLN LPAREN valor RPAREN .)
-    STD             reduce using rule 12 (impresion -> PRINTLN LPAREN valor RPAREN .)
-    LCORCH          reduce using rule 12 (impresion -> PRINTLN LPAREN valor RPAREN .)
+    RPAREN          shift and go to state 34
 
 
 state 30
 
-    (13) funcion -> FN IDENTIFIER LPAREN RPAREN . LLLAVE programa RLLAVE
+    (14) ingreso_datos -> STD DOUBLE_COLON IO . DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
 
-    LLLAVE          shift and go to state 32
+    DOUBLE_COLON    shift and go to state 35
 
 
 state 31
 
-    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON . DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+    (15) arreglos -> LCORCH valor RCORCH .
 
-    DOT             shift and go to state 33
+    SEMICOLON       reduce using rule 15 (arreglos -> LCORCH valor RCORCH .)
 
 
 state 32
 
+    (3) asignacion -> LET IDENTIFIER EQ valor .
+
+    SEMICOLON       reduce using rule 3 (asignacion -> LET IDENTIFIER EQ valor .)
+
+
+state 33
+
+    (12) impresion -> PRINTLN LPAREN valor RPAREN .
+
+    SEMICOLON       reduce using rule 12 (impresion -> PRINTLN LPAREN valor RPAREN .)
+
+
+state 34
+
+    (13) funcion -> FN IDENTIFIER LPAREN RPAREN . LLLAVE programa RLLAVE
+
+    LLLAVE          shift and go to state 36
+
+
+state 35
+
+    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON . DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+
+    DOT             shift and go to state 37
+
+
+state 36
+
     (13) funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE . programa RLLAVE
-    (1) programa -> . sentencias SEMICOLON
+    (1) programa -> . sentencias
     (2) programa -> . sentencias programa
-    (7) sentencias -> . asignacion
-    (8) sentencias -> . impresion
-    (9) sentencias -> . funcion
-    (10) sentencias -> . ingreso_datos
-    (11) sentencias -> . arreglos
+    (7) sentencias -> . asignacion SEMICOLON
+    (8) sentencias -> . impresion SEMICOLON
+    (9) sentencias -> . funcion SEMICOLON
+    (10) sentencias -> . ingreso_datos SEMICOLON
+    (11) sentencias -> . arreglos SEMICOLON
     (3) asignacion -> . LET IDENTIFIER EQ valor
     (12) impresion -> . PRINTLN LPAREN valor RPAREN
     (13) funcion -> . FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE
@@ -539,7 +542,7 @@ state 32
     STD             shift and go to state 11
     LCORCH          shift and go to state 12
 
-    programa                       shift and go to state 34
+    programa                       shift and go to state 38
     sentencias                     shift and go to state 2
     asignacion                     shift and go to state 3
     impresion                      shift and go to state 4
@@ -547,103 +550,93 @@ state 32
     ingreso_datos                  shift and go to state 6
     arreglos                       shift and go to state 7
 
-state 33
+state 37
 
     (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT . STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
 
-    STDIN           shift and go to state 35
-
-
-state 34
-
-    (13) funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE programa . RLLAVE
-
-    RLLAVE          shift and go to state 36
-
-
-state 35
-
-    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN . LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
-
-    LPAREN          shift and go to state 37
-
-
-state 36
-
-    (13) funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE .
-
-    SEMICOLON       reduce using rule 13 (funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE .)
-    LET             reduce using rule 13 (funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE .)
-    PRINTLN         reduce using rule 13 (funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE .)
-    FN              reduce using rule 13 (funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE .)
-    STD             reduce using rule 13 (funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE .)
-    LCORCH          reduce using rule 13 (funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE .)
-
-
-state 37
-
-    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN . RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
-
-    RPAREN          shift and go to state 38
+    STDIN           shift and go to state 39
 
 
 state 38
 
-    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN . DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+    (13) funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE programa . RLLAVE
 
-    DOT             shift and go to state 39
+    RLLAVE          shift and go to state 40
 
 
 state 39
 
-    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT . READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
-
-    READLINE        shift and go to state 40
-
-
-state 40
-
-    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE . LPAREN REFERENCE MUT IDENTIFIER RPAREN
+    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN . LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
 
     LPAREN          shift and go to state 41
 
 
+state 40
+
+    (13) funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE .
+
+    SEMICOLON       reduce using rule 13 (funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE .)
+
+
 state 41
 
-    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN . REFERENCE MUT IDENTIFIER RPAREN
+    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN . RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
 
-    REFERENCE       shift and go to state 42
+    RPAREN          shift and go to state 42
 
 
 state 42
 
-    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE . MUT IDENTIFIER RPAREN
+    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN . DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
 
-    MUT             shift and go to state 43
+    DOT             shift and go to state 43
 
 
 state 43
 
-    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT . IDENTIFIER RPAREN
+    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT . READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
 
-    IDENTIFIER      shift and go to state 44
+    READLINE        shift and go to state 44
 
 
 state 44
 
-    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER . RPAREN
+    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE . LPAREN REFERENCE MUT IDENTIFIER RPAREN
 
-    RPAREN          shift and go to state 45
+    LPAREN          shift and go to state 45
 
 
 state 45
 
+    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN . REFERENCE MUT IDENTIFIER RPAREN
+
+    REFERENCE       shift and go to state 46
+
+
+state 46
+
+    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE . MUT IDENTIFIER RPAREN
+
+    MUT             shift and go to state 47
+
+
+state 47
+
+    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT . IDENTIFIER RPAREN
+
+    IDENTIFIER      shift and go to state 48
+
+
+state 48
+
+    (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER . RPAREN
+
+    RPAREN          shift and go to state 49
+
+
+state 49
+
     (14) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN .
 
     SEMICOLON       reduce using rule 14 (ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN .)
-    LET             reduce using rule 14 (ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN .)
-    PRINTLN         reduce using rule 14 (ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN .)
-    FN              reduce using rule 14 (ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN .)
-    STD             reduce using rule 14 (ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN .)
-    LCORCH          reduce using rule 14 (ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN .)
 

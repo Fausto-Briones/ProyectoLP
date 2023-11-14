@@ -3,13 +3,14 @@ from tokens import tokens
 from main import *
 
 
+
 def p_programa(p):
   '''programa : sentencias
               | sentencias programa
   '''
 
 def p_asignacion(p):
-  'asignacion : LET IDENTIFIER EQ valor'
+  'asignacion : LET IDENTIFIER ASIG valor'
 
 def p_valor(p):
   '''

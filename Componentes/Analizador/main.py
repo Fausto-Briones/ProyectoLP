@@ -5,8 +5,9 @@ from tokens import *
 from functions import *
 from symbols_regex import *
 
-if __name__ == "__main__":
-  lexer = lex.lex()
+lexer = lex.lex()
+'''if __name__ == "__main__":
+  
   numero= 0
   while (numero < 1 or numero > 3):
     numero = int(input("Ingrese número del 1 al 3\n"))
@@ -21,3 +22,4 @@ if __name__ == "__main__":
   for token in lexer:
     print(token)
   
+'''

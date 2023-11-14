@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND ASIG BOOL CHAR COLON COMMA DIVIDE DOT DOUBLE_COLON DOUBLE_QUOTATION_MARK ELSE EQ EXCLAMATION F32 F64 FALSE FLOAT FN FOR FROM GEQ I16 I32 I64 I8 IDENTIFIER IF IMPL IN INTD INTEGER IO ISIZE LCORCH LEFTARROW LEQ LET LLLAVE LPAREN MAIN MATCH MINUS MOD MUT NEQ NOT OR PLUS PRINTLN QUOTATION_MARK RAND RCORCH READLINE REFERENCE RETURN RIGHTARROW RLLAVE RPAREN SELF SEMICOLON STD STDIN STR STRING STRUCT TIMES TRUE U128 U16 U32 U64 U8 USIZE WHILEprograma : sentencias SEMICOLON\n              | sentencias programa\n  asignacion : LET IDENTIFIER EQ valor\n  valor : INTEGER \n          | FLOAT \n          | IDENTIFIER\n  \n  \n  sentencias : asignacion \n              | impresion\n              | funcion\n              | ingreso_datos\n              | arreglos\n\n  \n  impresion : PRINTLN LPAREN valor RPAREN\n  \n  \n  funcion : FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE\n  \n  \n  ingreso_datos : STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN\n\n  \n  arreglos : LCORCH valor RCORCH\n\n  '
+_lr_signature = 'AND ASIG BOOL CHAR COLON COMMA DIVIDE DOT DOUBLE_COLON DOUBLE_QUOTATION_MARK ELSE EQ EXCLAMATION F32 F64 FALSE FLOAT FN FOR FROM GEQ I16 I32 I64 I8 IDENTIFIER IF IMPL IN INTD INTEGER IO ISIZE LCORCH LEFTARROW LEQ LET LLLAVE LPAREN MAIN MATCH MINUS MOD MUT NEQ NOT OR PLUS PRINTLN QUOTATION_MARK RAND RCORCH READLINE REFERENCE RETURN RIGHTARROW RLLAVE RPAREN SELF SEMICOLON STD STDIN STR STRING STRUCT TIMES TRUE U128 U16 U32 U64 U8 USIZE WHILEprograma : sentencias\n              | sentencias programa\n  asignacion : LET IDENTIFIER EQ valor\n  valor : INTEGER \n          | FLOAT \n          | IDENTIFIER\n  \n  \n  sentencias : asignacion SEMICOLON\n              | impresion SEMICOLON\n              | funcion SEMICOLON\n              | ingreso_datos SEMICOLON\n              | arreglos SEMICOLON\n\n  \n  impresion : PRINTLN LPAREN valor RPAREN\n  \n  \n  funcion : FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE\n  \n  \n  ingreso_datos : STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN\n\n  \n  arreglos : LCORCH valor RCORCH\n\n  '
     
-_lr_action_items = {'LET':([0,2,3,4,5,6,7,20,21,22,27,28,29,32,36,45,],[8,8,-7,-8,-9,-10,-11,-4,-5,-6,-15,-3,-12,8,-13,-14,]),'PRINTLN':([0,2,3,4,5,6,7,20,21,22,27,28,29,32,36,45,],[9,9,-7,-8,-9,-10,-11,-4,-5,-6,-15,-3,-12,9,-13,-14,]),'FN':([0,2,3,4,5,6,7,20,21,22,27,28,29,32,36,45,],[10,10,-7,-8,-9,-10,-11,-4,-5,-6,-15,-3,-12,10,-13,-14,]),'STD':([0,2,3,4,5,6,7,20,21,22,27,28,29,32,36,45,],[11,11,-7,-8,-9,-10,-11,-4,-5,-6,-15,-3,-12,11,-13,-14,]),'LCORCH':([0,2,3,4,5,6,7,20,21,22,27,28,29,32,36,45,],[12,12,-7,-8,-9,-10,-11,-4,-5,-6,-15,-3,-12,12,-13,-14,]),'$end':([1,13,14,],[0,-1,-2,]),'SEMICOLON':([2,3,4,5,6,7,20,21,22,27,28,29,36,45,],[13,-7,-8,-9,-10,-11,-4,-5,-6,-15,-3,-12,-13,-14,]),'IDENTIFIER':([8,10,12,16,23,43,],[15,17,22,22,22,44,]),'LPAREN':([9,17,35,40,],[16,25,37,41,]),'DOUBLE_COLON':([11,26,],[18,31,]),'INTEGER':([12,16,23,],[20,20,20,]),'FLOAT':([12,16,23,],[21,21,21,]),'RLLAVE':([13,14,34,],[-1,-2,36,]),'EQ':([15,],[23,]),'IO':([18,],[26,]),'RCORCH':([19,20,21,22,],[27,-4,-5,-6,]),'RPAREN':([20,21,22,24,25,37,44,],[-4,-5,-6,29,30,38,45,]),'LLLAVE':([30,],[32,]),'DOT':([31,38,],[33,39,]),'STDIN':([33,],[35,]),'READLINE':([39,],[40,]),'REFERENCE':([41,],[42,]),'MUT':([42,],[43,]),}
+_lr_action_items = {'LET':([0,2,14,15,16,17,18,36,],[8,8,-7,-8,-9,-10,-11,8,]),'PRINTLN':([0,2,14,15,16,17,18,36,],[9,9,-7,-8,-9,-10,-11,9,]),'FN':([0,2,14,15,16,17,18,36,],[10,10,-7,-8,-9,-10,-11,10,]),'STD':([0,2,14,15,16,17,18,36,],[11,11,-7,-8,-9,-10,-11,11,]),'LCORCH':([0,2,14,15,16,17,18,36,],[12,12,-7,-8,-9,-10,-11,12,]),'$end':([1,2,13,14,15,16,17,18,],[0,-1,-2,-7,-8,-9,-10,-11,]),'RLLAVE':([2,13,14,15,16,17,18,38,],[-1,-2,-7,-8,-9,-10,-11,40,]),'SEMICOLON':([3,4,5,6,7,24,25,26,31,32,33,40,49,],[14,15,16,17,18,-4,-5,-6,-15,-3,-12,-13,-14,]),'IDENTIFIER':([8,10,12,20,27,47,],[19,21,26,26,26,48,]),'LPAREN':([9,21,39,44,],[20,29,41,45,]),'DOUBLE_COLON':([11,30,],[22,35,]),'INTEGER':([12,20,27,],[24,24,24,]),'FLOAT':([12,20,27,],[25,25,25,]),'EQ':([19,],[27,]),'IO':([22,],[30,]),'RCORCH':([23,24,25,26,],[31,-4,-5,-6,]),'RPAREN':([24,25,26,28,29,41,48,],[-4,-5,-6,33,34,42,49,]),'LLLAVE':([34,],[36,]),'DOT':([35,42,],[37,43,]),'STDIN':([37,],[39,]),'READLINE':([43,],[44,]),'REFERENCE':([45,],[46,]),'MUT':([46,],[47,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'programa':([0,2,32,],[1,14,34,]),'sentencias':([0,2,32,],[2,2,2,]),'asignacion':([0,2,32,],[3,3,3,]),'impresion':([0,2,32,],[4,4,4,]),'funcion':([0,2,32,],[5,5,5,]),'ingreso_datos':([0,2,32,],[6,6,6,]),'arreglos':([0,2,32,],[7,7,7,]),'valor':([12,16,23,],[19,24,28,]),}
+_lr_goto_items = {'programa':([0,2,36,],[1,13,38,]),'sentencias':([0,2,36,],[2,2,2,]),'asignacion':([0,2,36,],[3,3,3,]),'impresion':([0,2,36,],[4,4,4,]),'funcion':([0,2,36,],[5,5,5,]),'ingreso_datos':([0,2,36,],[6,6,6,]),'arreglos':([0,2,36,],[7,7,7,]),'valor':([12,20,27,],[23,28,32,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,19 +27,19 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> programa","S'",1,None,None,None),
-  ('programa -> sentencias SEMICOLON','programa',2,'p_programa','sintax.py',5),
-  ('programa -> sentencias programa','programa',2,'p_programa','sintax.py',6),
-  ('asignacion -> LET IDENTIFIER EQ valor','asignacion',4,'p_asignacion','sintax.py',10),
-  ('valor -> INTEGER','valor',1,'p_valor','sintax.py',14),
-  ('valor -> FLOAT','valor',1,'p_valor','sintax.py',15),
-  ('valor -> IDENTIFIER','valor',1,'p_valor','sintax.py',16),
-  ('sentencias -> asignacion','sentencias',1,'p_sentencias','sintax.py',21),
-  ('sentencias -> impresion','sentencias',1,'p_sentencias','sintax.py',22),
-  ('sentencias -> funcion','sentencias',1,'p_sentencias','sintax.py',23),
-  ('sentencias -> ingreso_datos','sentencias',1,'p_sentencias','sintax.py',24),
-  ('sentencias -> arreglos','sentencias',1,'p_sentencias','sintax.py',25),
-  ('impresion -> PRINTLN LPAREN valor RPAREN','impresion',4,'p_impresion','sintax.py',30),
-  ('funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE','funcion',7,'p_funcion','sintax.py',36),
-  ('ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN','ingreso_datos',15,'p_ingreso','sintax.py',42),
-  ('arreglos -> LCORCH valor RCORCH','arreglos',3,'p_arreglos','sintax.py',48),
+  ('programa -> sentencias','programa',1,'p_programa','sintax.py',7),
+  ('programa -> sentencias programa','programa',2,'p_programa','sintax.py',8),
+  ('asignacion -> LET IDENTIFIER EQ valor','asignacion',4,'p_asignacion','sintax.py',12),
+  ('valor -> INTEGER','valor',1,'p_valor','sintax.py',16),
+  ('valor -> FLOAT','valor',1,'p_valor','sintax.py',17),
+  ('valor -> IDENTIFIER','valor',1,'p_valor','sintax.py',18),
+  ('sentencias -> asignacion SEMICOLON','sentencias',2,'p_sentencias','sintax.py',23),
+  ('sentencias -> impresion SEMICOLON','sentencias',2,'p_sentencias','sintax.py',24),
+  ('sentencias -> funcion SEMICOLON','sentencias',2,'p_sentencias','sintax.py',25),
+  ('sentencias -> ingreso_datos SEMICOLON','sentencias',2,'p_sentencias','sintax.py',26),
+  ('sentencias -> arreglos SEMICOLON','sentencias',2,'p_sentencias','sintax.py',27),
+  ('impresion -> PRINTLN LPAREN valor RPAREN','impresion',4,'p_impresion','sintax.py',32),
+  ('funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE','funcion',7,'p_funcion','sintax.py',38),
+  ('ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN','ingreso_datos',15,'p_ingreso','sintax.py',44),
+  ('arreglos -> LCORCH valor RCORCH','arreglos',3,'p_arreglos','sintax.py',50),
 ]
