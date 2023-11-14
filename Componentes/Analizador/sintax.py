@@ -1,6 +1,6 @@
 import ply.yacc as sint
 from tokens import tokens
-from main import *
+from lexico import *
 
 
 
