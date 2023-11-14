@@ -1,0 +1,16 @@
+fn calcular_numeros() {
+
+    let mut x: f64 = 24.0;
+    let mut y: f64 = 12.0;
+    
+    
+    let suma = x + y;
+    let resta = x - y;
+    let multiplicacion = x*y;
+    let division = x/y
+    
+    println!("{suma}");
+    println!("{resta}");
+    println!("{multiplicacion}");
+    println!("{division}");
+}
