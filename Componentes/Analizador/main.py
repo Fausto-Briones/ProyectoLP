@@ -34,7 +34,7 @@ def p_impresion(p):
   impresion : PRINTLN LPAREN valor RPAREN
   
   '''
-
+#Axcel
 def p_funcion(p):
   '''
   funcion : FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE
@@ -48,9 +48,18 @@ def p_ingreso(p):
 
   '''
 
+#Axcel
 def p_arreglos(p):
   '''
-  arreglos : LCORCH valor RCORCH
+  arreglos : LCORCH valores RCORCH
+
+  '''
+
+#Axcel
+def p_valores(p):
+  '''
+  valores: valor
+          | valor COMMA valores
 
   '''
 #Fausto
