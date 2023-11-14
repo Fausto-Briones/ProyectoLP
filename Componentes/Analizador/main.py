@@ -3,15 +3,15 @@ from tokens import tokens
 from lexico import *
 
 
-
+#Fausto
 def p_programa(p):
   '''programa : sentencias
               | sentencias programa
   '''
-
+#Fausto
 def p_asignacion(p):
   'asignacion : LET IDENTIFIER ASIG valor'
-
+#Fausto
 def p_valor(p):
   '''
   valor : INTEGER 
@@ -19,6 +19,7 @@ def p_valor(p):
           | IDENTIFIER
   
   '''
+#Fausto
 def p_sentencias(p):
   '''
   sentencias : asignacion SEMICOLON
@@ -51,7 +52,7 @@ def p_arreglos(p):
   arreglos : LCORCH valor RCORCH
 
   '''
-
+#Fausto
 def p_error(p):
   print(f"Error sintáctico en la entrada {p}")
 
