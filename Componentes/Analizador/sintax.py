@@ -1,5 +1,5 @@
 import ply.yacc as sint
-from AnalizadorLexico.tokens import tokens
+from Analizador.tokens import tokens
 
 def p_programa(p):
   'programa : sentencias | sentencias programa'
