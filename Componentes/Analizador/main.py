@@ -41,6 +41,7 @@ def p_funcion(p):
   
   '''
 
+#Emilio
 def p_ingreso(p):
   '''
   ingreso_datos : STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
@@ -56,6 +57,7 @@ def p_arreglos(p):
 def p_error(p):
   print(f"Error sintáctico en la entrada {p}")
 
+#Emilio
 parser = sint.yacc()
 while True:
    try:
