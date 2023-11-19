@@ -36,7 +36,7 @@ def p_comparacion(p):
                 | valor RIGHTARROW IDENTIFIER
                 | valor LEFTARROW IDENTIFIER
   '''
-#Fausto & Emilio
+#Fausto
 def p_valor(p):
   '''
   valor : INTEGER 
@@ -44,6 +44,11 @@ def p_valor(p):
           | IDENTIFIER
   
   '''
+#Emilio
+def p_empty(p):
+    'empty :'
+    pass
+
 #Fausto
 def p_sentencias(p):
   '''
@@ -71,8 +76,9 @@ def p_parameters(p):
   '''
   parameters: IDENTIFIER COLON asig_data_type
               | IDENTIFIER COLON asig_data_type COMMA parameters
-              | ''
+              | empty
   '''
+
 
 #Emilio
 def p_ingreso_datos(p):
