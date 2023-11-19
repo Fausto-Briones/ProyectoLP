@@ -8,9 +8,12 @@ def p_programa(p):
   '''programa : sentencias
               | sentencias programa
   '''
-#Fausto
+#Fausto & Emilio
 def p_asignacion(p):
-  'asignacion : LET IDENTIFIER ASIG valor'
+  '''asignacion : LET IDENTIFIER ASIG valor
+                  | LET MUT IDENTIFIER ASIG valor
+                  | LET IDENTIFIER COLON asig_data_type ASIG valor
+                  | LET MUT IDENTIFIER COLON asig_data_type ASIG valor'''
 #Fausto
 def p_comparacion(p):
   '''
@@ -33,11 +36,11 @@ def p_comparacion(p):
                 | valor RIGHTARROW IDENTIFIER
                 | valor LEFTARROW IDENTIFIER
   '''
-#Fausto
+#Fausto & Emilio
 def p_valor(p):
   '''
   valor : INTEGER 
-          | FLOAT 
+          | FLOAT
           | IDENTIFIER
   
   '''
@@ -49,7 +52,7 @@ def p_sentencias(p):
               | funcion SEMICOLON
               | ingreso_datos SEMICOLON
               | arreglos SEMICOLON
-
+              | control_structure SEMICOLON
   '''
 def p_impresion(p):
   '''
@@ -64,10 +67,67 @@ def p_funcion(p):
   '''
 
 #Emilio
-def p_ingreso(p):
+def p_ingreso_datos(p):
   '''
   ingreso_datos : STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
 
+  '''
+
+#Emilio
+def p_asig_data_type(p):
+  '''
+  asig_data_type: data_type
+                  | LPAREN some_data_type RPAREN
+                  | LCORCH some_data_type PCORCH
+  '''
+
+#Emilio
+def p_data_type(p):
+  '''
+  data_type : CHAR
+              | signed_integer
+              | unsigend_integer
+              | float_type
+              | BOOL
+  '''
+#Emilio
+def p_signed_integer(p):
+  '''
+  signed_integer: I8
+                | I16
+                | I32
+                | I64
+                | I128
+                | ISIZE
+  '''
+#Emilio
+def p_unsigned_integer(p):
+  '''
+  unsigned_integer: U8
+                  | U16
+                  | U32
+                  | U64
+                  | U128
+                  | USIZE
+  '''
+#Emilio
+def p_float_type(p):
+  '''
+  float_type: F32
+            | F64
+  '''
+
+#Emilio
+def p_some_data_type(p):
+  '''
+  some_data_type: data_type
+                | data_type COMMA some_data_type
+  '''
+
+#Emilio
+def p_control_structure(p):
+  '''
+  control_structure: condicional
   '''
 
 #Axcel
