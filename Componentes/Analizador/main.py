@@ -62,8 +62,16 @@ def p_impresion(p):
 #Axcel
 def p_funcion(p):
   '''
-  funcion : FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE
+  funcion : FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE
   
+  '''
+
+#Emilio
+def p_parameters(p):
+  '''
+  parameters: IDENTIFIER COLON asig_data_type
+              | IDENTIFIER COLON asig_data_type COMMA parameters
+              | ''
   '''
 
 #Emilio
