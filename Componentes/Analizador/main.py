@@ -45,8 +45,8 @@ def p_valor(p):
   
   '''
 #Emilio
-def p_empty(p):
-    'empty :'
+def p_vacio(p):
+    'vacio :'
     pass
 
 #Fausto
@@ -76,7 +76,7 @@ def p_parameters(p):
   '''
   parameters: IDENTIFIER COLON asig_data_type
               | IDENTIFIER COLON asig_data_type COMMA parameters
-              | empty
+              | vacio
   '''
 
 
