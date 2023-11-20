@@ -45,6 +45,8 @@ def p_valor(p):
           | FLOAT
           | IDENTIFIER
           | operacion
+          | indexacion
+          | arreglos
   
   '''
 #Emilio
@@ -64,7 +66,7 @@ def p_sentencias(p):
   '''
 def p_impresion(p):
   '''
-  impresion : PRINTLN LPAREN valor RPAREN
+  impresion : PRINTLN EXCLAMATION LPAREN valor RPAREN
   
   '''
 #Axcel
@@ -172,20 +174,17 @@ def p_conector(p):
   '''
 #Fausto
 def p_proposicionC(p):
-  '''
-  proposicion : comparacion conector proposicion 
+  '''proposicion : comparacion conector proposicion 
               | comparacion
   '''
 #Fausto
 def p_condicional(p):
-  '''
-  condicional : IF comparacion LLLAVE programa RLLAVE 
+  '''condicional : IF comparacion LLLAVE programa RLLAVE 
                 | IF proposicion LLLAVE programa RLLAVE
   '''
 #Axcel
 def p_operacion(p):
-  '''
-  operacion : valor PLUS valor
+  '''operacion : valor PLUS valor
               | valor MINUS valor
               | valor TIMES valor
               | valor DIVIDE valor
@@ -193,6 +192,12 @@ def p_operacion(p):
               | valor INTD valor
   
   '''
+
+def p_indexacion(p):
+  '''indexacion : IDENTIFIER LCORCH INTEGER RCORCH
+
+  '''
+
 
 #Emilio
 parser = sint.yacc()

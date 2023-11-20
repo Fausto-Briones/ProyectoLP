@@ -16,7 +16,7 @@ reserved = {
   'str': 'STR',
   'struct':'STRUCT',
   'String':'STRING',
-  'println!': "PRINTLN",
+  'println': "PRINTLN",
   'from':"FROM",
   'char': 'CHAR',
   'mut':'MUT',
