@@ -52,6 +52,7 @@ def p_sentencias(p):
               | arreglos SEMICOLON
               | control_structure 
   '''
+#Axcel
 def p_impresion(p):
   '''
   impresion : PRINTLN EXCLAMATION LPAREN valor RPAREN
@@ -59,7 +60,7 @@ def p_impresion(p):
   
   
   '''
-#Axcel
+#Axcel Si se va a usar colocar la llave de cierre en la linea de ultima sentencia
 def p_funcion(p):
   '''
   funcion : FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE
@@ -183,7 +184,7 @@ def p_operacion(p):
               | valor INTD valor
   
   '''
-
+#Axcel
 def p_indexacion(p):
   '''indexacion : IDENTIFIER LCORCH INTEGER RCORCH
 
