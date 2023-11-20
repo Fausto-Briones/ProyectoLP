@@ -8,8 +8,6 @@ reserved = {
   'let': 'LET',
   'true': 'TRUE',
   'false': 'FALSE',
-  '&&': 'AND',
-  '||': 'OR',
   'match':"MATCH",
   'impl':'IMPL',
   'Self':'SELF',

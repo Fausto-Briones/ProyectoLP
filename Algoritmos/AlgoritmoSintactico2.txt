@@ -3,6 +3,5 @@ fn main(){
   let mut nombre = "Fausto";
   let mut apellido = "Briones";
 
-  println!("Hola {} {}",nombre,apellido);
-  }
-println!("Hola {} {}",nombre,apellido);
+  println!("Hola {} {}",nombre,apellido);}
+

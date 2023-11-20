@@ -3,5 +3,4 @@ fn indexacionArreglo(){
     let arreglo = [2,3,4,5];
     let primero = arreglo[0];
     let segundo = arreglo[1];
-    let tercero = arreglo[2];
-}
+    let tercero = arreglo[2];}

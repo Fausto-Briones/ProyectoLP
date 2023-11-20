@@ -30,6 +30,8 @@ tokens = (
    "EXCLAMATION",
    "REFERENCE",
    "LEFTARROW",
-   "RIGHTARROW"
+   "RIGHTARROW",
+   "AND",
+   "OR"
 ) + tuple(reserved.values())
 

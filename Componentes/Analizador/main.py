@@ -18,12 +18,12 @@ def p_asignacion(p):
   '''
 #Fausto
 def p_comparacion(p):
-  '''comparacion : valor EQ IDENTIFIER
-                | valor NEQ IDENTIFIER
-                | valor GEQ IDENTIFIER
-                | valor LEQ IDENTIFIER
-                | valor RIGHTARROW IDENTIFIER
-                | valor LEFTARROW IDENTIFIER
+  '''comparacion : valor EQ valor
+                | valor NEQ valor
+                | valor GEQ valor
+                | valor LEQ valor
+                | valor RIGHTARROW valor
+                | valor LEFTARROW valor
   '''
 #Fausto
 def p_valor(p):
@@ -50,7 +50,7 @@ def p_sentencias(p):
               | funcion 
               | ingreso_datos SEMICOLON
               | arreglos SEMICOLON
-              | control_structure SEMICOLON
+              | control_structure 
   '''
 def p_impresion(p):
   '''

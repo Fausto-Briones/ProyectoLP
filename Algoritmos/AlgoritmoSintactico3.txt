@@ -12,5 +12,4 @@ fn calcular_numeros() {
     println!("{suma}");
     println!("{resta}");
     println!("{multiplicacion}");
-    println!("{division}");
-}
+    println!("{division}");}
