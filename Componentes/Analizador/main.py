@@ -19,19 +19,7 @@ def p_asignacion(p):
   '''
 #Fausto
 def p_comparacion(p):
-  '''comparacion : IDENTIFIER LEQ IDENTIFIER
-                | IDENTIFIER GEQ IDENTIFIER
-                | IDENTIFIER EQ IDENTIFIER
-                | IDENTIFIER NEQ IDENTIFIER
-                | IDENTIFIER RIGHTARROW IDENTIFIER
-                | IDENTIFIER LEFTARROW IDENTIFIER
-                | IDENTIFIER EQ valor
-                | IDENTIFIER NEQ valor
-                | IDENTIFIER GEQ valor
-                | IDENTIFIER LEQ valor
-                | IDENTIFIER RIGHTARROW valor
-                | IDENTIFIER LEFTARROW valor
-                | valor EQ IDENTIFIER
+  '''comparacion : valor EQ IDENTIFIER
                 | valor NEQ IDENTIFIER
                 | valor GEQ IDENTIFIER
                 | valor LEQ IDENTIFIER
