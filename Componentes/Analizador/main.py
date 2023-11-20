@@ -51,6 +51,7 @@ def p_sentencias(p):
               | ingreso_datos SEMICOLON
               | arreglos SEMICOLON
               | control_structure 
+              | llamada SEMICOLON
   '''
 #Axcel
 def p_impresion(p):
@@ -65,6 +66,8 @@ def p_funcion(p):
   '''
   funcion : FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE
           | FN MAIN LPAREN parameters RPAREN LLLAVE programa RLLAVE
+          | FN MAIN LPAREN RPAREN LLLAVE programa RLLAVE
+          | FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE
   
   '''
 
@@ -190,6 +193,10 @@ def p_indexacion(p):
 
   '''
 
+def p_llamada(p):
+  '''llamada : IDENTIFIER LPAREN valores RPAREN
+  
+  '''
 
 #Emilio
 parser = sint.yacc()

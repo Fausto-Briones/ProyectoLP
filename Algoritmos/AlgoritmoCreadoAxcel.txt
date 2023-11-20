@@ -8,7 +8,8 @@ let tercero = arreglo[2];
 let contador = contador + 1;
 let cuarto = arreglo[3];
 let contador = contador +1;
-if segundo>=primero && tercero>=segundo && cuarto>=tercero {
-    println!("El arreglo de {} numeros esta ordenado",contador);}
+if segundo>=primero && tercero>=segundo && cuarto>=tercero{
+    println!("El arreglo de {} numeros esta ordenado",contador);
+    }
 
 
