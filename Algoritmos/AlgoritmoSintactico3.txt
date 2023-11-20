@@ -7,7 +7,7 @@ fn calcular_numeros() {
     let suma = x + y;
     let resta = x - y;
     let multiplicacion = x*y;
-    let division = x/y
+    let division = x/y;
     
     println!("{suma}");
     println!("{resta}");

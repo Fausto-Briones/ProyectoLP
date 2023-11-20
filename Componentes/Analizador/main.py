@@ -2,7 +2,6 @@ import ply.yacc as sint
 from tokens import tokens
 from lexico import *
 
-
 #Fausto
 def p_programa(p):
   '''programa : sentencias
@@ -35,6 +34,7 @@ def p_valor(p):
           | operacion
           | indexacion
           | arreglos
+          | STRING
   
   '''
 #Emilio
@@ -47,7 +47,7 @@ def p_sentencias(p):
   '''
   sentencias : asignacion SEMICOLON
               | impresion SEMICOLON
-              | funcion SEMICOLON
+              | funcion 
               | ingreso_datos SEMICOLON
               | arreglos SEMICOLON
               | control_structure SEMICOLON
@@ -55,12 +55,15 @@ def p_sentencias(p):
 def p_impresion(p):
   '''
   impresion : PRINTLN EXCLAMATION LPAREN valor RPAREN
+            | PRINTLN EXCLAMATION LPAREN valor COMMA valores RPAREN
+  
   
   '''
 #Axcel
 def p_funcion(p):
   '''
   funcion : FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE
+          | FN MAIN LPAREN parameters RPAREN LLLAVE programa RLLAVE
   
   '''
 
