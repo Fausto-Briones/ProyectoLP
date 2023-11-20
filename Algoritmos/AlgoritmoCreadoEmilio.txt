@@ -1,0 +1,17 @@
+fn funcion (x: i64, y: i64){
+	sum = x + y;
+	res = x - y;
+	mult = x * y;
+	div = x / y;
+	println!(println!("{} + {} = {}",x,y,sum);
+	println!(println!("{} + {} = {}",x,y,res);
+	println!(println!("{} + {} = {}",x,y,mult);
+	println!(println!("{} + {} = {}",x,y,div);
+}
+
+fn main(){
+	let mut x:i64 = 5;
+	let mut y:i64 = 10;
+
+	funcion(x,y);
+}
