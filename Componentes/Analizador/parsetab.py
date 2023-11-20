@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND ASIG BOOL CHAR COLON COMMA DIVIDE DOT DOUBLE_COLON DOUBLE_QUOTATION_MARK ELSE EQ EXCLAMATION F32 F64 FALSE FLOAT FN FOR FROM GEQ I16 I32 I64 I8 IDENTIFIER IF IMPL IN INTD INTEGER IO ISIZE LCORCH LEFTARROW LEQ LET LLLAVE LPAREN MAIN MATCH MINUS MOD MUT NEQ NOT OR PLUS PRINTLN QUOTATION_MARK RAND RCORCH READLINE REFERENCE RETURN RIGHTARROW RLLAVE RPAREN SELF SEMICOLON STD STDIN STR STRING STRUCT TIMES TRUE U128 U16 U32 U64 U8 USIZE WHILEprograma : sentencias\n              | sentencias programa\n  asignacion : LET IDENTIFIER EQ valor\n  valor : INTEGER \n          | FLOAT \n          | IDENTIFIER\n  \n  \n  sentencias : asignacion SEMICOLON\n              | impresion SEMICOLON\n              | funcion SEMICOLON\n              | ingreso_datos SEMICOLON\n              | arreglos SEMICOLON\n\n  \n  impresion : PRINTLN LPAREN valor RPAREN\n  \n  \n  funcion : FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE\n  \n  \n  ingreso_datos : STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN\n\n  \n  arreglos : LCORCH valor RCORCH\n\n  '
+_lr_signature = 'AND ASIG BOOL CHAR COLON COMMA DIVIDE DOT DOUBLE_COLON DOUBLE_QUOTATION_MARK ELSE EQ EXCLAMATION F32 F64 FALSE FLOAT FN FOR FROM GEQ I128 I16 I32 I64 I8 IDENTIFIER IF IMPL IN INTD INTEGER IO ISIZE LCORCH LEFTARROW LEQ LET LLLAVE LPAREN MAIN MATCH MINUS MOD MUT NEQ NOT OR PLUS PRINTLN QUOTATION_MARK RAND RCORCH READLINE REFERENCE RETURN RIGHTARROW RLLAVE RPAREN SELF SEMICOLON STD STDIN STR STRING STRUCT TIMES TRUE U128 U16 U32 U64 U8 USIZE WHILEprograma : sentencias\n            | sentencias programa\n\n  asignacion : LET IDENTIFIER ASIG valor\n                  | LET MUT IDENTIFIER ASIG valor\n                  | LET IDENTIFIER COLON asig_data_type ASIG valor\n                  | LET MUT IDENTIFIER COLON asig_data_type ASIG valor\n\n  comparacion : IDENTIFIER LEQ IDENTIFIER\n                | IDENTIFIER GEQ IDENTIFIER\n                | IDENTIFIER EQ IDENTIFIER\n                | IDENTIFIER NEQ IDENTIFIER\n                | IDENTIFIER RIGHTARROW IDENTIFIER\n                | IDENTIFIER LEFTARROW IDENTIFIER\n                | IDENTIFIER EQ valor\n                | IDENTIFIER NEQ valor\n                | IDENTIFIER GEQ valor\n                | IDENTIFIER LEQ valor\n                | IDENTIFIER RIGHTARROW valor\n                | IDENTIFIER LEFTARROW valor\n                | valor EQ IDENTIFIER\n                | valor NEQ IDENTIFIER\n                | valor GEQ IDENTIFIER\n                | valor LEQ IDENTIFIER\n                | valor RIGHTARROW IDENTIFIER\n                | valor LEFTARROW IDENTIFIER\n  \n  valor : INTEGER \n          | FLOAT\n          | IDENTIFIER\n          | operacion\n  \n  vacio :\n  sentencias : asignacion SEMICOLON\n              | impresion SEMICOLON\n              | funcion SEMICOLON\n              | ingreso_datos SEMICOLON\n              | arreglos SEMICOLON\n              | control_structure SEMICOLON\n  \n  impresion : PRINTLN LPAREN valor RPAREN\n  \n  \n  funcion : FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE\n  \n  \n  parameters : IDENTIFIER COLON asig_data_type\n              | IDENTIFIER COLON asig_data_type COMMA parameters\n              | vacio\n  \n  ingreso_datos : STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN\n\n  \n  asig_data_type : data_type\n                  | LPAREN some_data_type RPAREN\n                  | LCORCH some_data_type RCORCH\n  \n  data_type : CHAR\n              | signed_integer\n              | unsigned_integer\n              | float_type\n              | BOOL\n  \n  signed_integer : I8\n                | I16\n                | I32\n                | I64\n                | I128\n                | ISIZE\n  \n  unsigned_integer : U8\n                  | U16\n                  | U32\n                  | U64\n                  | U128\n                  | USIZE\n  \n  float_type : F32\n            | F64\n  \n  some_data_type : data_type\n                | data_type COMMA some_data_type\n  \n  control_structure : condicional\n  \n  arreglos : LCORCH valores RCORCH\n\n  \n  valores : valor\n          | valor COMMA valores\n\n  \n  conector : AND \n            | OR\n  \n  proposicion : comparacion conector proposicion \n              | comparacion\n  \n  condicional : IF comparacion LLLAVE programa RLLAVE \n                | IF proposicion LLLAVE programa RLLAVE\n  \n  operacion : valor PLUS valor\n              | valor MINUS valor\n              | valor TIMES valor\n              | valor DIVIDE valor\n              | valor MOD valor \n              | valor INTD valor\n  \n  '
     
-_lr_action_items = {'LET':([0,2,14,15,16,17,18,36,],[8,8,-7,-8,-9,-10,-11,8,]),'PRINTLN':([0,2,14,15,16,17,18,36,],[9,9,-7,-8,-9,-10,-11,9,]),'FN':([0,2,14,15,16,17,18,36,],[10,10,-7,-8,-9,-10,-11,10,]),'STD':([0,2,14,15,16,17,18,36,],[11,11,-7,-8,-9,-10,-11,11,]),'LCORCH':([0,2,14,15,16,17,18,36,],[12,12,-7,-8,-9,-10,-11,12,]),'$end':([1,2,13,14,15,16,17,18,],[0,-1,-2,-7,-8,-9,-10,-11,]),'RLLAVE':([2,13,14,15,16,17,18,38,],[-1,-2,-7,-8,-9,-10,-11,40,]),'SEMICOLON':([3,4,5,6,7,24,25,26,31,32,33,40,49,],[14,15,16,17,18,-4,-5,-6,-15,-3,-12,-13,-14,]),'IDENTIFIER':([8,10,12,20,27,47,],[19,21,26,26,26,48,]),'LPAREN':([9,21,39,44,],[20,29,41,45,]),'DOUBLE_COLON':([11,30,],[22,35,]),'INTEGER':([12,20,27,],[24,24,24,]),'FLOAT':([12,20,27,],[25,25,25,]),'EQ':([19,],[27,]),'IO':([22,],[30,]),'RCORCH':([23,24,25,26,],[31,-4,-5,-6,]),'RPAREN':([24,25,26,28,29,41,48,],[-4,-5,-6,33,34,42,49,]),'LLLAVE':([34,],[36,]),'DOT':([35,42,],[37,43,]),'STDIN':([37,],[39,]),'READLINE':([43,],[44,]),'REFERENCE':([45,],[46,]),'MUT':([46,],[47,]),}
+_lr_action_items = {'LET':([0,2,17,18,19,20,21,22,52,56,146,],[9,9,-30,-31,-32,-33,-34,-35,9,9,9,]),'PRINTLN':([0,2,17,18,19,20,21,22,52,56,146,],[10,10,-30,-31,-32,-33,-34,-35,10,10,10,]),'FN':([0,2,17,18,19,20,21,22,52,56,146,],[11,11,-30,-31,-32,-33,-34,-35,11,11,11,]),'STD':([0,2,17,18,19,20,21,22,52,56,146,],[12,12,-30,-31,-32,-33,-34,-35,12,12,12,]),'LCORCH':([0,2,17,18,19,20,21,22,39,52,56,94,135,146,],[13,13,-30,-31,-32,-33,-34,-35,73,13,13,73,73,13,]),'IF':([0,2,17,18,19,20,21,22,52,56,146,],[15,15,-30,-31,-32,-33,-34,-35,15,15,15,]),'$end':([1,2,16,17,18,19,20,21,22,],[0,-1,-2,-30,-31,-32,-33,-34,-35,]),'RLLAVE':([2,16,17,18,19,20,21,22,107,110,151,],[-1,-2,-30,-31,-32,-33,-34,-35,138,139,154,]),'SEMICOLON':([3,4,5,6,7,8,14,30,31,32,33,44,69,95,101,102,103,104,105,106,133,138,139,140,149,154,162,],[17,18,19,20,21,22,-66,-25,-26,-27,-28,-67,-3,-36,-76,-77,-78,-79,-80,-81,-4,-74,-75,-5,-6,-37,-41,]),'IDENTIFIER':([9,11,13,15,24,25,38,42,45,46,47,48,49,50,51,53,54,55,57,58,59,60,61,62,63,64,65,66,67,68,93,129,144,150,160,],[23,26,32,36,40,32,32,96,32,32,32,32,32,32,32,36,-70,-71,111,113,115,117,119,121,123,124,125,126,127,128,32,32,32,96,161,]),'MUT':([9,159,],[24,160,]),'LPAREN':([10,26,39,94,135,147,157,],[25,42,72,72,72,152,158,]),'DOUBLE_COLON':([12,43,],[27,99,]),'INTEGER':([13,15,25,38,45,46,47,48,49,50,51,53,54,55,57,58,59,60,61,62,93,129,144,],[30,30,30,30,30,30,30,30,30,30,30,30,-70,-71,30,30,30,30,30,30,30,30,30,]),'FLOAT':([13,15,25,38,45,46,47,48,49,50,51,53,54,55,57,58,59,60,61,62,93,129,144,],[31,31,31,31,31,31,31,31,31,31,31,31,-70,-71,31,31,31,31,31,31,31,31,31,]),'ASIG':([23,40,70,71,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,134,141,143,],[38,93,129,-42,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-61,-62,-63,144,-43,-44,]),'COLON':([23,40,96,],[39,94,135,]),'IO':([27,],[43,]),'RCORCH':([28,29,30,31,32,33,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,100,101,102,103,104,105,106,131,132,148,],[44,-68,-25,-26,-27,-28,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-61,-62,-63,-69,-76,-77,-78,-79,-80,-81,-64,143,-65,]),'COMMA':([29,30,31,32,33,71,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,101,102,103,104,105,106,131,141,143,145,],[45,-25,-26,-27,-28,-42,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-61,-62,-63,-76,-77,-78,-79,-80,-81,142,-43,-44,150,]),'PLUS':([29,30,31,32,33,36,37,41,69,101,102,103,104,105,106,111,112,113,114,115,116,117,118,119,120,121,122,133,140,149,],[46,-25,-26,-27,-28,-27,46,46,46,46,46,46,46,46,46,-27,46,-27,46,-27,46,-27,46,-27,46,-27,46,46,46,46,]),'MINUS':([29,30,31,32,33,36,37,41,69,101,102,103,104,105,106,111,112,113,114,115,116,117,118,119,120,121,122,133,140,149,],[47,-25,-26,-27,-28,-27,47,47,47,47,47,47,47,47,47,-27,47,-27,47,-27,47,-27,47,-27,47,-27,47,47,47,47,]),'TIMES':([29,30,31,32,33,36,37,41,69,101,102,103,104,105,106,111,112,113,114,115,116,117,118,119,120,121,122,133,140,149,],[48,-25,-26,-27,-28,-27,48,48,48,48,48,48,48,48,48,-27,48,-27,48,-27,48,-27,48,-27,48,-27,48,48,48,48,]),'DIVIDE':([29,30,31,32,33,36,37,41,69,101,102,103,104,105,106,111,112,113,114,115,116,117,118,119,120,121,122,133,140,149,],[49,-25,-26,-27,-28,-27,49,49,49,49,49,49,49,49,49,-27,49,-27,49,-27,49,-27,49,-27,49,-27,49,49,49,49,]),'MOD':([29,30,31,32,33,36,37,41,69,101,102,103,104,105,106,111,112,113,114,115,116,117,118,119,120,121,122,133,140,149,],[50,-25,-26,-27,-28,-27,50,50,50,50,50,50,50,50,50,-27,50,-27,50,-27,50,-27,50,-27,50,-27,50,50,50,50,]),'INTD':([29,30,31,32,33,36,37,41,69,101,102,103,104,105,106,111,112,113,114,115,116,117,118,119,120,121,122,133,140,149,],[51,-25,-26,-27,-28,-27,51,51,51,51,51,51,51,51,51,-27,51,-27,51,-27,51,-27,51,-27,51,-27,51,51,51,51,]),'EQ':([30,31,32,33,36,37,101,102,103,104,105,106,],[-25,-26,-27,-28,59,63,-76,-77,-78,-79,-80,-81,]),'NEQ':([30,31,32,33,36,37,101,102,103,104,105,106,],[-25,-26,-27,-28,60,64,-76,-77,-78,-79,-80,-81,]),'GEQ':([30,31,32,33,36,37,101,102,103,104,105,106,],[-25,-26,-27,-28,58,65,-76,-77,-78,-79,-80,-81,]),'LEQ':([30,31,32,33,36,37,101,102,103,104,105,106,],[-25,-26,-27,-28,57,66,-76,-77,-78,-79,-80,-81,]),'RIGHTARROW':([30,31,32,33,36,37,101,102,103,104,105,106,],[-25,-26,-27,-28,61,67,-76,-77,-78,-79,-80,-81,]),'LEFTARROW':([30,31,32,33,36,37,101,102,103,104,105,106,],[-25,-26,-27,-28,62,68,-76,-77,-78,-79,-80,-81,]),'RPAREN':([30,31,32,33,41,42,71,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,97,98,101,102,103,104,105,106,130,131,141,143,145,148,150,152,153,161,],[-25,-26,-27,-28,95,-29,-42,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-61,-62,-63,136,-40,-76,-77,-78,-79,-80,-81,141,-64,-43,-44,-38,-65,-29,155,-39,162,]),'LLLAVE':([30,31,32,33,34,35,101,102,103,104,105,106,108,109,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,136,],[-25,-26,-27,-28,52,56,-76,-77,-78,-79,-80,-81,-73,-72,-7,-16,-8,-15,-9,-13,-10,-14,-11,-17,-12,-18,-19,-20,-21,-22,-23,-24,146,]),'AND':([30,31,32,33,34,101,102,103,104,105,106,108,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,],[-25,-26,-27,-28,54,-76,-77,-78,-79,-80,-81,54,-7,-16,-8,-15,-9,-13,-10,-14,-11,-17,-12,-18,-19,-20,-21,-22,-23,-24,]),'OR':([30,31,32,33,34,101,102,103,104,105,106,108,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,],[-25,-26,-27,-28,55,-76,-77,-78,-79,-80,-81,55,-7,-16,-8,-15,-9,-13,-10,-14,-11,-17,-12,-18,-19,-20,-21,-22,-23,-24,]),'CHAR':([39,72,73,94,135,142,],[74,74,74,74,74,74,]),'BOOL':([39,72,73,94,135,142,],[78,78,78,78,78,78,]),'I8':([39,72,73,94,135,142,],[79,79,79,79,79,79,]),'I16':([39,72,73,94,135,142,],[80,80,80,80,80,80,]),'I32':([39,72,73,94,135,142,],[81,81,81,81,81,81,]),'I64':([39,72,73,94,135,142,],[82,82,82,82,82,82,]),'I128':([39,72,73,94,135,142,],[83,83,83,83,83,83,]),'ISIZE':([39,72,73,94,135,142,],[84,84,84,84,84,84,]),'U8':([39,72,73,94,135,142,],[85,85,85,85,85,85,]),'U16':([39,72,73,94,135,142,],[86,86,86,86,86,86,]),'U32':([39,72,73,94,135,142,],[87,87,87,87,87,87,]),'U64':([39,72,73,94,135,142,],[88,88,88,88,88,88,]),'U128':([39,72,73,94,135,142,],[89,89,89,89,89,89,]),'USIZE':([39,72,73,94,135,142,],[90,90,90,90,90,90,]),'F32':([39,72,73,94,135,142,],[91,91,91,91,91,91,]),'F64':([39,72,73,94,135,142,],[92,92,92,92,92,92,]),'DOT':([99,155,],[137,156,]),'STDIN':([137,],[147,]),'READLINE':([156,],[157,]),'REFERENCE':([158,],[159,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'programa':([0,2,36,],[1,13,38,]),'sentencias':([0,2,36,],[2,2,2,]),'asignacion':([0,2,36,],[3,3,3,]),'impresion':([0,2,36,],[4,4,4,]),'funcion':([0,2,36,],[5,5,5,]),'ingreso_datos':([0,2,36,],[6,6,6,]),'arreglos':([0,2,36,],[7,7,7,]),'valor':([12,20,27,],[23,28,32,]),}
+_lr_goto_items = {'programa':([0,2,52,56,146,],[1,16,107,110,151,]),'sentencias':([0,2,52,56,146,],[2,2,2,2,2,]),'asignacion':([0,2,52,56,146,],[3,3,3,3,3,]),'impresion':([0,2,52,56,146,],[4,4,4,4,4,]),'funcion':([0,2,52,56,146,],[5,5,5,5,5,]),'ingreso_datos':([0,2,52,56,146,],[6,6,6,6,6,]),'arreglos':([0,2,52,56,146,],[7,7,7,7,7,]),'control_structure':([0,2,52,56,146,],[8,8,8,8,8,]),'condicional':([0,2,52,56,146,],[14,14,14,14,14,]),'valores':([13,45,],[28,100,]),'valor':([13,15,25,38,45,46,47,48,49,50,51,53,57,58,59,60,61,62,93,129,144,],[29,37,41,69,29,101,102,103,104,105,106,37,112,114,116,118,120,122,133,140,149,]),'operacion':([13,15,25,38,45,46,47,48,49,50,51,53,57,58,59,60,61,62,93,129,144,],[33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,]),'comparacion':([15,53,],[34,108,]),'proposicion':([15,53,],[35,109,]),'conector':([34,108,],[53,53,]),'asig_data_type':([39,94,135,],[70,134,145,]),'data_type':([39,72,73,94,135,142,],[71,131,131,71,71,131,]),'signed_integer':([39,72,73,94,135,142,],[75,75,75,75,75,75,]),'unsigned_integer':([39,72,73,94,135,142,],[76,76,76,76,76,76,]),'float_type':([39,72,73,94,135,142,],[77,77,77,77,77,77,]),'parameters':([42,150,],[97,153,]),'vacio':([42,150,],[98,98,]),'some_data_type':([72,73,142,],[130,132,148,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,19 +27,85 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> programa","S'",1,None,None,None),
-  ('programa -> sentencias','programa',1,'p_programa','sintax.py',7),
-  ('programa -> sentencias programa','programa',2,'p_programa','sintax.py',8),
-  ('asignacion -> LET IDENTIFIER EQ valor','asignacion',4,'p_asignacion','sintax.py',12),
-  ('valor -> INTEGER','valor',1,'p_valor','sintax.py',16),
-  ('valor -> FLOAT','valor',1,'p_valor','sintax.py',17),
-  ('valor -> IDENTIFIER','valor',1,'p_valor','sintax.py',18),
-  ('sentencias -> asignacion SEMICOLON','sentencias',2,'p_sentencias','sintax.py',23),
-  ('sentencias -> impresion SEMICOLON','sentencias',2,'p_sentencias','sintax.py',24),
-  ('sentencias -> funcion SEMICOLON','sentencias',2,'p_sentencias','sintax.py',25),
-  ('sentencias -> ingreso_datos SEMICOLON','sentencias',2,'p_sentencias','sintax.py',26),
-  ('sentencias -> arreglos SEMICOLON','sentencias',2,'p_sentencias','sintax.py',27),
-  ('impresion -> PRINTLN LPAREN valor RPAREN','impresion',4,'p_impresion','sintax.py',32),
-  ('funcion -> FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE','funcion',7,'p_funcion','sintax.py',38),
-  ('ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN','ingreso_datos',15,'p_ingreso','sintax.py',44),
-  ('arreglos -> LCORCH valor RCORCH','arreglos',3,'p_arreglos','sintax.py',50),
+  ('programa -> sentencias','programa',1,'p_programa','main.py',8),
+  ('programa -> sentencias programa','programa',2,'p_programa','main.py',9),
+  ('asignacion -> LET IDENTIFIER ASIG valor','asignacion',4,'p_asignacion','main.py',14),
+  ('asignacion -> LET MUT IDENTIFIER ASIG valor','asignacion',5,'p_asignacion','main.py',15),
+  ('asignacion -> LET IDENTIFIER COLON asig_data_type ASIG valor','asignacion',6,'p_asignacion','main.py',16),
+  ('asignacion -> LET MUT IDENTIFIER COLON asig_data_type ASIG valor','asignacion',7,'p_asignacion','main.py',17),
+  ('comparacion -> IDENTIFIER LEQ IDENTIFIER','comparacion',3,'p_comparacion','main.py',22),
+  ('comparacion -> IDENTIFIER GEQ IDENTIFIER','comparacion',3,'p_comparacion','main.py',23),
+  ('comparacion -> IDENTIFIER EQ IDENTIFIER','comparacion',3,'p_comparacion','main.py',24),
+  ('comparacion -> IDENTIFIER NEQ IDENTIFIER','comparacion',3,'p_comparacion','main.py',25),
+  ('comparacion -> IDENTIFIER RIGHTARROW IDENTIFIER','comparacion',3,'p_comparacion','main.py',26),
+  ('comparacion -> IDENTIFIER LEFTARROW IDENTIFIER','comparacion',3,'p_comparacion','main.py',27),
+  ('comparacion -> IDENTIFIER EQ valor','comparacion',3,'p_comparacion','main.py',28),
+  ('comparacion -> IDENTIFIER NEQ valor','comparacion',3,'p_comparacion','main.py',29),
+  ('comparacion -> IDENTIFIER GEQ valor','comparacion',3,'p_comparacion','main.py',30),
+  ('comparacion -> IDENTIFIER LEQ valor','comparacion',3,'p_comparacion','main.py',31),
+  ('comparacion -> IDENTIFIER RIGHTARROW valor','comparacion',3,'p_comparacion','main.py',32),
+  ('comparacion -> IDENTIFIER LEFTARROW valor','comparacion',3,'p_comparacion','main.py',33),
+  ('comparacion -> valor EQ IDENTIFIER','comparacion',3,'p_comparacion','main.py',34),
+  ('comparacion -> valor NEQ IDENTIFIER','comparacion',3,'p_comparacion','main.py',35),
+  ('comparacion -> valor GEQ IDENTIFIER','comparacion',3,'p_comparacion','main.py',36),
+  ('comparacion -> valor LEQ IDENTIFIER','comparacion',3,'p_comparacion','main.py',37),
+  ('comparacion -> valor RIGHTARROW IDENTIFIER','comparacion',3,'p_comparacion','main.py',38),
+  ('comparacion -> valor LEFTARROW IDENTIFIER','comparacion',3,'p_comparacion','main.py',39),
+  ('valor -> INTEGER','valor',1,'p_valor','main.py',44),
+  ('valor -> FLOAT','valor',1,'p_valor','main.py',45),
+  ('valor -> IDENTIFIER','valor',1,'p_valor','main.py',46),
+  ('valor -> operacion','valor',1,'p_valor','main.py',47),
+  ('vacio -> <empty>','vacio',0,'p_vacio','main.py',52),
+  ('sentencias -> asignacion SEMICOLON','sentencias',2,'p_sentencias','main.py',58),
+  ('sentencias -> impresion SEMICOLON','sentencias',2,'p_sentencias','main.py',59),
+  ('sentencias -> funcion SEMICOLON','sentencias',2,'p_sentencias','main.py',60),
+  ('sentencias -> ingreso_datos SEMICOLON','sentencias',2,'p_sentencias','main.py',61),
+  ('sentencias -> arreglos SEMICOLON','sentencias',2,'p_sentencias','main.py',62),
+  ('sentencias -> control_structure SEMICOLON','sentencias',2,'p_sentencias','main.py',63),
+  ('impresion -> PRINTLN LPAREN valor RPAREN','impresion',4,'p_impresion','main.py',67),
+  ('funcion -> FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE','funcion',8,'p_funcion','main.py',73),
+  ('parameters -> IDENTIFIER COLON asig_data_type','parameters',3,'p_parameters','main.py',80),
+  ('parameters -> IDENTIFIER COLON asig_data_type COMMA parameters','parameters',5,'p_parameters','main.py',81),
+  ('parameters -> vacio','parameters',1,'p_parameters','main.py',82),
+  ('ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN','ingreso_datos',15,'p_ingreso_datos','main.py',89),
+  ('asig_data_type -> data_type','asig_data_type',1,'p_asig_data_type','main.py',96),
+  ('asig_data_type -> LPAREN some_data_type RPAREN','asig_data_type',3,'p_asig_data_type','main.py',97),
+  ('asig_data_type -> LCORCH some_data_type RCORCH','asig_data_type',3,'p_asig_data_type','main.py',98),
+  ('data_type -> CHAR','data_type',1,'p_data_type','main.py',104),
+  ('data_type -> signed_integer','data_type',1,'p_data_type','main.py',105),
+  ('data_type -> unsigned_integer','data_type',1,'p_data_type','main.py',106),
+  ('data_type -> float_type','data_type',1,'p_data_type','main.py',107),
+  ('data_type -> BOOL','data_type',1,'p_data_type','main.py',108),
+  ('signed_integer -> I8','signed_integer',1,'p_signed_integer','main.py',113),
+  ('signed_integer -> I16','signed_integer',1,'p_signed_integer','main.py',114),
+  ('signed_integer -> I32','signed_integer',1,'p_signed_integer','main.py',115),
+  ('signed_integer -> I64','signed_integer',1,'p_signed_integer','main.py',116),
+  ('signed_integer -> I128','signed_integer',1,'p_signed_integer','main.py',117),
+  ('signed_integer -> ISIZE','signed_integer',1,'p_signed_integer','main.py',118),
+  ('unsigned_integer -> U8','unsigned_integer',1,'p_unsigned_integer','main.py',123),
+  ('unsigned_integer -> U16','unsigned_integer',1,'p_unsigned_integer','main.py',124),
+  ('unsigned_integer -> U32','unsigned_integer',1,'p_unsigned_integer','main.py',125),
+  ('unsigned_integer -> U64','unsigned_integer',1,'p_unsigned_integer','main.py',126),
+  ('unsigned_integer -> U128','unsigned_integer',1,'p_unsigned_integer','main.py',127),
+  ('unsigned_integer -> USIZE','unsigned_integer',1,'p_unsigned_integer','main.py',128),
+  ('float_type -> F32','float_type',1,'p_float_type','main.py',133),
+  ('float_type -> F64','float_type',1,'p_float_type','main.py',134),
+  ('some_data_type -> data_type','some_data_type',1,'p_some_data_type','main.py',140),
+  ('some_data_type -> data_type COMMA some_data_type','some_data_type',3,'p_some_data_type','main.py',141),
+  ('control_structure -> condicional','control_structure',1,'p_control_structure','main.py',147),
+  ('arreglos -> LCORCH valores RCORCH','arreglos',3,'p_arreglos','main.py',153),
+  ('valores -> valor','valores',1,'p_valores','main.py',160),
+  ('valores -> valor COMMA valores','valores',3,'p_valores','main.py',161),
+  ('conector -> AND','conector',1,'p_conector','main.py',170),
+  ('conector -> OR','conector',1,'p_conector','main.py',171),
+  ('proposicion -> comparacion conector proposicion','proposicion',3,'p_proposicionC','main.py',176),
+  ('proposicion -> comparacion','proposicion',1,'p_proposicionC','main.py',177),
+  ('condicional -> IF comparacion LLLAVE programa RLLAVE','condicional',5,'p_condicional','main.py',182),
+  ('condicional -> IF proposicion LLLAVE programa RLLAVE','condicional',5,'p_condicional','main.py',183),
+  ('operacion -> valor PLUS valor','operacion',3,'p_operacion','main.py',188),
+  ('operacion -> valor MINUS valor','operacion',3,'p_operacion','main.py',189),
+  ('operacion -> valor TIMES valor','operacion',3,'p_operacion','main.py',190),
+  ('operacion -> valor DIVIDE valor','operacion',3,'p_operacion','main.py',191),
+  ('operacion -> valor MOD valor','operacion',3,'p_operacion','main.py',192),
+  ('operacion -> valor INTD valor','operacion',3,'p_operacion','main.py',193),
 ]

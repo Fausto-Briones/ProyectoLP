@@ -1,1 +1,2963 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    DOUBLE_QUOTATION_MARK
+    ELSE
+    EXCLAMATION
+    FALSE
+    FOR
+    FROM
+    IMPL
+    IN
+    MAIN
+    MATCH
+    NOT
+    QUOTATION_MARK
+    RAND
+    RETURN
+    SELF
+    STR
+    STRING
+    STRUCT
+    TRUE
+    WHILE
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> sentencias
+Rule 2     programa -> sentencias programa
+Rule 3     asignacion -> LET IDENTIFIER ASIG valor
+Rule 4     asignacion -> LET MUT IDENTIFIER ASIG valor
+Rule 5     asignacion -> LET IDENTIFIER COLON asig_data_type ASIG valor
+Rule 6     asignacion -> LET MUT IDENTIFIER COLON asig_data_type ASIG valor
+Rule 7     comparacion -> IDENTIFIER LEQ IDENTIFIER
+Rule 8     comparacion -> IDENTIFIER GEQ IDENTIFIER
+Rule 9     comparacion -> IDENTIFIER EQ IDENTIFIER
+Rule 10    comparacion -> IDENTIFIER NEQ IDENTIFIER
+Rule 11    comparacion -> IDENTIFIER RIGHTARROW IDENTIFIER
+Rule 12    comparacion -> IDENTIFIER LEFTARROW IDENTIFIER
+Rule 13    comparacion -> IDENTIFIER EQ valor
+Rule 14    comparacion -> IDENTIFIER NEQ valor
+Rule 15    comparacion -> IDENTIFIER GEQ valor
+Rule 16    comparacion -> IDENTIFIER LEQ valor
+Rule 17    comparacion -> IDENTIFIER RIGHTARROW valor
+Rule 18    comparacion -> IDENTIFIER LEFTARROW valor
+Rule 19    comparacion -> valor EQ IDENTIFIER
+Rule 20    comparacion -> valor NEQ IDENTIFIER
+Rule 21    comparacion -> valor GEQ IDENTIFIER
+Rule 22    comparacion -> valor LEQ IDENTIFIER
+Rule 23    comparacion -> valor RIGHTARROW IDENTIFIER
+Rule 24    comparacion -> valor LEFTARROW IDENTIFIER
+Rule 25    valor -> INTEGER
+Rule 26    valor -> FLOAT
+Rule 27    valor -> IDENTIFIER
+Rule 28    valor -> operacion
+Rule 29    vacio -> <empty>
+Rule 30    sentencias -> asignacion SEMICOLON
+Rule 31    sentencias -> impresion SEMICOLON
+Rule 32    sentencias -> funcion SEMICOLON
+Rule 33    sentencias -> ingreso_datos SEMICOLON
+Rule 34    sentencias -> arreglos SEMICOLON
+Rule 35    sentencias -> control_structure SEMICOLON
+Rule 36    impresion -> PRINTLN LPAREN valor RPAREN
+Rule 37    funcion -> FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE
+Rule 38    parameters -> IDENTIFIER COLON asig_data_type
+Rule 39    parameters -> IDENTIFIER COLON asig_data_type COMMA parameters
+Rule 40    parameters -> vacio
+Rule 41    ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+Rule 42    asig_data_type -> data_type
+Rule 43    asig_data_type -> LPAREN some_data_type RPAREN
+Rule 44    asig_data_type -> LCORCH some_data_type RCORCH
+Rule 45    data_type -> CHAR
+Rule 46    data_type -> signed_integer
+Rule 47    data_type -> unsigned_integer
+Rule 48    data_type -> float_type
+Rule 49    data_type -> BOOL
+Rule 50    signed_integer -> I8
+Rule 51    signed_integer -> I16
+Rule 52    signed_integer -> I32
+Rule 53    signed_integer -> I64
+Rule 54    signed_integer -> I128
+Rule 55    signed_integer -> ISIZE
+Rule 56    unsigned_integer -> U8
+Rule 57    unsigned_integer -> U16
+Rule 58    unsigned_integer -> U32
+Rule 59    unsigned_integer -> U64
+Rule 60    unsigned_integer -> U128
+Rule 61    unsigned_integer -> USIZE
+Rule 62    float_type -> F32
+Rule 63    float_type -> F64
+Rule 64    some_data_type -> data_type
+Rule 65    some_data_type -> data_type COMMA some_data_type
+Rule 66    control_structure -> condicional
+Rule 67    arreglos -> LCORCH valores RCORCH
+Rule 68    valores -> valor
+Rule 69    valores -> valor COMMA valores
+Rule 70    conector -> AND
+Rule 71    conector -> OR
+Rule 72    proposicion -> comparacion conector proposicion
+Rule 73    proposicion -> comparacion
+Rule 74    condicional -> IF comparacion LLLAVE programa RLLAVE
+Rule 75    condicional -> IF proposicion LLLAVE programa RLLAVE
+Rule 76    operacion -> valor PLUS valor
+Rule 77    operacion -> valor MINUS valor
+Rule 78    operacion -> valor TIMES valor
+Rule 79    operacion -> valor DIVIDE valor
+Rule 80    operacion -> valor MOD valor
+Rule 81    operacion -> valor INTD valor
+
+Terminals, with rules where they appear
+
+AND                  : 70
+ASIG                 : 3 4 5 6
+BOOL                 : 49
+CHAR                 : 45
+COLON                : 5 6 38 39
+COMMA                : 39 65 69
+DIVIDE               : 79
+DOT                  : 41 41
+DOUBLE_COLON         : 41 41
+DOUBLE_QUOTATION_MARK : 
+ELSE                 : 
+EQ                   : 9 13 19
+EXCLAMATION          : 
+F32                  : 62
+F64                  : 63
+FALSE                : 
+FLOAT                : 26
+FN                   : 37
+FOR                  : 
+FROM                 : 
+GEQ                  : 8 15 21
+I128                 : 54
+I16                  : 51
+I32                  : 52
+I64                  : 53
+I8                   : 50
+IDENTIFIER           : 3 4 5 6 7 7 8 8 9 9 10 10 11 11 12 12 13 14 15 16 17 18 19 20 21 22 23 24 27 37 38 39 41
+IF                   : 74 75
+IMPL                 : 
+IN                   : 
+INTD                 : 81
+INTEGER              : 25
+IO                   : 41
+ISIZE                : 55
+LCORCH               : 44 67
+LEFTARROW            : 12 18 24
+LEQ                  : 7 16 22
+LET                  : 3 4 5 6
+LLLAVE               : 37 74 75
+LPAREN               : 36 37 41 41 43
+MAIN                 : 
+MATCH                : 
+MINUS                : 77
+MOD                  : 80
+MUT                  : 4 6 41
+NEQ                  : 10 14 20
+NOT                  : 
+OR                   : 71
+PLUS                 : 76
+PRINTLN              : 36
+QUOTATION_MARK       : 
+RAND                 : 
+RCORCH               : 44 67
+READLINE             : 41
+REFERENCE            : 41
+RETURN               : 
+RIGHTARROW           : 11 17 23
+RLLAVE               : 37 74 75
+RPAREN               : 36 37 41 41 43
+SELF                 : 
+SEMICOLON            : 30 31 32 33 34 35
+STD                  : 41
+STDIN                : 41
+STR                  : 
+STRING               : 
+STRUCT               : 
+TIMES                : 78
+TRUE                 : 
+U128                 : 60
+U16                  : 57
+U32                  : 58
+U64                  : 59
+U8                   : 56
+USIZE                : 61
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+arreglos             : 34
+asig_data_type       : 5 6 38 39
+asignacion           : 30
+comparacion          : 72 73 74
+condicional          : 66
+conector             : 72
+control_structure    : 35
+data_type            : 42 64 65
+float_type           : 48
+funcion              : 32
+impresion            : 31
+ingreso_datos        : 33
+operacion            : 28
+parameters           : 37 39
+programa             : 2 37 74 75 0
+proposicion          : 72 75
+sentencias           : 1 2
+signed_integer       : 46
+some_data_type       : 43 44 65
+unsigned_integer     : 47
+vacio                : 40
+valor                : 3 4 5 6 13 14 15 16 17 18 19 20 21 22 23 24 36 68 69 76 76 77 77 78 78 79 79 80 80 81 81
+valores              : 67 69
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . sentencias
+    (2) programa -> . sentencias programa
+    (30) sentencias -> . asignacion SEMICOLON
+    (31) sentencias -> . impresion SEMICOLON
+    (32) sentencias -> . funcion SEMICOLON
+    (33) sentencias -> . ingreso_datos SEMICOLON
+    (34) sentencias -> . arreglos SEMICOLON
+    (35) sentencias -> . control_structure SEMICOLON
+    (3) asignacion -> . LET IDENTIFIER ASIG valor
+    (4) asignacion -> . LET MUT IDENTIFIER ASIG valor
+    (5) asignacion -> . LET IDENTIFIER COLON asig_data_type ASIG valor
+    (6) asignacion -> . LET MUT IDENTIFIER COLON asig_data_type ASIG valor
+    (36) impresion -> . PRINTLN LPAREN valor RPAREN
+    (37) funcion -> . FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE
+    (41) ingreso_datos -> . STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+    (67) arreglos -> . LCORCH valores RCORCH
+    (66) control_structure -> . condicional
+    (74) condicional -> . IF comparacion LLLAVE programa RLLAVE
+    (75) condicional -> . IF proposicion LLLAVE programa RLLAVE
+
+    LET             shift and go to state 9
+    PRINTLN         shift and go to state 10
+    FN              shift and go to state 11
+    STD             shift and go to state 12
+    LCORCH          shift and go to state 13
+    IF              shift and go to state 15
+
+    programa                       shift and go to state 1
+    sentencias                     shift and go to state 2
+    asignacion                     shift and go to state 3
+    impresion                      shift and go to state 4
+    funcion                        shift and go to state 5
+    ingreso_datos                  shift and go to state 6
+    arreglos                       shift and go to state 7
+    control_structure              shift and go to state 8
+    condicional                    shift and go to state 14
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> sentencias .
+    (2) programa -> sentencias . programa
+    (1) programa -> . sentencias
+    (2) programa -> . sentencias programa
+    (30) sentencias -> . asignacion SEMICOLON
+    (31) sentencias -> . impresion SEMICOLON
+    (32) sentencias -> . funcion SEMICOLON
+    (33) sentencias -> . ingreso_datos SEMICOLON
+    (34) sentencias -> . arreglos SEMICOLON
+    (35) sentencias -> . control_structure SEMICOLON
+    (3) asignacion -> . LET IDENTIFIER ASIG valor
+    (4) asignacion -> . LET MUT IDENTIFIER ASIG valor
+    (5) asignacion -> . LET IDENTIFIER COLON asig_data_type ASIG valor
+    (6) asignacion -> . LET MUT IDENTIFIER COLON asig_data_type ASIG valor
+    (36) impresion -> . PRINTLN LPAREN valor RPAREN
+    (37) funcion -> . FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE
+    (41) ingreso_datos -> . STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+    (67) arreglos -> . LCORCH valores RCORCH
+    (66) control_structure -> . condicional
+    (74) condicional -> . IF comparacion LLLAVE programa RLLAVE
+    (75) condicional -> . IF proposicion LLLAVE programa RLLAVE
+
+    $end            reduce using rule 1 (programa -> sentencias .)
+    RLLAVE          reduce using rule 1 (programa -> sentencias .)
+    LET             shift and go to state 9
+    PRINTLN         shift and go to state 10
+    FN              shift and go to state 11
+    STD             shift and go to state 12
+    LCORCH          shift and go to state 13
+    IF              shift and go to state 15
+
+    sentencias                     shift and go to state 2
+    programa                       shift and go to state 16
+    asignacion                     shift and go to state 3
+    impresion                      shift and go to state 4
+    funcion                        shift and go to state 5
+    ingreso_datos                  shift and go to state 6
+    arreglos                       shift and go to state 7
+    control_structure              shift and go to state 8
+    condicional                    shift and go to state 14
+
+state 3
+
+    (30) sentencias -> asignacion . SEMICOLON
+
+    SEMICOLON       shift and go to state 17
+
+
+state 4
+
+    (31) sentencias -> impresion . SEMICOLON
+
+    SEMICOLON       shift and go to state 18
+
+
+state 5
+
+    (32) sentencias -> funcion . SEMICOLON
+
+    SEMICOLON       shift and go to state 19
+
+
+state 6
+
+    (33) sentencias -> ingreso_datos . SEMICOLON
+
+    SEMICOLON       shift and go to state 20
+
+
+state 7
+
+    (34) sentencias -> arreglos . SEMICOLON
+
+    SEMICOLON       shift and go to state 21
+
+
+state 8
+
+    (35) sentencias -> control_structure . SEMICOLON
+
+    SEMICOLON       shift and go to state 22
+
+
+state 9
+
+    (3) asignacion -> LET . IDENTIFIER ASIG valor
+    (4) asignacion -> LET . MUT IDENTIFIER ASIG valor
+    (5) asignacion -> LET . IDENTIFIER COLON asig_data_type ASIG valor
+    (6) asignacion -> LET . MUT IDENTIFIER COLON asig_data_type ASIG valor
+
+    IDENTIFIER      shift and go to state 23
+    MUT             shift and go to state 24
+
+
+state 10
+
+    (36) impresion -> PRINTLN . LPAREN valor RPAREN
+
+    LPAREN          shift and go to state 25
+
+
+state 11
+
+    (37) funcion -> FN . IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE
+
+    IDENTIFIER      shift and go to state 26
+
+
+state 12
+
+    (41) ingreso_datos -> STD . DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+
+    DOUBLE_COLON    shift and go to state 27
+
+
+state 13
+
+    (67) arreglos -> LCORCH . valores RCORCH
+    (68) valores -> . valor
+    (69) valores -> . valor COMMA valores
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+    IDENTIFIER      shift and go to state 32
+
+    valores                        shift and go to state 28
+    valor                          shift and go to state 29
+    operacion                      shift and go to state 33
+
+state 14
+
+    (66) control_structure -> condicional .
+
+    SEMICOLON       reduce using rule 66 (control_structure -> condicional .)
+
+
+state 15
+
+    (74) condicional -> IF . comparacion LLLAVE programa RLLAVE
+    (75) condicional -> IF . proposicion LLLAVE programa RLLAVE
+    (7) comparacion -> . IDENTIFIER LEQ IDENTIFIER
+    (8) comparacion -> . IDENTIFIER GEQ IDENTIFIER
+    (9) comparacion -> . IDENTIFIER EQ IDENTIFIER
+    (10) comparacion -> . IDENTIFIER NEQ IDENTIFIER
+    (11) comparacion -> . IDENTIFIER RIGHTARROW IDENTIFIER
+    (12) comparacion -> . IDENTIFIER LEFTARROW IDENTIFIER
+    (13) comparacion -> . IDENTIFIER EQ valor
+    (14) comparacion -> . IDENTIFIER NEQ valor
+    (15) comparacion -> . IDENTIFIER GEQ valor
+    (16) comparacion -> . IDENTIFIER LEQ valor
+    (17) comparacion -> . IDENTIFIER RIGHTARROW valor
+    (18) comparacion -> . IDENTIFIER LEFTARROW valor
+    (19) comparacion -> . valor EQ IDENTIFIER
+    (20) comparacion -> . valor NEQ IDENTIFIER
+    (21) comparacion -> . valor GEQ IDENTIFIER
+    (22) comparacion -> . valor LEQ IDENTIFIER
+    (23) comparacion -> . valor RIGHTARROW IDENTIFIER
+    (24) comparacion -> . valor LEFTARROW IDENTIFIER
+    (72) proposicion -> . comparacion conector proposicion
+    (73) proposicion -> . comparacion
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    IDENTIFIER      shift and go to state 36
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+
+    comparacion                    shift and go to state 34
+    proposicion                    shift and go to state 35
+    valor                          shift and go to state 37
+    operacion                      shift and go to state 33
+
+state 16
+
+    (2) programa -> sentencias programa .
+
+    $end            reduce using rule 2 (programa -> sentencias programa .)
+    RLLAVE          reduce using rule 2 (programa -> sentencias programa .)
+
+
+state 17
+
+    (30) sentencias -> asignacion SEMICOLON .
+
+    LET             reduce using rule 30 (sentencias -> asignacion SEMICOLON .)
+    PRINTLN         reduce using rule 30 (sentencias -> asignacion SEMICOLON .)
+    FN              reduce using rule 30 (sentencias -> asignacion SEMICOLON .)
+    STD             reduce using rule 30 (sentencias -> asignacion SEMICOLON .)
+    LCORCH          reduce using rule 30 (sentencias -> asignacion SEMICOLON .)
+    IF              reduce using rule 30 (sentencias -> asignacion SEMICOLON .)
+    $end            reduce using rule 30 (sentencias -> asignacion SEMICOLON .)
+    RLLAVE          reduce using rule 30 (sentencias -> asignacion SEMICOLON .)
+
+
+state 18
+
+    (31) sentencias -> impresion SEMICOLON .
+
+    LET             reduce using rule 31 (sentencias -> impresion SEMICOLON .)
+    PRINTLN         reduce using rule 31 (sentencias -> impresion SEMICOLON .)
+    FN              reduce using rule 31 (sentencias -> impresion SEMICOLON .)
+    STD             reduce using rule 31 (sentencias -> impresion SEMICOLON .)
+    LCORCH          reduce using rule 31 (sentencias -> impresion SEMICOLON .)
+    IF              reduce using rule 31 (sentencias -> impresion SEMICOLON .)
+    $end            reduce using rule 31 (sentencias -> impresion SEMICOLON .)
+    RLLAVE          reduce using rule 31 (sentencias -> impresion SEMICOLON .)
+
+
+state 19
+
+    (32) sentencias -> funcion SEMICOLON .
+
+    LET             reduce using rule 32 (sentencias -> funcion SEMICOLON .)
+    PRINTLN         reduce using rule 32 (sentencias -> funcion SEMICOLON .)
+    FN              reduce using rule 32 (sentencias -> funcion SEMICOLON .)
+    STD             reduce using rule 32 (sentencias -> funcion SEMICOLON .)
+    LCORCH          reduce using rule 32 (sentencias -> funcion SEMICOLON .)
+    IF              reduce using rule 32 (sentencias -> funcion SEMICOLON .)
+    $end            reduce using rule 32 (sentencias -> funcion SEMICOLON .)
+    RLLAVE          reduce using rule 32 (sentencias -> funcion SEMICOLON .)
+
+
+state 20
+
+    (33) sentencias -> ingreso_datos SEMICOLON .
+
+    LET             reduce using rule 33 (sentencias -> ingreso_datos SEMICOLON .)
+    PRINTLN         reduce using rule 33 (sentencias -> ingreso_datos SEMICOLON .)
+    FN              reduce using rule 33 (sentencias -> ingreso_datos SEMICOLON .)
+    STD             reduce using rule 33 (sentencias -> ingreso_datos SEMICOLON .)
+    LCORCH          reduce using rule 33 (sentencias -> ingreso_datos SEMICOLON .)
+    IF              reduce using rule 33 (sentencias -> ingreso_datos SEMICOLON .)
+    $end            reduce using rule 33 (sentencias -> ingreso_datos SEMICOLON .)
+    RLLAVE          reduce using rule 33 (sentencias -> ingreso_datos SEMICOLON .)
+
+
+state 21
+
+    (34) sentencias -> arreglos SEMICOLON .
+
+    LET             reduce using rule 34 (sentencias -> arreglos SEMICOLON .)
+    PRINTLN         reduce using rule 34 (sentencias -> arreglos SEMICOLON .)
+    FN              reduce using rule 34 (sentencias -> arreglos SEMICOLON .)
+    STD             reduce using rule 34 (sentencias -> arreglos SEMICOLON .)
+    LCORCH          reduce using rule 34 (sentencias -> arreglos SEMICOLON .)
+    IF              reduce using rule 34 (sentencias -> arreglos SEMICOLON .)
+    $end            reduce using rule 34 (sentencias -> arreglos SEMICOLON .)
+    RLLAVE          reduce using rule 34 (sentencias -> arreglos SEMICOLON .)
+
+
+state 22
+
+    (35) sentencias -> control_structure SEMICOLON .
+
+    LET             reduce using rule 35 (sentencias -> control_structure SEMICOLON .)
+    PRINTLN         reduce using rule 35 (sentencias -> control_structure SEMICOLON .)
+    FN              reduce using rule 35 (sentencias -> control_structure SEMICOLON .)
+    STD             reduce using rule 35 (sentencias -> control_structure SEMICOLON .)
+    LCORCH          reduce using rule 35 (sentencias -> control_structure SEMICOLON .)
+    IF              reduce using rule 35 (sentencias -> control_structure SEMICOLON .)
+    $end            reduce using rule 35 (sentencias -> control_structure SEMICOLON .)
+    RLLAVE          reduce using rule 35 (sentencias -> control_structure SEMICOLON .)
+
+
+state 23
+
+    (3) asignacion -> LET IDENTIFIER . ASIG valor
+    (5) asignacion -> LET IDENTIFIER . COLON asig_data_type ASIG valor
+
+    ASIG            shift and go to state 38
+    COLON           shift and go to state 39
+
+
+state 24
+
+    (4) asignacion -> LET MUT . IDENTIFIER ASIG valor
+    (6) asignacion -> LET MUT . IDENTIFIER COLON asig_data_type ASIG valor
+
+    IDENTIFIER      shift and go to state 40
+
+
+state 25
+
+    (36) impresion -> PRINTLN LPAREN . valor RPAREN
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+    IDENTIFIER      shift and go to state 32
+
+    valor                          shift and go to state 41
+    operacion                      shift and go to state 33
+
+state 26
+
+    (37) funcion -> FN IDENTIFIER . LPAREN parameters RPAREN LLLAVE programa RLLAVE
+
+    LPAREN          shift and go to state 42
+
+
+state 27
+
+    (41) ingreso_datos -> STD DOUBLE_COLON . IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+
+    IO              shift and go to state 43
+
+
+state 28
+
+    (67) arreglos -> LCORCH valores . RCORCH
+
+    RCORCH          shift and go to state 44
+
+
+state 29
+
+    (68) valores -> valor .
+    (69) valores -> valor . COMMA valores
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+    RCORCH          reduce using rule 68 (valores -> valor .)
+    COMMA           shift and go to state 45
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+
+state 30
+
+    (25) valor -> INTEGER .
+
+    COMMA           reduce using rule 25 (valor -> INTEGER .)
+    PLUS            reduce using rule 25 (valor -> INTEGER .)
+    MINUS           reduce using rule 25 (valor -> INTEGER .)
+    TIMES           reduce using rule 25 (valor -> INTEGER .)
+    DIVIDE          reduce using rule 25 (valor -> INTEGER .)
+    MOD             reduce using rule 25 (valor -> INTEGER .)
+    INTD            reduce using rule 25 (valor -> INTEGER .)
+    RCORCH          reduce using rule 25 (valor -> INTEGER .)
+    EQ              reduce using rule 25 (valor -> INTEGER .)
+    NEQ             reduce using rule 25 (valor -> INTEGER .)
+    GEQ             reduce using rule 25 (valor -> INTEGER .)
+    LEQ             reduce using rule 25 (valor -> INTEGER .)
+    RIGHTARROW      reduce using rule 25 (valor -> INTEGER .)
+    LEFTARROW       reduce using rule 25 (valor -> INTEGER .)
+    RPAREN          reduce using rule 25 (valor -> INTEGER .)
+    SEMICOLON       reduce using rule 25 (valor -> INTEGER .)
+    LLLAVE          reduce using rule 25 (valor -> INTEGER .)
+    AND             reduce using rule 25 (valor -> INTEGER .)
+    OR              reduce using rule 25 (valor -> INTEGER .)
+
+
+state 31
+
+    (26) valor -> FLOAT .
+
+    COMMA           reduce using rule 26 (valor -> FLOAT .)
+    PLUS            reduce using rule 26 (valor -> FLOAT .)
+    MINUS           reduce using rule 26 (valor -> FLOAT .)
+    TIMES           reduce using rule 26 (valor -> FLOAT .)
+    DIVIDE          reduce using rule 26 (valor -> FLOAT .)
+    MOD             reduce using rule 26 (valor -> FLOAT .)
+    INTD            reduce using rule 26 (valor -> FLOAT .)
+    RCORCH          reduce using rule 26 (valor -> FLOAT .)
+    EQ              reduce using rule 26 (valor -> FLOAT .)
+    NEQ             reduce using rule 26 (valor -> FLOAT .)
+    GEQ             reduce using rule 26 (valor -> FLOAT .)
+    LEQ             reduce using rule 26 (valor -> FLOAT .)
+    RIGHTARROW      reduce using rule 26 (valor -> FLOAT .)
+    LEFTARROW       reduce using rule 26 (valor -> FLOAT .)
+    RPAREN          reduce using rule 26 (valor -> FLOAT .)
+    SEMICOLON       reduce using rule 26 (valor -> FLOAT .)
+    LLLAVE          reduce using rule 26 (valor -> FLOAT .)
+    AND             reduce using rule 26 (valor -> FLOAT .)
+    OR              reduce using rule 26 (valor -> FLOAT .)
+
+
+state 32
+
+    (27) valor -> IDENTIFIER .
+
+    COMMA           reduce using rule 27 (valor -> IDENTIFIER .)
+    PLUS            reduce using rule 27 (valor -> IDENTIFIER .)
+    MINUS           reduce using rule 27 (valor -> IDENTIFIER .)
+    TIMES           reduce using rule 27 (valor -> IDENTIFIER .)
+    DIVIDE          reduce using rule 27 (valor -> IDENTIFIER .)
+    MOD             reduce using rule 27 (valor -> IDENTIFIER .)
+    INTD            reduce using rule 27 (valor -> IDENTIFIER .)
+    RCORCH          reduce using rule 27 (valor -> IDENTIFIER .)
+    RPAREN          reduce using rule 27 (valor -> IDENTIFIER .)
+    SEMICOLON       reduce using rule 27 (valor -> IDENTIFIER .)
+    EQ              reduce using rule 27 (valor -> IDENTIFIER .)
+    NEQ             reduce using rule 27 (valor -> IDENTIFIER .)
+    GEQ             reduce using rule 27 (valor -> IDENTIFIER .)
+    LEQ             reduce using rule 27 (valor -> IDENTIFIER .)
+    RIGHTARROW      reduce using rule 27 (valor -> IDENTIFIER .)
+    LEFTARROW       reduce using rule 27 (valor -> IDENTIFIER .)
+    LLLAVE          reduce using rule 27 (valor -> IDENTIFIER .)
+    AND             reduce using rule 27 (valor -> IDENTIFIER .)
+    OR              reduce using rule 27 (valor -> IDENTIFIER .)
+
+
+state 33
+
+    (28) valor -> operacion .
+
+    COMMA           reduce using rule 28 (valor -> operacion .)
+    PLUS            reduce using rule 28 (valor -> operacion .)
+    MINUS           reduce using rule 28 (valor -> operacion .)
+    TIMES           reduce using rule 28 (valor -> operacion .)
+    DIVIDE          reduce using rule 28 (valor -> operacion .)
+    MOD             reduce using rule 28 (valor -> operacion .)
+    INTD            reduce using rule 28 (valor -> operacion .)
+    RCORCH          reduce using rule 28 (valor -> operacion .)
+    EQ              reduce using rule 28 (valor -> operacion .)
+    NEQ             reduce using rule 28 (valor -> operacion .)
+    GEQ             reduce using rule 28 (valor -> operacion .)
+    LEQ             reduce using rule 28 (valor -> operacion .)
+    RIGHTARROW      reduce using rule 28 (valor -> operacion .)
+    LEFTARROW       reduce using rule 28 (valor -> operacion .)
+    RPAREN          reduce using rule 28 (valor -> operacion .)
+    SEMICOLON       reduce using rule 28 (valor -> operacion .)
+    LLLAVE          reduce using rule 28 (valor -> operacion .)
+    AND             reduce using rule 28 (valor -> operacion .)
+    OR              reduce using rule 28 (valor -> operacion .)
+
+
+state 34
+
+    (74) condicional -> IF comparacion . LLLAVE programa RLLAVE
+    (72) proposicion -> comparacion . conector proposicion
+    (73) proposicion -> comparacion .
+    (70) conector -> . AND
+    (71) conector -> . OR
+
+  ! shift/reduce conflict for LLLAVE resolved as shift
+    LLLAVE          shift and go to state 52
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+
+  ! LLLAVE          [ reduce using rule 73 (proposicion -> comparacion .) ]
+
+    conector                       shift and go to state 53
+
+state 35
+
+    (75) condicional -> IF proposicion . LLLAVE programa RLLAVE
+
+    LLLAVE          shift and go to state 56
+
+
+state 36
+
+    (7) comparacion -> IDENTIFIER . LEQ IDENTIFIER
+    (8) comparacion -> IDENTIFIER . GEQ IDENTIFIER
+    (9) comparacion -> IDENTIFIER . EQ IDENTIFIER
+    (10) comparacion -> IDENTIFIER . NEQ IDENTIFIER
+    (11) comparacion -> IDENTIFIER . RIGHTARROW IDENTIFIER
+    (12) comparacion -> IDENTIFIER . LEFTARROW IDENTIFIER
+    (13) comparacion -> IDENTIFIER . EQ valor
+    (14) comparacion -> IDENTIFIER . NEQ valor
+    (15) comparacion -> IDENTIFIER . GEQ valor
+    (16) comparacion -> IDENTIFIER . LEQ valor
+    (17) comparacion -> IDENTIFIER . RIGHTARROW valor
+    (18) comparacion -> IDENTIFIER . LEFTARROW valor
+    (27) valor -> IDENTIFIER .
+
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NEQ resolved as shift
+  ! shift/reduce conflict for GEQ resolved as shift
+  ! shift/reduce conflict for LEQ resolved as shift
+  ! shift/reduce conflict for RIGHTARROW resolved as shift
+  ! shift/reduce conflict for LEFTARROW resolved as shift
+    LEQ             shift and go to state 57
+    GEQ             shift and go to state 58
+    EQ              shift and go to state 59
+    NEQ             shift and go to state 60
+    RIGHTARROW      shift and go to state 61
+    LEFTARROW       shift and go to state 62
+    PLUS            reduce using rule 27 (valor -> IDENTIFIER .)
+    MINUS           reduce using rule 27 (valor -> IDENTIFIER .)
+    TIMES           reduce using rule 27 (valor -> IDENTIFIER .)
+    DIVIDE          reduce using rule 27 (valor -> IDENTIFIER .)
+    MOD             reduce using rule 27 (valor -> IDENTIFIER .)
+    INTD            reduce using rule 27 (valor -> IDENTIFIER .)
+
+  ! EQ              [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! NEQ             [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! GEQ             [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! LEQ             [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! RIGHTARROW      [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! LEFTARROW       [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+
+
+state 37
+
+    (19) comparacion -> valor . EQ IDENTIFIER
+    (20) comparacion -> valor . NEQ IDENTIFIER
+    (21) comparacion -> valor . GEQ IDENTIFIER
+    (22) comparacion -> valor . LEQ IDENTIFIER
+    (23) comparacion -> valor . RIGHTARROW IDENTIFIER
+    (24) comparacion -> valor . LEFTARROW IDENTIFIER
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+    EQ              shift and go to state 63
+    NEQ             shift and go to state 64
+    GEQ             shift and go to state 65
+    LEQ             shift and go to state 66
+    RIGHTARROW      shift and go to state 67
+    LEFTARROW       shift and go to state 68
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+
+state 38
+
+    (3) asignacion -> LET IDENTIFIER ASIG . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+    IDENTIFIER      shift and go to state 32
+
+    valor                          shift and go to state 69
+    operacion                      shift and go to state 33
+
+state 39
+
+    (5) asignacion -> LET IDENTIFIER COLON . asig_data_type ASIG valor
+    (42) asig_data_type -> . data_type
+    (43) asig_data_type -> . LPAREN some_data_type RPAREN
+    (44) asig_data_type -> . LCORCH some_data_type RCORCH
+    (45) data_type -> . CHAR
+    (46) data_type -> . signed_integer
+    (47) data_type -> . unsigned_integer
+    (48) data_type -> . float_type
+    (49) data_type -> . BOOL
+    (50) signed_integer -> . I8
+    (51) signed_integer -> . I16
+    (52) signed_integer -> . I32
+    (53) signed_integer -> . I64
+    (54) signed_integer -> . I128
+    (55) signed_integer -> . ISIZE
+    (56) unsigned_integer -> . U8
+    (57) unsigned_integer -> . U16
+    (58) unsigned_integer -> . U32
+    (59) unsigned_integer -> . U64
+    (60) unsigned_integer -> . U128
+    (61) unsigned_integer -> . USIZE
+    (62) float_type -> . F32
+    (63) float_type -> . F64
+
+    LPAREN          shift and go to state 72
+    LCORCH          shift and go to state 73
+    CHAR            shift and go to state 74
+    BOOL            shift and go to state 78
+    I8              shift and go to state 79
+    I16             shift and go to state 80
+    I32             shift and go to state 81
+    I64             shift and go to state 82
+    I128            shift and go to state 83
+    ISIZE           shift and go to state 84
+    U8              shift and go to state 85
+    U16             shift and go to state 86
+    U32             shift and go to state 87
+    U64             shift and go to state 88
+    U128            shift and go to state 89
+    USIZE           shift and go to state 90
+    F32             shift and go to state 91
+    F64             shift and go to state 92
+
+    asig_data_type                 shift and go to state 70
+    data_type                      shift and go to state 71
+    signed_integer                 shift and go to state 75
+    unsigned_integer               shift and go to state 76
+    float_type                     shift and go to state 77
+
+state 40
+
+    (4) asignacion -> LET MUT IDENTIFIER . ASIG valor
+    (6) asignacion -> LET MUT IDENTIFIER . COLON asig_data_type ASIG valor
+
+    ASIG            shift and go to state 93
+    COLON           shift and go to state 94
+
+
+state 41
+
+    (36) impresion -> PRINTLN LPAREN valor . RPAREN
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+    RPAREN          shift and go to state 95
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+
+state 42
+
+    (37) funcion -> FN IDENTIFIER LPAREN . parameters RPAREN LLLAVE programa RLLAVE
+    (38) parameters -> . IDENTIFIER COLON asig_data_type
+    (39) parameters -> . IDENTIFIER COLON asig_data_type COMMA parameters
+    (40) parameters -> . vacio
+    (29) vacio -> .
+
+    IDENTIFIER      shift and go to state 96
+    RPAREN          reduce using rule 29 (vacio -> .)
+
+    parameters                     shift and go to state 97
+    vacio                          shift and go to state 98
+
+state 43
+
+    (41) ingreso_datos -> STD DOUBLE_COLON IO . DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+
+    DOUBLE_COLON    shift and go to state 99
+
+
+state 44
+
+    (67) arreglos -> LCORCH valores RCORCH .
+
+    SEMICOLON       reduce using rule 67 (arreglos -> LCORCH valores RCORCH .)
+
+
+state 45
+
+    (69) valores -> valor COMMA . valores
+    (68) valores -> . valor
+    (69) valores -> . valor COMMA valores
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+    IDENTIFIER      shift and go to state 32
+
+    valor                          shift and go to state 29
+    valores                        shift and go to state 100
+    operacion                      shift and go to state 33
+
+state 46
+
+    (76) operacion -> valor PLUS . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+    IDENTIFIER      shift and go to state 32
+
+    valor                          shift and go to state 101
+    operacion                      shift and go to state 33
+
+state 47
+
+    (77) operacion -> valor MINUS . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+    IDENTIFIER      shift and go to state 32
+
+    valor                          shift and go to state 102
+    operacion                      shift and go to state 33
+
+state 48
+
+    (78) operacion -> valor TIMES . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+    IDENTIFIER      shift and go to state 32
+
+    valor                          shift and go to state 103
+    operacion                      shift and go to state 33
+
+state 49
+
+    (79) operacion -> valor DIVIDE . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+    IDENTIFIER      shift and go to state 32
+
+    valor                          shift and go to state 104
+    operacion                      shift and go to state 33
+
+state 50
+
+    (80) operacion -> valor MOD . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+    IDENTIFIER      shift and go to state 32
+
+    valor                          shift and go to state 105
+    operacion                      shift and go to state 33
+
+state 51
+
+    (81) operacion -> valor INTD . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+    IDENTIFIER      shift and go to state 32
+
+    valor                          shift and go to state 106
+    operacion                      shift and go to state 33
+
+state 52
+
+    (74) condicional -> IF comparacion LLLAVE . programa RLLAVE
+    (1) programa -> . sentencias
+    (2) programa -> . sentencias programa
+    (30) sentencias -> . asignacion SEMICOLON
+    (31) sentencias -> . impresion SEMICOLON
+    (32) sentencias -> . funcion SEMICOLON
+    (33) sentencias -> . ingreso_datos SEMICOLON
+    (34) sentencias -> . arreglos SEMICOLON
+    (35) sentencias -> . control_structure SEMICOLON
+    (3) asignacion -> . LET IDENTIFIER ASIG valor
+    (4) asignacion -> . LET MUT IDENTIFIER ASIG valor
+    (5) asignacion -> . LET IDENTIFIER COLON asig_data_type ASIG valor
+    (6) asignacion -> . LET MUT IDENTIFIER COLON asig_data_type ASIG valor
+    (36) impresion -> . PRINTLN LPAREN valor RPAREN
+    (37) funcion -> . FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE
+    (41) ingreso_datos -> . STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+    (67) arreglos -> . LCORCH valores RCORCH
+    (66) control_structure -> . condicional
+    (74) condicional -> . IF comparacion LLLAVE programa RLLAVE
+    (75) condicional -> . IF proposicion LLLAVE programa RLLAVE
+
+    LET             shift and go to state 9
+    PRINTLN         shift and go to state 10
+    FN              shift and go to state 11
+    STD             shift and go to state 12
+    LCORCH          shift and go to state 13
+    IF              shift and go to state 15
+
+    programa                       shift and go to state 107
+    sentencias                     shift and go to state 2
+    asignacion                     shift and go to state 3
+    impresion                      shift and go to state 4
+    funcion                        shift and go to state 5
+    ingreso_datos                  shift and go to state 6
+    arreglos                       shift and go to state 7
+    control_structure              shift and go to state 8
+    condicional                    shift and go to state 14
+
+state 53
+
+    (72) proposicion -> comparacion conector . proposicion
+    (72) proposicion -> . comparacion conector proposicion
+    (73) proposicion -> . comparacion
+    (7) comparacion -> . IDENTIFIER LEQ IDENTIFIER
+    (8) comparacion -> . IDENTIFIER GEQ IDENTIFIER
+    (9) comparacion -> . IDENTIFIER EQ IDENTIFIER
+    (10) comparacion -> . IDENTIFIER NEQ IDENTIFIER
+    (11) comparacion -> . IDENTIFIER RIGHTARROW IDENTIFIER
+    (12) comparacion -> . IDENTIFIER LEFTARROW IDENTIFIER
+    (13) comparacion -> . IDENTIFIER EQ valor
+    (14) comparacion -> . IDENTIFIER NEQ valor
+    (15) comparacion -> . IDENTIFIER GEQ valor
+    (16) comparacion -> . IDENTIFIER LEQ valor
+    (17) comparacion -> . IDENTIFIER RIGHTARROW valor
+    (18) comparacion -> . IDENTIFIER LEFTARROW valor
+    (19) comparacion -> . valor EQ IDENTIFIER
+    (20) comparacion -> . valor NEQ IDENTIFIER
+    (21) comparacion -> . valor GEQ IDENTIFIER
+    (22) comparacion -> . valor LEQ IDENTIFIER
+    (23) comparacion -> . valor RIGHTARROW IDENTIFIER
+    (24) comparacion -> . valor LEFTARROW IDENTIFIER
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    IDENTIFIER      shift and go to state 36
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+
+    comparacion                    shift and go to state 108
+    proposicion                    shift and go to state 109
+    valor                          shift and go to state 37
+    operacion                      shift and go to state 33
+
+state 54
+
+    (70) conector -> AND .
+
+    IDENTIFIER      reduce using rule 70 (conector -> AND .)
+    INTEGER         reduce using rule 70 (conector -> AND .)
+    FLOAT           reduce using rule 70 (conector -> AND .)
+
+
+state 55
+
+    (71) conector -> OR .
+
+    IDENTIFIER      reduce using rule 71 (conector -> OR .)
+    INTEGER         reduce using rule 71 (conector -> OR .)
+    FLOAT           reduce using rule 71 (conector -> OR .)
+
+
+state 56
+
+    (75) condicional -> IF proposicion LLLAVE . programa RLLAVE
+    (1) programa -> . sentencias
+    (2) programa -> . sentencias programa
+    (30) sentencias -> . asignacion SEMICOLON
+    (31) sentencias -> . impresion SEMICOLON
+    (32) sentencias -> . funcion SEMICOLON
+    (33) sentencias -> . ingreso_datos SEMICOLON
+    (34) sentencias -> . arreglos SEMICOLON
+    (35) sentencias -> . control_structure SEMICOLON
+    (3) asignacion -> . LET IDENTIFIER ASIG valor
+    (4) asignacion -> . LET MUT IDENTIFIER ASIG valor
+    (5) asignacion -> . LET IDENTIFIER COLON asig_data_type ASIG valor
+    (6) asignacion -> . LET MUT IDENTIFIER COLON asig_data_type ASIG valor
+    (36) impresion -> . PRINTLN LPAREN valor RPAREN
+    (37) funcion -> . FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE
+    (41) ingreso_datos -> . STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+    (67) arreglos -> . LCORCH valores RCORCH
+    (66) control_structure -> . condicional
+    (74) condicional -> . IF comparacion LLLAVE programa RLLAVE
+    (75) condicional -> . IF proposicion LLLAVE programa RLLAVE
+
+    LET             shift and go to state 9
+    PRINTLN         shift and go to state 10
+    FN              shift and go to state 11
+    STD             shift and go to state 12
+    LCORCH          shift and go to state 13
+    IF              shift and go to state 15
+
+    programa                       shift and go to state 110
+    sentencias                     shift and go to state 2
+    asignacion                     shift and go to state 3
+    impresion                      shift and go to state 4
+    funcion                        shift and go to state 5
+    ingreso_datos                  shift and go to state 6
+    arreglos                       shift and go to state 7
+    control_structure              shift and go to state 8
+    condicional                    shift and go to state 14
+
+state 57
+
+    (7) comparacion -> IDENTIFIER LEQ . IDENTIFIER
+    (16) comparacion -> IDENTIFIER LEQ . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    IDENTIFIER      shift and go to state 111
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+
+    valor                          shift and go to state 112
+    operacion                      shift and go to state 33
+
+state 58
+
+    (8) comparacion -> IDENTIFIER GEQ . IDENTIFIER
+    (15) comparacion -> IDENTIFIER GEQ . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    IDENTIFIER      shift and go to state 113
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+
+    valor                          shift and go to state 114
+    operacion                      shift and go to state 33
+
+state 59
+
+    (9) comparacion -> IDENTIFIER EQ . IDENTIFIER
+    (13) comparacion -> IDENTIFIER EQ . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    IDENTIFIER      shift and go to state 115
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+
+    valor                          shift and go to state 116
+    operacion                      shift and go to state 33
+
+state 60
+
+    (10) comparacion -> IDENTIFIER NEQ . IDENTIFIER
+    (14) comparacion -> IDENTIFIER NEQ . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    IDENTIFIER      shift and go to state 117
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+
+    valor                          shift and go to state 118
+    operacion                      shift and go to state 33
+
+state 61
+
+    (11) comparacion -> IDENTIFIER RIGHTARROW . IDENTIFIER
+    (17) comparacion -> IDENTIFIER RIGHTARROW . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    IDENTIFIER      shift and go to state 119
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+
+    valor                          shift and go to state 120
+    operacion                      shift and go to state 33
+
+state 62
+
+    (12) comparacion -> IDENTIFIER LEFTARROW . IDENTIFIER
+    (18) comparacion -> IDENTIFIER LEFTARROW . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    IDENTIFIER      shift and go to state 121
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+
+    valor                          shift and go to state 122
+    operacion                      shift and go to state 33
+
+state 63
+
+    (19) comparacion -> valor EQ . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 123
+
+
+state 64
+
+    (20) comparacion -> valor NEQ . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 124
+
+
+state 65
+
+    (21) comparacion -> valor GEQ . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 125
+
+
+state 66
+
+    (22) comparacion -> valor LEQ . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 126
+
+
+state 67
+
+    (23) comparacion -> valor RIGHTARROW . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 127
+
+
+state 68
+
+    (24) comparacion -> valor LEFTARROW . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 128
+
+
+state 69
+
+    (3) asignacion -> LET IDENTIFIER ASIG valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+    SEMICOLON       reduce using rule 3 (asignacion -> LET IDENTIFIER ASIG valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+
+state 70
+
+    (5) asignacion -> LET IDENTIFIER COLON asig_data_type . ASIG valor
+
+    ASIG            shift and go to state 129
+
+
+state 71
+
+    (42) asig_data_type -> data_type .
+
+    ASIG            reduce using rule 42 (asig_data_type -> data_type .)
+    COMMA           reduce using rule 42 (asig_data_type -> data_type .)
+    RPAREN          reduce using rule 42 (asig_data_type -> data_type .)
+
+
+state 72
+
+    (43) asig_data_type -> LPAREN . some_data_type RPAREN
+    (64) some_data_type -> . data_type
+    (65) some_data_type -> . data_type COMMA some_data_type
+    (45) data_type -> . CHAR
+    (46) data_type -> . signed_integer
+    (47) data_type -> . unsigned_integer
+    (48) data_type -> . float_type
+    (49) data_type -> . BOOL
+    (50) signed_integer -> . I8
+    (51) signed_integer -> . I16
+    (52) signed_integer -> . I32
+    (53) signed_integer -> . I64
+    (54) signed_integer -> . I128
+    (55) signed_integer -> . ISIZE
+    (56) unsigned_integer -> . U8
+    (57) unsigned_integer -> . U16
+    (58) unsigned_integer -> . U32
+    (59) unsigned_integer -> . U64
+    (60) unsigned_integer -> . U128
+    (61) unsigned_integer -> . USIZE
+    (62) float_type -> . F32
+    (63) float_type -> . F64
+
+    CHAR            shift and go to state 74
+    BOOL            shift and go to state 78
+    I8              shift and go to state 79
+    I16             shift and go to state 80
+    I32             shift and go to state 81
+    I64             shift and go to state 82
+    I128            shift and go to state 83
+    ISIZE           shift and go to state 84
+    U8              shift and go to state 85
+    U16             shift and go to state 86
+    U32             shift and go to state 87
+    U64             shift and go to state 88
+    U128            shift and go to state 89
+    USIZE           shift and go to state 90
+    F32             shift and go to state 91
+    F64             shift and go to state 92
+
+    some_data_type                 shift and go to state 130
+    data_type                      shift and go to state 131
+    signed_integer                 shift and go to state 75
+    unsigned_integer               shift and go to state 76
+    float_type                     shift and go to state 77
+
+state 73
+
+    (44) asig_data_type -> LCORCH . some_data_type RCORCH
+    (64) some_data_type -> . data_type
+    (65) some_data_type -> . data_type COMMA some_data_type
+    (45) data_type -> . CHAR
+    (46) data_type -> . signed_integer
+    (47) data_type -> . unsigned_integer
+    (48) data_type -> . float_type
+    (49) data_type -> . BOOL
+    (50) signed_integer -> . I8
+    (51) signed_integer -> . I16
+    (52) signed_integer -> . I32
+    (53) signed_integer -> . I64
+    (54) signed_integer -> . I128
+    (55) signed_integer -> . ISIZE
+    (56) unsigned_integer -> . U8
+    (57) unsigned_integer -> . U16
+    (58) unsigned_integer -> . U32
+    (59) unsigned_integer -> . U64
+    (60) unsigned_integer -> . U128
+    (61) unsigned_integer -> . USIZE
+    (62) float_type -> . F32
+    (63) float_type -> . F64
+
+    CHAR            shift and go to state 74
+    BOOL            shift and go to state 78
+    I8              shift and go to state 79
+    I16             shift and go to state 80
+    I32             shift and go to state 81
+    I64             shift and go to state 82
+    I128            shift and go to state 83
+    ISIZE           shift and go to state 84
+    U8              shift and go to state 85
+    U16             shift and go to state 86
+    U32             shift and go to state 87
+    U64             shift and go to state 88
+    U128            shift and go to state 89
+    USIZE           shift and go to state 90
+    F32             shift and go to state 91
+    F64             shift and go to state 92
+
+    some_data_type                 shift and go to state 132
+    data_type                      shift and go to state 131
+    signed_integer                 shift and go to state 75
+    unsigned_integer               shift and go to state 76
+    float_type                     shift and go to state 77
+
+state 74
+
+    (45) data_type -> CHAR .
+
+    ASIG            reduce using rule 45 (data_type -> CHAR .)
+    COMMA           reduce using rule 45 (data_type -> CHAR .)
+    RPAREN          reduce using rule 45 (data_type -> CHAR .)
+    RCORCH          reduce using rule 45 (data_type -> CHAR .)
+
+
+state 75
+
+    (46) data_type -> signed_integer .
+
+    ASIG            reduce using rule 46 (data_type -> signed_integer .)
+    COMMA           reduce using rule 46 (data_type -> signed_integer .)
+    RPAREN          reduce using rule 46 (data_type -> signed_integer .)
+    RCORCH          reduce using rule 46 (data_type -> signed_integer .)
+
+
+state 76
+
+    (47) data_type -> unsigned_integer .
+
+    ASIG            reduce using rule 47 (data_type -> unsigned_integer .)
+    COMMA           reduce using rule 47 (data_type -> unsigned_integer .)
+    RPAREN          reduce using rule 47 (data_type -> unsigned_integer .)
+    RCORCH          reduce using rule 47 (data_type -> unsigned_integer .)
+
+
+state 77
+
+    (48) data_type -> float_type .
+
+    ASIG            reduce using rule 48 (data_type -> float_type .)
+    COMMA           reduce using rule 48 (data_type -> float_type .)
+    RPAREN          reduce using rule 48 (data_type -> float_type .)
+    RCORCH          reduce using rule 48 (data_type -> float_type .)
+
+
+state 78
+
+    (49) data_type -> BOOL .
+
+    ASIG            reduce using rule 49 (data_type -> BOOL .)
+    COMMA           reduce using rule 49 (data_type -> BOOL .)
+    RPAREN          reduce using rule 49 (data_type -> BOOL .)
+    RCORCH          reduce using rule 49 (data_type -> BOOL .)
+
+
+state 79
+
+    (50) signed_integer -> I8 .
+
+    ASIG            reduce using rule 50 (signed_integer -> I8 .)
+    COMMA           reduce using rule 50 (signed_integer -> I8 .)
+    RPAREN          reduce using rule 50 (signed_integer -> I8 .)
+    RCORCH          reduce using rule 50 (signed_integer -> I8 .)
+
+
+state 80
+
+    (51) signed_integer -> I16 .
+
+    ASIG            reduce using rule 51 (signed_integer -> I16 .)
+    COMMA           reduce using rule 51 (signed_integer -> I16 .)
+    RPAREN          reduce using rule 51 (signed_integer -> I16 .)
+    RCORCH          reduce using rule 51 (signed_integer -> I16 .)
+
+
+state 81
+
+    (52) signed_integer -> I32 .
+
+    ASIG            reduce using rule 52 (signed_integer -> I32 .)
+    COMMA           reduce using rule 52 (signed_integer -> I32 .)
+    RPAREN          reduce using rule 52 (signed_integer -> I32 .)
+    RCORCH          reduce using rule 52 (signed_integer -> I32 .)
+
+
+state 82
+
+    (53) signed_integer -> I64 .
+
+    ASIG            reduce using rule 53 (signed_integer -> I64 .)
+    COMMA           reduce using rule 53 (signed_integer -> I64 .)
+    RPAREN          reduce using rule 53 (signed_integer -> I64 .)
+    RCORCH          reduce using rule 53 (signed_integer -> I64 .)
+
+
+state 83
+
+    (54) signed_integer -> I128 .
+
+    ASIG            reduce using rule 54 (signed_integer -> I128 .)
+    COMMA           reduce using rule 54 (signed_integer -> I128 .)
+    RPAREN          reduce using rule 54 (signed_integer -> I128 .)
+    RCORCH          reduce using rule 54 (signed_integer -> I128 .)
+
+
+state 84
+
+    (55) signed_integer -> ISIZE .
+
+    ASIG            reduce using rule 55 (signed_integer -> ISIZE .)
+    COMMA           reduce using rule 55 (signed_integer -> ISIZE .)
+    RPAREN          reduce using rule 55 (signed_integer -> ISIZE .)
+    RCORCH          reduce using rule 55 (signed_integer -> ISIZE .)
+
+
+state 85
+
+    (56) unsigned_integer -> U8 .
+
+    ASIG            reduce using rule 56 (unsigned_integer -> U8 .)
+    COMMA           reduce using rule 56 (unsigned_integer -> U8 .)
+    RPAREN          reduce using rule 56 (unsigned_integer -> U8 .)
+    RCORCH          reduce using rule 56 (unsigned_integer -> U8 .)
+
+
+state 86
+
+    (57) unsigned_integer -> U16 .
+
+    ASIG            reduce using rule 57 (unsigned_integer -> U16 .)
+    COMMA           reduce using rule 57 (unsigned_integer -> U16 .)
+    RPAREN          reduce using rule 57 (unsigned_integer -> U16 .)
+    RCORCH          reduce using rule 57 (unsigned_integer -> U16 .)
+
+
+state 87
+
+    (58) unsigned_integer -> U32 .
+
+    ASIG            reduce using rule 58 (unsigned_integer -> U32 .)
+    COMMA           reduce using rule 58 (unsigned_integer -> U32 .)
+    RPAREN          reduce using rule 58 (unsigned_integer -> U32 .)
+    RCORCH          reduce using rule 58 (unsigned_integer -> U32 .)
+
+
+state 88
+
+    (59) unsigned_integer -> U64 .
+
+    ASIG            reduce using rule 59 (unsigned_integer -> U64 .)
+    COMMA           reduce using rule 59 (unsigned_integer -> U64 .)
+    RPAREN          reduce using rule 59 (unsigned_integer -> U64 .)
+    RCORCH          reduce using rule 59 (unsigned_integer -> U64 .)
+
+
+state 89
+
+    (60) unsigned_integer -> U128 .
+
+    ASIG            reduce using rule 60 (unsigned_integer -> U128 .)
+    COMMA           reduce using rule 60 (unsigned_integer -> U128 .)
+    RPAREN          reduce using rule 60 (unsigned_integer -> U128 .)
+    RCORCH          reduce using rule 60 (unsigned_integer -> U128 .)
+
+
+state 90
+
+    (61) unsigned_integer -> USIZE .
+
+    ASIG            reduce using rule 61 (unsigned_integer -> USIZE .)
+    COMMA           reduce using rule 61 (unsigned_integer -> USIZE .)
+    RPAREN          reduce using rule 61 (unsigned_integer -> USIZE .)
+    RCORCH          reduce using rule 61 (unsigned_integer -> USIZE .)
+
+
+state 91
+
+    (62) float_type -> F32 .
+
+    ASIG            reduce using rule 62 (float_type -> F32 .)
+    COMMA           reduce using rule 62 (float_type -> F32 .)
+    RPAREN          reduce using rule 62 (float_type -> F32 .)
+    RCORCH          reduce using rule 62 (float_type -> F32 .)
+
+
+state 92
+
+    (63) float_type -> F64 .
+
+    ASIG            reduce using rule 63 (float_type -> F64 .)
+    COMMA           reduce using rule 63 (float_type -> F64 .)
+    RPAREN          reduce using rule 63 (float_type -> F64 .)
+    RCORCH          reduce using rule 63 (float_type -> F64 .)
+
+
+state 93
+
+    (4) asignacion -> LET MUT IDENTIFIER ASIG . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+    IDENTIFIER      shift and go to state 32
+
+    valor                          shift and go to state 133
+    operacion                      shift and go to state 33
+
+state 94
+
+    (6) asignacion -> LET MUT IDENTIFIER COLON . asig_data_type ASIG valor
+    (42) asig_data_type -> . data_type
+    (43) asig_data_type -> . LPAREN some_data_type RPAREN
+    (44) asig_data_type -> . LCORCH some_data_type RCORCH
+    (45) data_type -> . CHAR
+    (46) data_type -> . signed_integer
+    (47) data_type -> . unsigned_integer
+    (48) data_type -> . float_type
+    (49) data_type -> . BOOL
+    (50) signed_integer -> . I8
+    (51) signed_integer -> . I16
+    (52) signed_integer -> . I32
+    (53) signed_integer -> . I64
+    (54) signed_integer -> . I128
+    (55) signed_integer -> . ISIZE
+    (56) unsigned_integer -> . U8
+    (57) unsigned_integer -> . U16
+    (58) unsigned_integer -> . U32
+    (59) unsigned_integer -> . U64
+    (60) unsigned_integer -> . U128
+    (61) unsigned_integer -> . USIZE
+    (62) float_type -> . F32
+    (63) float_type -> . F64
+
+    LPAREN          shift and go to state 72
+    LCORCH          shift and go to state 73
+    CHAR            shift and go to state 74
+    BOOL            shift and go to state 78
+    I8              shift and go to state 79
+    I16             shift and go to state 80
+    I32             shift and go to state 81
+    I64             shift and go to state 82
+    I128            shift and go to state 83
+    ISIZE           shift and go to state 84
+    U8              shift and go to state 85
+    U16             shift and go to state 86
+    U32             shift and go to state 87
+    U64             shift and go to state 88
+    U128            shift and go to state 89
+    USIZE           shift and go to state 90
+    F32             shift and go to state 91
+    F64             shift and go to state 92
+
+    asig_data_type                 shift and go to state 134
+    data_type                      shift and go to state 71
+    signed_integer                 shift and go to state 75
+    unsigned_integer               shift and go to state 76
+    float_type                     shift and go to state 77
+
+state 95
+
+    (36) impresion -> PRINTLN LPAREN valor RPAREN .
+
+    SEMICOLON       reduce using rule 36 (impresion -> PRINTLN LPAREN valor RPAREN .)
+
+
+state 96
+
+    (38) parameters -> IDENTIFIER . COLON asig_data_type
+    (39) parameters -> IDENTIFIER . COLON asig_data_type COMMA parameters
+
+    COLON           shift and go to state 135
+
+
+state 97
+
+    (37) funcion -> FN IDENTIFIER LPAREN parameters . RPAREN LLLAVE programa RLLAVE
+
+    RPAREN          shift and go to state 136
+
+
+state 98
+
+    (40) parameters -> vacio .
+
+    RPAREN          reduce using rule 40 (parameters -> vacio .)
+
+
+state 99
+
+    (41) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON . DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+
+    DOT             shift and go to state 137
+
+
+state 100
+
+    (69) valores -> valor COMMA valores .
+
+    RCORCH          reduce using rule 69 (valores -> valor COMMA valores .)
+
+
+state 101
+
+    (76) operacion -> valor PLUS valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for INTD resolved as shift
+    COMMA           reduce using rule 76 (operacion -> valor PLUS valor .)
+    RCORCH          reduce using rule 76 (operacion -> valor PLUS valor .)
+    EQ              reduce using rule 76 (operacion -> valor PLUS valor .)
+    NEQ             reduce using rule 76 (operacion -> valor PLUS valor .)
+    GEQ             reduce using rule 76 (operacion -> valor PLUS valor .)
+    LEQ             reduce using rule 76 (operacion -> valor PLUS valor .)
+    RIGHTARROW      reduce using rule 76 (operacion -> valor PLUS valor .)
+    LEFTARROW       reduce using rule 76 (operacion -> valor PLUS valor .)
+    RPAREN          reduce using rule 76 (operacion -> valor PLUS valor .)
+    SEMICOLON       reduce using rule 76 (operacion -> valor PLUS valor .)
+    LLLAVE          reduce using rule 76 (operacion -> valor PLUS valor .)
+    AND             reduce using rule 76 (operacion -> valor PLUS valor .)
+    OR              reduce using rule 76 (operacion -> valor PLUS valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+  ! PLUS            [ reduce using rule 76 (operacion -> valor PLUS valor .) ]
+  ! MINUS           [ reduce using rule 76 (operacion -> valor PLUS valor .) ]
+  ! TIMES           [ reduce using rule 76 (operacion -> valor PLUS valor .) ]
+  ! DIVIDE          [ reduce using rule 76 (operacion -> valor PLUS valor .) ]
+  ! MOD             [ reduce using rule 76 (operacion -> valor PLUS valor .) ]
+  ! INTD            [ reduce using rule 76 (operacion -> valor PLUS valor .) ]
+
+
+state 102
+
+    (77) operacion -> valor MINUS valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for INTD resolved as shift
+    COMMA           reduce using rule 77 (operacion -> valor MINUS valor .)
+    RCORCH          reduce using rule 77 (operacion -> valor MINUS valor .)
+    EQ              reduce using rule 77 (operacion -> valor MINUS valor .)
+    NEQ             reduce using rule 77 (operacion -> valor MINUS valor .)
+    GEQ             reduce using rule 77 (operacion -> valor MINUS valor .)
+    LEQ             reduce using rule 77 (operacion -> valor MINUS valor .)
+    RIGHTARROW      reduce using rule 77 (operacion -> valor MINUS valor .)
+    LEFTARROW       reduce using rule 77 (operacion -> valor MINUS valor .)
+    RPAREN          reduce using rule 77 (operacion -> valor MINUS valor .)
+    SEMICOLON       reduce using rule 77 (operacion -> valor MINUS valor .)
+    LLLAVE          reduce using rule 77 (operacion -> valor MINUS valor .)
+    AND             reduce using rule 77 (operacion -> valor MINUS valor .)
+    OR              reduce using rule 77 (operacion -> valor MINUS valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+  ! PLUS            [ reduce using rule 77 (operacion -> valor MINUS valor .) ]
+  ! MINUS           [ reduce using rule 77 (operacion -> valor MINUS valor .) ]
+  ! TIMES           [ reduce using rule 77 (operacion -> valor MINUS valor .) ]
+  ! DIVIDE          [ reduce using rule 77 (operacion -> valor MINUS valor .) ]
+  ! MOD             [ reduce using rule 77 (operacion -> valor MINUS valor .) ]
+  ! INTD            [ reduce using rule 77 (operacion -> valor MINUS valor .) ]
+
+
+state 103
+
+    (78) operacion -> valor TIMES valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for INTD resolved as shift
+    COMMA           reduce using rule 78 (operacion -> valor TIMES valor .)
+    RCORCH          reduce using rule 78 (operacion -> valor TIMES valor .)
+    EQ              reduce using rule 78 (operacion -> valor TIMES valor .)
+    NEQ             reduce using rule 78 (operacion -> valor TIMES valor .)
+    GEQ             reduce using rule 78 (operacion -> valor TIMES valor .)
+    LEQ             reduce using rule 78 (operacion -> valor TIMES valor .)
+    RIGHTARROW      reduce using rule 78 (operacion -> valor TIMES valor .)
+    LEFTARROW       reduce using rule 78 (operacion -> valor TIMES valor .)
+    RPAREN          reduce using rule 78 (operacion -> valor TIMES valor .)
+    SEMICOLON       reduce using rule 78 (operacion -> valor TIMES valor .)
+    LLLAVE          reduce using rule 78 (operacion -> valor TIMES valor .)
+    AND             reduce using rule 78 (operacion -> valor TIMES valor .)
+    OR              reduce using rule 78 (operacion -> valor TIMES valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+  ! PLUS            [ reduce using rule 78 (operacion -> valor TIMES valor .) ]
+  ! MINUS           [ reduce using rule 78 (operacion -> valor TIMES valor .) ]
+  ! TIMES           [ reduce using rule 78 (operacion -> valor TIMES valor .) ]
+  ! DIVIDE          [ reduce using rule 78 (operacion -> valor TIMES valor .) ]
+  ! MOD             [ reduce using rule 78 (operacion -> valor TIMES valor .) ]
+  ! INTD            [ reduce using rule 78 (operacion -> valor TIMES valor .) ]
+
+
+state 104
+
+    (79) operacion -> valor DIVIDE valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for INTD resolved as shift
+    COMMA           reduce using rule 79 (operacion -> valor DIVIDE valor .)
+    RCORCH          reduce using rule 79 (operacion -> valor DIVIDE valor .)
+    EQ              reduce using rule 79 (operacion -> valor DIVIDE valor .)
+    NEQ             reduce using rule 79 (operacion -> valor DIVIDE valor .)
+    GEQ             reduce using rule 79 (operacion -> valor DIVIDE valor .)
+    LEQ             reduce using rule 79 (operacion -> valor DIVIDE valor .)
+    RIGHTARROW      reduce using rule 79 (operacion -> valor DIVIDE valor .)
+    LEFTARROW       reduce using rule 79 (operacion -> valor DIVIDE valor .)
+    RPAREN          reduce using rule 79 (operacion -> valor DIVIDE valor .)
+    SEMICOLON       reduce using rule 79 (operacion -> valor DIVIDE valor .)
+    LLLAVE          reduce using rule 79 (operacion -> valor DIVIDE valor .)
+    AND             reduce using rule 79 (operacion -> valor DIVIDE valor .)
+    OR              reduce using rule 79 (operacion -> valor DIVIDE valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+  ! PLUS            [ reduce using rule 79 (operacion -> valor DIVIDE valor .) ]
+  ! MINUS           [ reduce using rule 79 (operacion -> valor DIVIDE valor .) ]
+  ! TIMES           [ reduce using rule 79 (operacion -> valor DIVIDE valor .) ]
+  ! DIVIDE          [ reduce using rule 79 (operacion -> valor DIVIDE valor .) ]
+  ! MOD             [ reduce using rule 79 (operacion -> valor DIVIDE valor .) ]
+  ! INTD            [ reduce using rule 79 (operacion -> valor DIVIDE valor .) ]
+
+
+state 105
+
+    (80) operacion -> valor MOD valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for INTD resolved as shift
+    COMMA           reduce using rule 80 (operacion -> valor MOD valor .)
+    RCORCH          reduce using rule 80 (operacion -> valor MOD valor .)
+    EQ              reduce using rule 80 (operacion -> valor MOD valor .)
+    NEQ             reduce using rule 80 (operacion -> valor MOD valor .)
+    GEQ             reduce using rule 80 (operacion -> valor MOD valor .)
+    LEQ             reduce using rule 80 (operacion -> valor MOD valor .)
+    RIGHTARROW      reduce using rule 80 (operacion -> valor MOD valor .)
+    LEFTARROW       reduce using rule 80 (operacion -> valor MOD valor .)
+    RPAREN          reduce using rule 80 (operacion -> valor MOD valor .)
+    SEMICOLON       reduce using rule 80 (operacion -> valor MOD valor .)
+    LLLAVE          reduce using rule 80 (operacion -> valor MOD valor .)
+    AND             reduce using rule 80 (operacion -> valor MOD valor .)
+    OR              reduce using rule 80 (operacion -> valor MOD valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+  ! PLUS            [ reduce using rule 80 (operacion -> valor MOD valor .) ]
+  ! MINUS           [ reduce using rule 80 (operacion -> valor MOD valor .) ]
+  ! TIMES           [ reduce using rule 80 (operacion -> valor MOD valor .) ]
+  ! DIVIDE          [ reduce using rule 80 (operacion -> valor MOD valor .) ]
+  ! MOD             [ reduce using rule 80 (operacion -> valor MOD valor .) ]
+  ! INTD            [ reduce using rule 80 (operacion -> valor MOD valor .) ]
+
+
+state 106
+
+    (81) operacion -> valor INTD valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for INTD resolved as shift
+    COMMA           reduce using rule 81 (operacion -> valor INTD valor .)
+    RCORCH          reduce using rule 81 (operacion -> valor INTD valor .)
+    EQ              reduce using rule 81 (operacion -> valor INTD valor .)
+    NEQ             reduce using rule 81 (operacion -> valor INTD valor .)
+    GEQ             reduce using rule 81 (operacion -> valor INTD valor .)
+    LEQ             reduce using rule 81 (operacion -> valor INTD valor .)
+    RIGHTARROW      reduce using rule 81 (operacion -> valor INTD valor .)
+    LEFTARROW       reduce using rule 81 (operacion -> valor INTD valor .)
+    RPAREN          reduce using rule 81 (operacion -> valor INTD valor .)
+    SEMICOLON       reduce using rule 81 (operacion -> valor INTD valor .)
+    LLLAVE          reduce using rule 81 (operacion -> valor INTD valor .)
+    AND             reduce using rule 81 (operacion -> valor INTD valor .)
+    OR              reduce using rule 81 (operacion -> valor INTD valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+  ! PLUS            [ reduce using rule 81 (operacion -> valor INTD valor .) ]
+  ! MINUS           [ reduce using rule 81 (operacion -> valor INTD valor .) ]
+  ! TIMES           [ reduce using rule 81 (operacion -> valor INTD valor .) ]
+  ! DIVIDE          [ reduce using rule 81 (operacion -> valor INTD valor .) ]
+  ! MOD             [ reduce using rule 81 (operacion -> valor INTD valor .) ]
+  ! INTD            [ reduce using rule 81 (operacion -> valor INTD valor .) ]
+
+
+state 107
+
+    (74) condicional -> IF comparacion LLLAVE programa . RLLAVE
+
+    RLLAVE          shift and go to state 138
+
+
+state 108
+
+    (72) proposicion -> comparacion . conector proposicion
+    (73) proposicion -> comparacion .
+    (70) conector -> . AND
+    (71) conector -> . OR
+
+    LLLAVE          reduce using rule 73 (proposicion -> comparacion .)
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+
+    conector                       shift and go to state 53
+
+state 109
+
+    (72) proposicion -> comparacion conector proposicion .
+
+    LLLAVE          reduce using rule 72 (proposicion -> comparacion conector proposicion .)
+
+
+state 110
+
+    (75) condicional -> IF proposicion LLLAVE programa . RLLAVE
+
+    RLLAVE          shift and go to state 139
+
+
+state 111
+
+    (7) comparacion -> IDENTIFIER LEQ IDENTIFIER .
+    (27) valor -> IDENTIFIER .
+
+  ! reduce/reduce conflict for LLLAVE resolved using rule 7 (comparacion -> IDENTIFIER LEQ IDENTIFIER .)
+  ! reduce/reduce conflict for AND resolved using rule 7 (comparacion -> IDENTIFIER LEQ IDENTIFIER .)
+  ! reduce/reduce conflict for OR resolved using rule 7 (comparacion -> IDENTIFIER LEQ IDENTIFIER .)
+    LLLAVE          reduce using rule 7 (comparacion -> IDENTIFIER LEQ IDENTIFIER .)
+    AND             reduce using rule 7 (comparacion -> IDENTIFIER LEQ IDENTIFIER .)
+    OR              reduce using rule 7 (comparacion -> IDENTIFIER LEQ IDENTIFIER .)
+    PLUS            reduce using rule 27 (valor -> IDENTIFIER .)
+    MINUS           reduce using rule 27 (valor -> IDENTIFIER .)
+    TIMES           reduce using rule 27 (valor -> IDENTIFIER .)
+    DIVIDE          reduce using rule 27 (valor -> IDENTIFIER .)
+    MOD             reduce using rule 27 (valor -> IDENTIFIER .)
+    INTD            reduce using rule 27 (valor -> IDENTIFIER .)
+
+  ! LLLAVE          [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! AND             [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! OR              [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+
+
+state 112
+
+    (16) comparacion -> IDENTIFIER LEQ valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+    LLLAVE          reduce using rule 16 (comparacion -> IDENTIFIER LEQ valor .)
+    AND             reduce using rule 16 (comparacion -> IDENTIFIER LEQ valor .)
+    OR              reduce using rule 16 (comparacion -> IDENTIFIER LEQ valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+
+state 113
+
+    (8) comparacion -> IDENTIFIER GEQ IDENTIFIER .
+    (27) valor -> IDENTIFIER .
+
+  ! reduce/reduce conflict for LLLAVE resolved using rule 8 (comparacion -> IDENTIFIER GEQ IDENTIFIER .)
+  ! reduce/reduce conflict for AND resolved using rule 8 (comparacion -> IDENTIFIER GEQ IDENTIFIER .)
+  ! reduce/reduce conflict for OR resolved using rule 8 (comparacion -> IDENTIFIER GEQ IDENTIFIER .)
+    LLLAVE          reduce using rule 8 (comparacion -> IDENTIFIER GEQ IDENTIFIER .)
+    AND             reduce using rule 8 (comparacion -> IDENTIFIER GEQ IDENTIFIER .)
+    OR              reduce using rule 8 (comparacion -> IDENTIFIER GEQ IDENTIFIER .)
+    PLUS            reduce using rule 27 (valor -> IDENTIFIER .)
+    MINUS           reduce using rule 27 (valor -> IDENTIFIER .)
+    TIMES           reduce using rule 27 (valor -> IDENTIFIER .)
+    DIVIDE          reduce using rule 27 (valor -> IDENTIFIER .)
+    MOD             reduce using rule 27 (valor -> IDENTIFIER .)
+    INTD            reduce using rule 27 (valor -> IDENTIFIER .)
+
+  ! LLLAVE          [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! AND             [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! OR              [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+
+
+state 114
+
+    (15) comparacion -> IDENTIFIER GEQ valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+    LLLAVE          reduce using rule 15 (comparacion -> IDENTIFIER GEQ valor .)
+    AND             reduce using rule 15 (comparacion -> IDENTIFIER GEQ valor .)
+    OR              reduce using rule 15 (comparacion -> IDENTIFIER GEQ valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+
+state 115
+
+    (9) comparacion -> IDENTIFIER EQ IDENTIFIER .
+    (27) valor -> IDENTIFIER .
+
+  ! reduce/reduce conflict for LLLAVE resolved using rule 9 (comparacion -> IDENTIFIER EQ IDENTIFIER .)
+  ! reduce/reduce conflict for AND resolved using rule 9 (comparacion -> IDENTIFIER EQ IDENTIFIER .)
+  ! reduce/reduce conflict for OR resolved using rule 9 (comparacion -> IDENTIFIER EQ IDENTIFIER .)
+    LLLAVE          reduce using rule 9 (comparacion -> IDENTIFIER EQ IDENTIFIER .)
+    AND             reduce using rule 9 (comparacion -> IDENTIFIER EQ IDENTIFIER .)
+    OR              reduce using rule 9 (comparacion -> IDENTIFIER EQ IDENTIFIER .)
+    PLUS            reduce using rule 27 (valor -> IDENTIFIER .)
+    MINUS           reduce using rule 27 (valor -> IDENTIFIER .)
+    TIMES           reduce using rule 27 (valor -> IDENTIFIER .)
+    DIVIDE          reduce using rule 27 (valor -> IDENTIFIER .)
+    MOD             reduce using rule 27 (valor -> IDENTIFIER .)
+    INTD            reduce using rule 27 (valor -> IDENTIFIER .)
+
+  ! LLLAVE          [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! AND             [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! OR              [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+
+
+state 116
+
+    (13) comparacion -> IDENTIFIER EQ valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+    LLLAVE          reduce using rule 13 (comparacion -> IDENTIFIER EQ valor .)
+    AND             reduce using rule 13 (comparacion -> IDENTIFIER EQ valor .)
+    OR              reduce using rule 13 (comparacion -> IDENTIFIER EQ valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+
+state 117
+
+    (10) comparacion -> IDENTIFIER NEQ IDENTIFIER .
+    (27) valor -> IDENTIFIER .
+
+  ! reduce/reduce conflict for LLLAVE resolved using rule 10 (comparacion -> IDENTIFIER NEQ IDENTIFIER .)
+  ! reduce/reduce conflict for AND resolved using rule 10 (comparacion -> IDENTIFIER NEQ IDENTIFIER .)
+  ! reduce/reduce conflict for OR resolved using rule 10 (comparacion -> IDENTIFIER NEQ IDENTIFIER .)
+    LLLAVE          reduce using rule 10 (comparacion -> IDENTIFIER NEQ IDENTIFIER .)
+    AND             reduce using rule 10 (comparacion -> IDENTIFIER NEQ IDENTIFIER .)
+    OR              reduce using rule 10 (comparacion -> IDENTIFIER NEQ IDENTIFIER .)
+    PLUS            reduce using rule 27 (valor -> IDENTIFIER .)
+    MINUS           reduce using rule 27 (valor -> IDENTIFIER .)
+    TIMES           reduce using rule 27 (valor -> IDENTIFIER .)
+    DIVIDE          reduce using rule 27 (valor -> IDENTIFIER .)
+    MOD             reduce using rule 27 (valor -> IDENTIFIER .)
+    INTD            reduce using rule 27 (valor -> IDENTIFIER .)
+
+  ! LLLAVE          [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! AND             [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! OR              [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+
+
+state 118
+
+    (14) comparacion -> IDENTIFIER NEQ valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+    LLLAVE          reduce using rule 14 (comparacion -> IDENTIFIER NEQ valor .)
+    AND             reduce using rule 14 (comparacion -> IDENTIFIER NEQ valor .)
+    OR              reduce using rule 14 (comparacion -> IDENTIFIER NEQ valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+
+state 119
+
+    (11) comparacion -> IDENTIFIER RIGHTARROW IDENTIFIER .
+    (27) valor -> IDENTIFIER .
+
+  ! reduce/reduce conflict for LLLAVE resolved using rule 11 (comparacion -> IDENTIFIER RIGHTARROW IDENTIFIER .)
+  ! reduce/reduce conflict for AND resolved using rule 11 (comparacion -> IDENTIFIER RIGHTARROW IDENTIFIER .)
+  ! reduce/reduce conflict for OR resolved using rule 11 (comparacion -> IDENTIFIER RIGHTARROW IDENTIFIER .)
+    LLLAVE          reduce using rule 11 (comparacion -> IDENTIFIER RIGHTARROW IDENTIFIER .)
+    AND             reduce using rule 11 (comparacion -> IDENTIFIER RIGHTARROW IDENTIFIER .)
+    OR              reduce using rule 11 (comparacion -> IDENTIFIER RIGHTARROW IDENTIFIER .)
+    PLUS            reduce using rule 27 (valor -> IDENTIFIER .)
+    MINUS           reduce using rule 27 (valor -> IDENTIFIER .)
+    TIMES           reduce using rule 27 (valor -> IDENTIFIER .)
+    DIVIDE          reduce using rule 27 (valor -> IDENTIFIER .)
+    MOD             reduce using rule 27 (valor -> IDENTIFIER .)
+    INTD            reduce using rule 27 (valor -> IDENTIFIER .)
+
+  ! LLLAVE          [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! AND             [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! OR              [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+
+
+state 120
+
+    (17) comparacion -> IDENTIFIER RIGHTARROW valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+    LLLAVE          reduce using rule 17 (comparacion -> IDENTIFIER RIGHTARROW valor .)
+    AND             reduce using rule 17 (comparacion -> IDENTIFIER RIGHTARROW valor .)
+    OR              reduce using rule 17 (comparacion -> IDENTIFIER RIGHTARROW valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+
+state 121
+
+    (12) comparacion -> IDENTIFIER LEFTARROW IDENTIFIER .
+    (27) valor -> IDENTIFIER .
+
+  ! reduce/reduce conflict for LLLAVE resolved using rule 12 (comparacion -> IDENTIFIER LEFTARROW IDENTIFIER .)
+  ! reduce/reduce conflict for AND resolved using rule 12 (comparacion -> IDENTIFIER LEFTARROW IDENTIFIER .)
+  ! reduce/reduce conflict for OR resolved using rule 12 (comparacion -> IDENTIFIER LEFTARROW IDENTIFIER .)
+    LLLAVE          reduce using rule 12 (comparacion -> IDENTIFIER LEFTARROW IDENTIFIER .)
+    AND             reduce using rule 12 (comparacion -> IDENTIFIER LEFTARROW IDENTIFIER .)
+    OR              reduce using rule 12 (comparacion -> IDENTIFIER LEFTARROW IDENTIFIER .)
+    PLUS            reduce using rule 27 (valor -> IDENTIFIER .)
+    MINUS           reduce using rule 27 (valor -> IDENTIFIER .)
+    TIMES           reduce using rule 27 (valor -> IDENTIFIER .)
+    DIVIDE          reduce using rule 27 (valor -> IDENTIFIER .)
+    MOD             reduce using rule 27 (valor -> IDENTIFIER .)
+    INTD            reduce using rule 27 (valor -> IDENTIFIER .)
+
+  ! LLLAVE          [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! AND             [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+  ! OR              [ reduce using rule 27 (valor -> IDENTIFIER .) ]
+
+
+state 122
+
+    (18) comparacion -> IDENTIFIER LEFTARROW valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+    LLLAVE          reduce using rule 18 (comparacion -> IDENTIFIER LEFTARROW valor .)
+    AND             reduce using rule 18 (comparacion -> IDENTIFIER LEFTARROW valor .)
+    OR              reduce using rule 18 (comparacion -> IDENTIFIER LEFTARROW valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+
+state 123
+
+    (19) comparacion -> valor EQ IDENTIFIER .
+
+    LLLAVE          reduce using rule 19 (comparacion -> valor EQ IDENTIFIER .)
+    AND             reduce using rule 19 (comparacion -> valor EQ IDENTIFIER .)
+    OR              reduce using rule 19 (comparacion -> valor EQ IDENTIFIER .)
+
+
+state 124
+
+    (20) comparacion -> valor NEQ IDENTIFIER .
+
+    LLLAVE          reduce using rule 20 (comparacion -> valor NEQ IDENTIFIER .)
+    AND             reduce using rule 20 (comparacion -> valor NEQ IDENTIFIER .)
+    OR              reduce using rule 20 (comparacion -> valor NEQ IDENTIFIER .)
+
+
+state 125
+
+    (21) comparacion -> valor GEQ IDENTIFIER .
+
+    LLLAVE          reduce using rule 21 (comparacion -> valor GEQ IDENTIFIER .)
+    AND             reduce using rule 21 (comparacion -> valor GEQ IDENTIFIER .)
+    OR              reduce using rule 21 (comparacion -> valor GEQ IDENTIFIER .)
+
+
+state 126
+
+    (22) comparacion -> valor LEQ IDENTIFIER .
+
+    LLLAVE          reduce using rule 22 (comparacion -> valor LEQ IDENTIFIER .)
+    AND             reduce using rule 22 (comparacion -> valor LEQ IDENTIFIER .)
+    OR              reduce using rule 22 (comparacion -> valor LEQ IDENTIFIER .)
+
+
+state 127
+
+    (23) comparacion -> valor RIGHTARROW IDENTIFIER .
+
+    LLLAVE          reduce using rule 23 (comparacion -> valor RIGHTARROW IDENTIFIER .)
+    AND             reduce using rule 23 (comparacion -> valor RIGHTARROW IDENTIFIER .)
+    OR              reduce using rule 23 (comparacion -> valor RIGHTARROW IDENTIFIER .)
+
+
+state 128
+
+    (24) comparacion -> valor LEFTARROW IDENTIFIER .
+
+    LLLAVE          reduce using rule 24 (comparacion -> valor LEFTARROW IDENTIFIER .)
+    AND             reduce using rule 24 (comparacion -> valor LEFTARROW IDENTIFIER .)
+    OR              reduce using rule 24 (comparacion -> valor LEFTARROW IDENTIFIER .)
+
+
+state 129
+
+    (5) asignacion -> LET IDENTIFIER COLON asig_data_type ASIG . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+    IDENTIFIER      shift and go to state 32
+
+    valor                          shift and go to state 140
+    operacion                      shift and go to state 33
+
+state 130
+
+    (43) asig_data_type -> LPAREN some_data_type . RPAREN
+
+    RPAREN          shift and go to state 141
+
+
+state 131
+
+    (64) some_data_type -> data_type .
+    (65) some_data_type -> data_type . COMMA some_data_type
+
+    RPAREN          reduce using rule 64 (some_data_type -> data_type .)
+    RCORCH          reduce using rule 64 (some_data_type -> data_type .)
+    COMMA           shift and go to state 142
+
+
+state 132
+
+    (44) asig_data_type -> LCORCH some_data_type . RCORCH
+
+    RCORCH          shift and go to state 143
+
+
+state 133
+
+    (4) asignacion -> LET MUT IDENTIFIER ASIG valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+    SEMICOLON       reduce using rule 4 (asignacion -> LET MUT IDENTIFIER ASIG valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+
+state 134
+
+    (6) asignacion -> LET MUT IDENTIFIER COLON asig_data_type . ASIG valor
+
+    ASIG            shift and go to state 144
+
+
+state 135
+
+    (38) parameters -> IDENTIFIER COLON . asig_data_type
+    (39) parameters -> IDENTIFIER COLON . asig_data_type COMMA parameters
+    (42) asig_data_type -> . data_type
+    (43) asig_data_type -> . LPAREN some_data_type RPAREN
+    (44) asig_data_type -> . LCORCH some_data_type RCORCH
+    (45) data_type -> . CHAR
+    (46) data_type -> . signed_integer
+    (47) data_type -> . unsigned_integer
+    (48) data_type -> . float_type
+    (49) data_type -> . BOOL
+    (50) signed_integer -> . I8
+    (51) signed_integer -> . I16
+    (52) signed_integer -> . I32
+    (53) signed_integer -> . I64
+    (54) signed_integer -> . I128
+    (55) signed_integer -> . ISIZE
+    (56) unsigned_integer -> . U8
+    (57) unsigned_integer -> . U16
+    (58) unsigned_integer -> . U32
+    (59) unsigned_integer -> . U64
+    (60) unsigned_integer -> . U128
+    (61) unsigned_integer -> . USIZE
+    (62) float_type -> . F32
+    (63) float_type -> . F64
+
+    LPAREN          shift and go to state 72
+    LCORCH          shift and go to state 73
+    CHAR            shift and go to state 74
+    BOOL            shift and go to state 78
+    I8              shift and go to state 79
+    I16             shift and go to state 80
+    I32             shift and go to state 81
+    I64             shift and go to state 82
+    I128            shift and go to state 83
+    ISIZE           shift and go to state 84
+    U8              shift and go to state 85
+    U16             shift and go to state 86
+    U32             shift and go to state 87
+    U64             shift and go to state 88
+    U128            shift and go to state 89
+    USIZE           shift and go to state 90
+    F32             shift and go to state 91
+    F64             shift and go to state 92
+
+    asig_data_type                 shift and go to state 145
+    data_type                      shift and go to state 71
+    signed_integer                 shift and go to state 75
+    unsigned_integer               shift and go to state 76
+    float_type                     shift and go to state 77
+
+state 136
+
+    (37) funcion -> FN IDENTIFIER LPAREN parameters RPAREN . LLLAVE programa RLLAVE
+
+    LLLAVE          shift and go to state 146
+
+
+state 137
+
+    (41) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT . STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+
+    STDIN           shift and go to state 147
+
+
+state 138
+
+    (74) condicional -> IF comparacion LLLAVE programa RLLAVE .
+
+    SEMICOLON       reduce using rule 74 (condicional -> IF comparacion LLLAVE programa RLLAVE .)
+
+
+state 139
+
+    (75) condicional -> IF proposicion LLLAVE programa RLLAVE .
+
+    SEMICOLON       reduce using rule 75 (condicional -> IF proposicion LLLAVE programa RLLAVE .)
+
+
+state 140
+
+    (5) asignacion -> LET IDENTIFIER COLON asig_data_type ASIG valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+    SEMICOLON       reduce using rule 5 (asignacion -> LET IDENTIFIER COLON asig_data_type ASIG valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+
+state 141
+
+    (43) asig_data_type -> LPAREN some_data_type RPAREN .
+
+    ASIG            reduce using rule 43 (asig_data_type -> LPAREN some_data_type RPAREN .)
+    COMMA           reduce using rule 43 (asig_data_type -> LPAREN some_data_type RPAREN .)
+    RPAREN          reduce using rule 43 (asig_data_type -> LPAREN some_data_type RPAREN .)
+
+
+state 142
+
+    (65) some_data_type -> data_type COMMA . some_data_type
+    (64) some_data_type -> . data_type
+    (65) some_data_type -> . data_type COMMA some_data_type
+    (45) data_type -> . CHAR
+    (46) data_type -> . signed_integer
+    (47) data_type -> . unsigned_integer
+    (48) data_type -> . float_type
+    (49) data_type -> . BOOL
+    (50) signed_integer -> . I8
+    (51) signed_integer -> . I16
+    (52) signed_integer -> . I32
+    (53) signed_integer -> . I64
+    (54) signed_integer -> . I128
+    (55) signed_integer -> . ISIZE
+    (56) unsigned_integer -> . U8
+    (57) unsigned_integer -> . U16
+    (58) unsigned_integer -> . U32
+    (59) unsigned_integer -> . U64
+    (60) unsigned_integer -> . U128
+    (61) unsigned_integer -> . USIZE
+    (62) float_type -> . F32
+    (63) float_type -> . F64
+
+    CHAR            shift and go to state 74
+    BOOL            shift and go to state 78
+    I8              shift and go to state 79
+    I16             shift and go to state 80
+    I32             shift and go to state 81
+    I64             shift and go to state 82
+    I128            shift and go to state 83
+    ISIZE           shift and go to state 84
+    U8              shift and go to state 85
+    U16             shift and go to state 86
+    U32             shift and go to state 87
+    U64             shift and go to state 88
+    U128            shift and go to state 89
+    USIZE           shift and go to state 90
+    F32             shift and go to state 91
+    F64             shift and go to state 92
+
+    data_type                      shift and go to state 131
+    some_data_type                 shift and go to state 148
+    signed_integer                 shift and go to state 75
+    unsigned_integer               shift and go to state 76
+    float_type                     shift and go to state 77
+
+state 143
+
+    (44) asig_data_type -> LCORCH some_data_type RCORCH .
+
+    ASIG            reduce using rule 44 (asig_data_type -> LCORCH some_data_type RCORCH .)
+    COMMA           reduce using rule 44 (asig_data_type -> LCORCH some_data_type RCORCH .)
+    RPAREN          reduce using rule 44 (asig_data_type -> LCORCH some_data_type RCORCH .)
+
+
+state 144
+
+    (6) asignacion -> LET MUT IDENTIFIER COLON asig_data_type ASIG . valor
+    (25) valor -> . INTEGER
+    (26) valor -> . FLOAT
+    (27) valor -> . IDENTIFIER
+    (28) valor -> . operacion
+    (76) operacion -> . valor PLUS valor
+    (77) operacion -> . valor MINUS valor
+    (78) operacion -> . valor TIMES valor
+    (79) operacion -> . valor DIVIDE valor
+    (80) operacion -> . valor MOD valor
+    (81) operacion -> . valor INTD valor
+
+    INTEGER         shift and go to state 30
+    FLOAT           shift and go to state 31
+    IDENTIFIER      shift and go to state 32
+
+    valor                          shift and go to state 149
+    operacion                      shift and go to state 33
+
+state 145
+
+    (38) parameters -> IDENTIFIER COLON asig_data_type .
+    (39) parameters -> IDENTIFIER COLON asig_data_type . COMMA parameters
+
+    RPAREN          reduce using rule 38 (parameters -> IDENTIFIER COLON asig_data_type .)
+    COMMA           shift and go to state 150
+
+
+state 146
+
+    (37) funcion -> FN IDENTIFIER LPAREN parameters RPAREN LLLAVE . programa RLLAVE
+    (1) programa -> . sentencias
+    (2) programa -> . sentencias programa
+    (30) sentencias -> . asignacion SEMICOLON
+    (31) sentencias -> . impresion SEMICOLON
+    (32) sentencias -> . funcion SEMICOLON
+    (33) sentencias -> . ingreso_datos SEMICOLON
+    (34) sentencias -> . arreglos SEMICOLON
+    (35) sentencias -> . control_structure SEMICOLON
+    (3) asignacion -> . LET IDENTIFIER ASIG valor
+    (4) asignacion -> . LET MUT IDENTIFIER ASIG valor
+    (5) asignacion -> . LET IDENTIFIER COLON asig_data_type ASIG valor
+    (6) asignacion -> . LET MUT IDENTIFIER COLON asig_data_type ASIG valor
+    (36) impresion -> . PRINTLN LPAREN valor RPAREN
+    (37) funcion -> . FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE
+    (41) ingreso_datos -> . STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+    (67) arreglos -> . LCORCH valores RCORCH
+    (66) control_structure -> . condicional
+    (74) condicional -> . IF comparacion LLLAVE programa RLLAVE
+    (75) condicional -> . IF proposicion LLLAVE programa RLLAVE
+
+    LET             shift and go to state 9
+    PRINTLN         shift and go to state 10
+    FN              shift and go to state 11
+    STD             shift and go to state 12
+    LCORCH          shift and go to state 13
+    IF              shift and go to state 15
+
+    programa                       shift and go to state 151
+    sentencias                     shift and go to state 2
+    asignacion                     shift and go to state 3
+    impresion                      shift and go to state 4
+    funcion                        shift and go to state 5
+    ingreso_datos                  shift and go to state 6
+    arreglos                       shift and go to state 7
+    control_structure              shift and go to state 8
+    condicional                    shift and go to state 14
+
+state 147
+
+    (41) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN . LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+
+    LPAREN          shift and go to state 152
+
+
+state 148
+
+    (65) some_data_type -> data_type COMMA some_data_type .
+
+    RPAREN          reduce using rule 65 (some_data_type -> data_type COMMA some_data_type .)
+    RCORCH          reduce using rule 65 (some_data_type -> data_type COMMA some_data_type .)
+
+
+state 149
+
+    (6) asignacion -> LET MUT IDENTIFIER COLON asig_data_type ASIG valor .
+    (76) operacion -> valor . PLUS valor
+    (77) operacion -> valor . MINUS valor
+    (78) operacion -> valor . TIMES valor
+    (79) operacion -> valor . DIVIDE valor
+    (80) operacion -> valor . MOD valor
+    (81) operacion -> valor . INTD valor
+
+    SEMICOLON       reduce using rule 6 (asignacion -> LET MUT IDENTIFIER COLON asig_data_type ASIG valor .)
+    PLUS            shift and go to state 46
+    MINUS           shift and go to state 47
+    TIMES           shift and go to state 48
+    DIVIDE          shift and go to state 49
+    MOD             shift and go to state 50
+    INTD            shift and go to state 51
+
+
+state 150
+
+    (39) parameters -> IDENTIFIER COLON asig_data_type COMMA . parameters
+    (38) parameters -> . IDENTIFIER COLON asig_data_type
+    (39) parameters -> . IDENTIFIER COLON asig_data_type COMMA parameters
+    (40) parameters -> . vacio
+    (29) vacio -> .
+
+    IDENTIFIER      shift and go to state 96
+    RPAREN          reduce using rule 29 (vacio -> .)
+
+    parameters                     shift and go to state 153
+    vacio                          shift and go to state 98
+
+state 151
+
+    (37) funcion -> FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa . RLLAVE
+
+    RLLAVE          shift and go to state 154
+
+
+state 152
+
+    (41) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN . RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+
+    RPAREN          shift and go to state 155
+
+
+state 153
+
+    (39) parameters -> IDENTIFIER COLON asig_data_type COMMA parameters .
+
+    RPAREN          reduce using rule 39 (parameters -> IDENTIFIER COLON asig_data_type COMMA parameters .)
+
+
+state 154
+
+    (37) funcion -> FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE .
+
+    SEMICOLON       reduce using rule 37 (funcion -> FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE .)
+
+
+state 155
+
+    (41) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN . DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+
+    DOT             shift and go to state 156
+
+
+state 156
+
+    (41) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT . READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN
+
+    READLINE        shift and go to state 157
+
+
+state 157
+
+    (41) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE . LPAREN REFERENCE MUT IDENTIFIER RPAREN
+
+    LPAREN          shift and go to state 158
+
+
+state 158
+
+    (41) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN . REFERENCE MUT IDENTIFIER RPAREN
+
+    REFERENCE       shift and go to state 159
+
+
+state 159
+
+    (41) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE . MUT IDENTIFIER RPAREN
+
+    MUT             shift and go to state 160
+
+
+state 160
+
+    (41) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT . IDENTIFIER RPAREN
+
+    IDENTIFIER      shift and go to state 161
+
+
+state 161
+
+    (41) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER . RPAREN
+
+    RPAREN          shift and go to state 162
+
+
+state 162
+
+    (41) ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN .
+
+    SEMICOLON       reduce using rule 41 (ingreso_datos -> STD DOUBLE_COLON IO DOUBLE_COLON DOT STDIN LPAREN RPAREN DOT READLINE LPAREN REFERENCE MUT IDENTIFIER RPAREN .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for LLLAVE in state 34 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 36 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 36 resolved as shift
+WARNING: shift/reduce conflict for GEQ in state 36 resolved as shift
+WARNING: shift/reduce conflict for LEQ in state 36 resolved as shift
+WARNING: shift/reduce conflict for RIGHTARROW in state 36 resolved as shift
+WARNING: shift/reduce conflict for LEFTARROW in state 36 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 101 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 101 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 101 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 101 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 101 resolved as shift
+WARNING: shift/reduce conflict for INTD in state 101 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 102 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 102 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 102 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 102 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 102 resolved as shift
+WARNING: shift/reduce conflict for INTD in state 102 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 103 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 103 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 103 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 103 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 103 resolved as shift
+WARNING: shift/reduce conflict for INTD in state 103 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 104 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 104 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 104 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 104 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 104 resolved as shift
+WARNING: shift/reduce conflict for INTD in state 104 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 105 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 105 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 105 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 105 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 105 resolved as shift
+WARNING: shift/reduce conflict for INTD in state 105 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 106 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 106 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 106 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 106 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 106 resolved as shift
+WARNING: shift/reduce conflict for INTD in state 106 resolved as shift
+WARNING: reduce/reduce conflict in state 111 resolved using rule (comparacion -> IDENTIFIER LEQ IDENTIFIER)
+WARNING: rejected rule (valor -> IDENTIFIER) in state 111
+WARNING: reduce/reduce conflict in state 113 resolved using rule (comparacion -> IDENTIFIER GEQ IDENTIFIER)
+WARNING: rejected rule (valor -> IDENTIFIER) in state 113
+WARNING: reduce/reduce conflict in state 115 resolved using rule (comparacion -> IDENTIFIER EQ IDENTIFIER)
+WARNING: rejected rule (valor -> IDENTIFIER) in state 115
+WARNING: reduce/reduce conflict in state 117 resolved using rule (comparacion -> IDENTIFIER NEQ IDENTIFIER)
+WARNING: rejected rule (valor -> IDENTIFIER) in state 117
+WARNING: reduce/reduce conflict in state 119 resolved using rule (comparacion -> IDENTIFIER RIGHTARROW IDENTIFIER)
+WARNING: rejected rule (valor -> IDENTIFIER) in state 119
+WARNING: reduce/reduce conflict in state 121 resolved using rule (comparacion -> IDENTIFIER LEFTARROW IDENTIFIER)
+WARNING: rejected rule (valor -> IDENTIFIER) in state 121

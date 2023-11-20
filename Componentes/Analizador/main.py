@@ -6,18 +6,20 @@ from lexico import *
 #Fausto
 def p_programa(p):
   '''programa : sentencias
-              | sentencias programa
+            | sentencias programa
+
   '''
 #Fausto & Emilio
 def p_asignacion(p):
   '''asignacion : LET IDENTIFIER ASIG valor
                   | LET MUT IDENTIFIER ASIG valor
                   | LET IDENTIFIER COLON asig_data_type ASIG valor
-                  | LET MUT IDENTIFIER COLON asig_data_type ASIG valor'''
+                  | LET MUT IDENTIFIER COLON asig_data_type ASIG valor
+
+  '''
 #Fausto
 def p_comparacion(p):
-  '''
-  comparacion: IDENTIFIER LEQ IDENTIFIER
+  '''comparacion : IDENTIFIER LEQ IDENTIFIER
                 | IDENTIFIER GEQ IDENTIFIER
                 | IDENTIFIER EQ IDENTIFIER
                 | IDENTIFIER NEQ IDENTIFIER
@@ -42,6 +44,7 @@ def p_valor(p):
   valor : INTEGER 
           | FLOAT
           | IDENTIFIER
+          | operacion
   
   '''
 #Emilio
@@ -74,7 +77,7 @@ def p_funcion(p):
 #Emilio
 def p_parameters(p):
   '''
-  parameters: IDENTIFIER COLON asig_data_type
+  parameters : IDENTIFIER COLON asig_data_type
               | IDENTIFIER COLON asig_data_type COMMA parameters
               | vacio
   '''
@@ -90,9 +93,9 @@ def p_ingreso_datos(p):
 #Emilio
 def p_asig_data_type(p):
   '''
-  asig_data_type: data_type
+  asig_data_type : data_type
                   | LPAREN some_data_type RPAREN
-                  | LCORCH some_data_type PCORCH
+                  | LCORCH some_data_type RCORCH
   '''
 
 #Emilio
@@ -100,14 +103,14 @@ def p_data_type(p):
   '''
   data_type : CHAR
               | signed_integer
-              | unsigend_integer
+              | unsigned_integer
               | float_type
               | BOOL
   '''
 #Emilio
 def p_signed_integer(p):
   '''
-  signed_integer: I8
+  signed_integer : I8
                 | I16
                 | I32
                 | I64
@@ -117,7 +120,7 @@ def p_signed_integer(p):
 #Emilio
 def p_unsigned_integer(p):
   '''
-  unsigned_integer: U8
+  unsigned_integer : U8
                   | U16
                   | U32
                   | U64
@@ -127,21 +130,21 @@ def p_unsigned_integer(p):
 #Emilio
 def p_float_type(p):
   '''
-  float_type: F32
+  float_type : F32
             | F64
   '''
 
 #Emilio
 def p_some_data_type(p):
   '''
-  some_data_type: data_type
+  some_data_type : data_type
                 | data_type COMMA some_data_type
   '''
 
 #Emilio
 def p_control_structure(p):
   '''
-  control_structure: condicional
+  control_structure : condicional
   '''
 
 #Axcel
@@ -154,7 +157,7 @@ def p_arreglos(p):
 #Axcel
 def p_valores(p):
   '''
-  valores: valor
+  valores : valor
           | valor COMMA valores
 
   '''
@@ -164,12 +167,14 @@ def p_error(p):
 #Fausto
 def p_conector(p):
   '''
-  conector : AND | OR
+  conector : AND 
+            | OR
   '''
 #Fausto
 def p_proposicionC(p):
   '''
-  proposicion: comparacion conector proposicion | comparacion
+  proposicion : comparacion conector proposicion 
+              | comparacion
   '''
 #Fausto
 def p_condicional(p):
@@ -177,7 +182,17 @@ def p_condicional(p):
   condicional : IF comparacion LLLAVE programa RLLAVE 
                 | IF proposicion LLLAVE programa RLLAVE
   '''
-
+#Axcel
+def p_operacion(p):
+  '''
+  operacion : valor PLUS valor
+              | valor MINUS valor
+              | valor TIMES valor
+              | valor DIVIDE valor
+              | valor MOD valor 
+              | valor INTD valor
+  
+  '''
 
 #Emilio
 parser = sint.yacc()
