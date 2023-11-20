@@ -1,0 +1,6 @@
+fn main(){
+	let mut a = 0;
+	let mut b = 3;
+	let mut c = 5
+	if(a > b && a > c){
+		println!("a es el mayor de todos");}}
