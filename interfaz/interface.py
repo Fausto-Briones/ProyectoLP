@@ -14,4 +14,7 @@ button = tk.Button(window,
     fg="yellow",
 )
 button.pack()
+#crear llamada al analizador sintactico
+#crear label para respuesta de analizador sintactico
+#crear errores personalizados a show error in label
 window.mainloop()
