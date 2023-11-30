@@ -1,6 +1,7 @@
 import ply.yacc as sint
 from tokens import tokens
 from lexico import *
+import tkinter as tk
 
 #Fausto
 def p_programa(p):
@@ -200,11 +201,37 @@ def p_llamada(p):
 
 #Emilio
 parser = sint.yacc()
-while True:
+'''while True:
    try:
        s = input('esp > ')
    except EOFError:
        break
    if not s: continue
    result = parser.parse(s)
-   print(result)
+   print(result)'''
+
+def validarCodigo():
+    result = parser.parse(entry.get(1.0, "end-1c"))
+    print(result)
+
+window = tk.Tk()
+window.title("Analizador Rust")
+window.geometry("300x200")
+text = tk.Label(window, text="Ingresa el codigo de Rust: ")
+text.pack()
+#codigoEntrada = tk.StringVar(value = "")
+entry = tk.Text(window)
+entry.pack()
+button = tk.Button(window,
+    text="Validar",
+    width=25,
+    height=5,
+    bg="blue",
+    fg="yellow",
+    command= lambda: validarCodigo()
+)
+button.pack()
+#crear llamada al analizador sintactico
+#crear label para respuesta de analizador sintactico
+#crear errores personalizados a show error in label
+window.mainloop()
