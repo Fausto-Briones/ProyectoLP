@@ -2,6 +2,8 @@ from reserved_words import reserved
 tokens = (
    'INTEGER',
    "FLOAT",
+   "STRING",
+   "CHARACTER",
    "PLUS",
    "MINUS",
    "DIVIDE",

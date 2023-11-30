@@ -10,13 +10,50 @@ def p_programa(p):
 
   '''
 #Fausto & Emilio
-def p_asignacion(p):
-  '''asignacion : LET IDENTIFIER ASIG valor
-                  | LET MUT IDENTIFIER ASIG valor
-                  | LET IDENTIFIER COLON asig_data_type ASIG valor
-                  | LET MUT IDENTIFIER COLON asig_data_type ASIG valor
+#Emilio regla semántica 2: asignación de tipos de datos con sus valores correspondientes y declaración de variables sin valores
+def p_asignacion_variable(p):
+  '''asignacion_variable : LET IDENFTIFIER ASIG valor
+                  | LET MUT ASIG valor
+                  | LET IDENTIFIER COLON asignacion
+                  | LET MUT IDENTIFIER COLON asignacion
 
   '''
+#Emilio regla semántica 2
+def p_declaracion_variable(p):
+  '''declaracion_variable: LET IDENTIFIER
+                          | LET MUT IDENTIFIER 
+                          | LET IDENTIFIER COLON asig_data_type
+                          | LET MUT IDENTIFIER COLON asig_data_type
+  '''
+#Emilio regla semántica 2
+def p_asignacion(p):
+  '''asignacion: string_asignacion
+                | char_asignacion
+                | numero_asignacion
+                | boolean_asignacion
+                | lista_asignacion
+                | tupla_asignacion
+  '''
+#Emilio regla semántica 2
+def p_string_asignacion(p):
+  'string_asignacion: REFERENCE STR ASIG STRING'
+def p_char_asignacion(p):
+  'char_asignacion: CHAR ASIG CHARACTER'
+def p_numero_asignacion(p):
+  '''numero_asignacion  : signed_integer ASIG INTEGER
+                        | signed_integer ASIG MINUS INTEGER
+                        | unsigned_integer ASIG INTEGER
+                        | float_type ASIG FLOAT
+                        | float_type ASIG MINUS FLOAT
+  '''
+def p_boolean_asignacion(p):
+  '''boolean_asignacion : BOOL ASIG TRUE
+                        | BOOL ASIG FALSE
+  '''
+def p_lista_asignacion(p):
+  'lista_asignacion : list_type ASIG arreglos'
+def p_tupla_asignacion(p):
+  'tupla_asignacion : tupla_type ASIG tuplas'
 #Fausto
 def p_comparacion(p):
   '''comparacion : valor EQ valor
@@ -55,7 +92,8 @@ def p_vacio(p):
 #Axcel Regla semantica #2: Semicolon al finalizar cada sentencia a excepcion de las que terminen en llaves
 def p_sentencias(p):
   '''
-  sentencias : asignacion SEMICOLON
+  sentencias : asignacion_variable SEMICOLON
+              | declaracion_variable SEMICOLON
               | impresion SEMICOLON
               | funcion 
               | ingreso_datos SEMICOLON
@@ -110,14 +148,18 @@ def p_ingreso_datos(p):
 def p_asig_data_type(p):
   '''
   asig_data_type : data_type
-                  | LPAREN some_data_type RPAREN
-                  | LCORCH some_data_type RCORCH
+                  | list_type
+                  | tuple_type
   '''
-
+def p_list_type(p):
+  'list_type : LCORCH some_data_type RCORCH'
+def p_tuple_type(p):
+  'tuple_type: LPAREN some_data_type RPAREN'
 #Emilio
 def p_data_type(p):
   '''
   data_type : CHAR
+              | REFERENCE STR
               | signed_integer
               | unsigned_integer
               | float_type
@@ -169,7 +211,9 @@ def p_arreglos(p):
   arreglos : LCORCH valores RCORCH
 
   '''
-
+#Emilio
+def p_tuplas(p):
+  'tuplas: LPAREN valores RPAREN'
 #Axcel
 def p_valores(p):
   '''
@@ -225,7 +269,7 @@ def p_llamada(p):
   
   '''
 
-#Emilio, regla semántica debe haber una función main en el programa
+#Emilio regla semántica #1:  debe haber una función main en el programa
 def p_main(p):
   '''main : FN 'main' LPAREN RPAREN LLLAVE programa RLLAVE
   '''
