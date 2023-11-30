@@ -212,7 +212,12 @@ parser = sint.yacc()
 
 def validarCodigo():
     result = parser.parse(entry.get(1.0, "end-1c"))
-    print(result)
+    error = tk.Label(window, text="Hola", fg="red")
+    error.pack()
+    if(result==None):
+      error.config(text="No hay ningun error en su codigo")
+      error.pack()
+    
 
 window = tk.Tk()
 window.title("Analizador Rust")
