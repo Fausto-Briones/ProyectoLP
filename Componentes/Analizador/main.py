@@ -196,14 +196,22 @@ def p_condicional(p):
   '''condicional : IF comparacion LLLAVE programa RLLAVE 
                 | IF proposicion LLLAVE programa RLLAVE
   '''
+
+#Fausto. Se asume que IDENTIFIER es numerico
+def p_numeric_var(p):
+  '''numeric : INTEGER
+              | FLOAT
+              | IDENTIFIER
+  '''
 #Axcel
+#Fausto Regla Semántia 1: Permitir operaciones aritméticas entre valor numéricos.
 def p_operacion(p):
-  '''operacion : valor PLUS valor
-              | valor MINUS valor
-              | valor TIMES valor
-              | valor DIVIDE valor
-              | valor MOD valor 
-              | valor INTD valor
+  '''operacion : numeric PLUS numeric
+              | numeric MINUS numeric
+              | numeric TIMES numeric
+              | numeric DIVIDE numeric
+              | numeric MOD numeric 
+              | numeric INTD numeric
   
   '''
 #Axcel
