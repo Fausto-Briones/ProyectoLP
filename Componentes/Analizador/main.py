@@ -225,6 +225,11 @@ def p_llamada(p):
   
   '''
 
+#Emilio, regla semántica debe haber una función main en el programa
+def p_main(p):
+  '''main : FN 'main' LPAREN RPAREN LLLAVE programa RLLAVE
+  '''
+
 #Emilio
 parser = sint.yacc()
 '''while True:
