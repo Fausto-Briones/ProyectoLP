@@ -12,4 +12,7 @@ if segundo>=primero && tercero>=segundo && cuarto>=tercero{
     println!("El arreglo de {} numeros esta ordenado",contador);
     }
 
-
+fn mostrar()->bool{
+    println!("Funcion para probar impresion");
+    return true;
+}

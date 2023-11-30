@@ -36,14 +36,23 @@ def p_valor(p):
           | indexacion
           | arreglos
           | STRING
+          | booleanos
   
   '''
+#Axcel
+def p_booleanos(p):
+  '''
+  booleanos : TRUE
+            | FALSE
+  '''
+
 #Emilio
 def p_vacio(p):
     'vacio :'
     pass
 
 #Fausto
+#Axcel Regla semantica #2: Semicolon al finalizar cada sentencia a excepcion de las que terminen en llaves
 def p_sentencias(p):
   '''
   sentencias : asignacion SEMICOLON
@@ -62,13 +71,22 @@ def p_impresion(p):
   
   
   '''
-#Axcel Si se va a usar colocar la llave de cierre en la linea de ultima sentencia
+#Axcel
+#Regla semantica #1: return statement opcional y solo uno
 def p_funcion(p):
   '''
   funcion : FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE
           | FN MAIN LPAREN parameters RPAREN LLLAVE programa RLLAVE
           | FN MAIN LPAREN RPAREN LLLAVE programa RLLAVE
           | FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE
+          | FN IDENTIFIER LPAREN parameters RPAREN MINUS RIGHTARROW data_type LLLAVE programa retorno RLLAVE
+          | FN IDENTIFIER LPAREN RPAREN MINUS RIGHTARROW data_type LLLAVE programa retorno RLLAVE
+  
+  '''
+def p_retorno(p):
+  '''
+  retorno : RETURN valor SEMICOLON
+  
   
   '''
 
