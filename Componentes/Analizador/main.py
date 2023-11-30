@@ -229,8 +229,8 @@ parser = sint.yacc()
    print(result)'''
 
 def validarCodigo():
+    error.pack_forget()
     result = parser.parse(entry.get(1.0, "end-1c"))
-    error = tk.Label(window, text="Hola", fg="red")
     error.pack()
     if(result==None):
       error.config(text="No hay ningun error en su codigo")
@@ -254,6 +254,7 @@ button = tk.Button(window,
     command= lambda: validarCodigo()
 )
 button.pack()
+error = tk.Label(window, text="Error", fg="red")
 #crear llamada al analizador sintactico
 #crear label para respuesta de analizador sintactico
 #crear errores personalizados a show error in label
