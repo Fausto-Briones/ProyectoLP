@@ -20,14 +20,14 @@ def p_asignacion_variable(p):
   '''
 #Emilio regla semántica 2
 def p_declaracion_variable(p):
-  '''declaracion_variable: LET IDENTIFIER
+  '''declaracion_variable : LET IDENTIFIER
                           | LET MUT IDENTIFIER 
                           | LET IDENTIFIER COLON asig_data_type
                           | LET MUT IDENTIFIER COLON asig_data_type
   '''
 #Emilio regla semántica 2
 def p_asignacion(p):
-  '''asignacion: string_asignacion
+  '''asignacion : string_asignacion
                 | char_asignacion
                 | numero_asignacion
                 | boolean_asignacion
@@ -36,9 +36,9 @@ def p_asignacion(p):
   '''
 #Emilio regla semántica 2
 def p_string_asignacion(p):
-  'string_asignacion: REFERENCE STR ASIG STRING'
+  'string_asignacion : REFERENCE STR ASIG STRING'
 def p_char_asignacion(p):
-  'char_asignacion: CHAR ASIG CHARACTER'
+  'char_asignacion : CHAR ASIG CHARACTER'
 def p_numero_asignacion(p):
   '''numero_asignacion  : signed_integer ASIG INTEGER
                         | signed_integer ASIG MINUS INTEGER
@@ -154,7 +154,7 @@ def p_asig_data_type(p):
 def p_list_type(p):
   'list_type : LCORCH some_data_type RCORCH'
 def p_tuple_type(p):
-  'tuple_type: LPAREN some_data_type RPAREN'
+  'tuple_type : LPAREN some_data_type RPAREN'
 #Emilio
 def p_data_type(p):
   '''
@@ -213,7 +213,7 @@ def p_arreglos(p):
   '''
 #Emilio
 def p_tuplas(p):
-  'tuplas: LPAREN valores RPAREN'
+  'tuplas : LPAREN valores RPAREN'
 #Axcel
 def p_valores(p):
   '''
@@ -277,7 +277,7 @@ def p_llamada(p):
 
 #Emilio regla semántica #1:  debe haber una función main en el programa
 def p_main(p):
-  '''main : FN 'main' LPAREN RPAREN LLLAVE programa RLLAVE
+  '''main : FN MAIN LPAREN RPAREN LLLAVE programa RLLAVE
   '''
 
 #Emilio
