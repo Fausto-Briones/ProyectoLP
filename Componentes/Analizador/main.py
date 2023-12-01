@@ -295,7 +295,7 @@ def p_llamada(p):
 
 #Fausto
 def p_sentencias_error(p):
-	'''sentencias: error	
+	'''sentencias : error	
 	'''
 	print("Error en la escritura de la sentencia")
 
