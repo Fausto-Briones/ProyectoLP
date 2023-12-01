@@ -84,8 +84,10 @@ def p_comparacion(p):
 #Fausto
 def p_valor(p):
   '''
-  valor : INTEGER 
+  valor : INTEGER
+          | MINUS INTEGER
           | FLOAT
+          | MINUS FLOAT
           | IDENTIFIER
           | operacion
           | indexacion
