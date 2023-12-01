@@ -45,7 +45,7 @@ Rule 23    numero_asignacion -> float_type ASIG MINUS FLOAT
 Rule 24    boolean_asignacion -> BOOL ASIG TRUE
 Rule 25    boolean_asignacion -> BOOL ASIG FALSE
 Rule 26    lista_asignacion -> list_type ASIG arreglos
-Rule 27    tupla_asignacion -> tupla_type ASIG tuplas
+Rule 27    tupla_asignacion -> tuple_type ASIG tuplas
 Rule 28    comparacion -> valor EQ valor
 Rule 29    comparacion -> valor NEQ valor
 Rule 30    comparacion -> valor GEQ valor
@@ -256,9 +256,8 @@ signed_integer       : 19 20 73
 some_data_type       : 69 70 92
 string_asignacion    : 11
 tupla_asignacion     : 16
-tupla_type           : 27
 tuplas               : 27
-tuple_type           : 68
+tuple_type           : 27 68
 unsigned_integer     : 21 74
 vacio                : 64
 valor                : 3 4 28 28 29 29 30 30 31 31 32 32 33 33 53 54 61 96 97

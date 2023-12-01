@@ -53,7 +53,7 @@ def p_boolean_asignacion(p):
 def p_lista_asignacion(p):
   'lista_asignacion : list_type ASIG arreglos'
 def p_tupla_asignacion(p):
-  'tupla_asignacion : tupla_type ASIG tuplas'
+  'tupla_asignacion : tuple_type ASIG tuplas'
 #Fausto
 def p_comparacion(p):
   '''comparacion : valor EQ valor
