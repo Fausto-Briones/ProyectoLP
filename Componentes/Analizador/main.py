@@ -247,8 +247,14 @@ def p_numeric_var(p):
               | FLOAT
               | IDENTIFIER
   '''
+#Fausto. Se asume IDENTIFIER STRING
+def p_cadena(p):
+  '''cadena : STRING
+            | IDENTIFIER
+  '''
 #Axcel
-#Fausto Regla Semántia 1: Permitir operaciones aritméticas entre valor numéricos.
+#Fausto Regla Semántica 1: Permitir operaciones aritméticas entre valor numéricos.
+#Fausto Regla semántica 2: Los strings solo pueden soportar el operador +, que representa concatenación
 def p_operacion(p):
   '''operacion : numeric PLUS numeric
               | numeric MINUS numeric
@@ -256,7 +262,7 @@ def p_operacion(p):
               | numeric DIVIDE numeric
               | numeric MOD numeric 
               | numeric INTD numeric
-  
+              | cadena PLUS cadena
   '''
 #Axcel
 def p_indexacion(p):
