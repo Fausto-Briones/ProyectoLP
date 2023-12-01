@@ -12,9 +12,9 @@ let contador = contador +1;
 if segundo>=primero && tercero>=segundo && cuarto>=tercero{
     println!("El arreglo de {} numeros esta ordenado",contador);
     }
-let confirmacion = mostrar();
+mostrar();
 }
 fn mostrar()->bool{
     println!("Funcion para probar impresion");
-    return true;
+    return true;
 }

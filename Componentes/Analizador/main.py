@@ -2,7 +2,7 @@ import ply.yacc as sint
 from tokens import tokens
 from lexico import *
 import tkinter as tk
-
+import sys
 
 #Axcel
 def p_codigoRust(p):
@@ -313,6 +313,7 @@ def validarCodigo():
   result = parser.parse(entry.get(1.0, "end-1c"))
   error.config(text="error")
   error.pack()
+  runCode(result)
   if(result==None):
     error.config(text="No hay ningun error en su codigo")
     error.pack()
@@ -326,6 +327,19 @@ text.pack()
 #codigoEntrada = tk.StringVar(value = "")
 entry = tk.Text(window)
 entry.pack()
+
+
+def runCode(result):
+  output.delete(1.0,tk.END)
+  lexer.input(result)
+  try:
+    for t in lexer:
+      print(t)
+    parser.parse(result)
+  except Exception as e:
+    print(f"Error: {e}")
+
+
 button = tk.Button(window,
     text="Validar",
     width=25,
@@ -335,9 +349,9 @@ button = tk.Button(window,
     command= lambda: validarCodigo()
 )
 button.pack()
+
 error = tk.Label(window, text="Error", fg="red")
-#crear llamada al analizador sintactico
-#crear label para respuesta de analizador sintactico
-#crear errores personalizados a show error in label
+output = tk.Text(window)
+output.pack()
 window.mainloop()
 
