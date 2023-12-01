@@ -6,17 +6,18 @@ import tkinter as tk
 
 #Axcel
 def p_codigoRust(p):
-  '''codigoRust : funciones main funciones
-                | funciones main
-                | main funciones
-                | main
+  '''codigoRust : functions fnmain functions
+                | functions fnmain
+                | fnmain functions
+                | fnmain
+
   
   
   '''
 #Axcel
-def p_funciones(p):
-  '''funciones : funcion
-                | funcion funciones
+def p_functions(p):
+  '''functions : funcion
+                | funcion functions
   
   '''
 
@@ -32,7 +33,7 @@ def p_programa(p):
 #Emilio regla semántica 2: asignación de tipos de datos con sus valores correspondientes y declaración de variables sin valores
 def p_asignacion_variable(p):
   '''asignacion_variable : LET IDENTIFIER ASIG valor
-                  | LET MUT ASIG valor
+                  | LET MUT IDENTIFIER ASIG valor
                   | LET IDENTIFIER COLON asignacion
                   | LET MUT IDENTIFIER COLON asignacion
 
@@ -47,7 +48,6 @@ def p_declaracion_variable(p):
 #Emilio regla semántica 2
 def p_asignacion(p):
   '''asignacion : string_asignacion
-                | char_asignacion
                 | numero_asignacion
                 | boolean_asignacion
                 | lista_asignacion
@@ -56,8 +56,7 @@ def p_asignacion(p):
 #Emilio regla semántica 2
 def p_string_asignacion(p):
   'string_asignacion : REFERENCE STR ASIG STRING'
-def p_char_asignacion(p):
-  'char_asignacion : CHAR ASIG CHARACTER'
+
 def p_numero_asignacion(p):
   '''numero_asignacion  : signed_integer ASIG INTEGER
                         | signed_integer ASIG MINUS INTEGER
@@ -288,16 +287,18 @@ def p_indexacion(p):
 
 def p_llamada(p):
   '''llamada : IDENTIFIER LPAREN valores RPAREN
+             | IDENTIFIER LPAREN RPAREN 
   
   '''
 
 #Emilio regla semántica #1:  debe haber una función main en el programa
-def p_main(p):
-  '''main : FN MAIN LPAREN RPAREN LLLAVE programa RLLAVE
+def p_fnmain(p):
+  '''fnmain : FN MAIN LPAREN RPAREN LLLAVE programa RLLAVE
   '''
 
 #Emilio
 parser = sint.yacc()
+
 '''while True:
    try:
        s = input('esp > ')
@@ -306,17 +307,18 @@ parser = sint.yacc()
    if not s: continue
    result = parser.parse(s)
    print(result)'''
-window = tk.Tk()
+
 def validarCodigo():
-    error.pack_forget
-    result = parser.parse(entry.get(1.0, "end-1c"))
+  error.pack_forget()
+  result = parser.parse(entry.get(1.0, "end-1c"))
+  error.config(text="error")
+  error.pack()
+  if(result==None):
+    error.config(text="No hay ningun error en su codigo")
     error.pack()
-    if(result==None):
-      error.config(text="No hay ningun error en su codigo")
-      error.pack()
     
 
-
+window = tk.Tk()
 window.title("Analizador Rust")
 window.geometry("300x200")
 text = tk.Label(window, text="Ingresa el codigo de Rust: ")

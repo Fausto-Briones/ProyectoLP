@@ -17,12 +17,6 @@ def t_INTEGER(t):
     t.value = int(t.value)    
     return t
 
-# Expresión regular para reconocer un caractér
-def t_CHARACTER(t):
-   r'.'
-   t.value = chr(t.value)
-   return t
-
 # Expresión regular para reconocer strings
 def t_STRING(t):
   r'\".*?\"'
