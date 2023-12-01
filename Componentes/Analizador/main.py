@@ -322,7 +322,7 @@ def validarCodigo():
   error.pack_forget()
   error.config(text="error")
   error.pack()
-  codigo=entry.get(1.0, "end-1c")
+  codigo=entry.get(1.0, tk.END)
   runCode(codigo)
 
     
@@ -343,14 +343,12 @@ def runCode(result):
   lexer.input(result)
   try:
     for t in lexer:
-      with io.StringIO() as buf, redirect_stdout(buf):
-        print(t)
-        out += buf.getvalue()
-      output.insert(tk.END,out)
+        out += str(t)+"\n"
         
     parser.parse(result)
   except Exception as e:
     print(f"Error: {e}")
+  sys.stdout = output.insert(tk.END,out)
   sys.stdout = sys.__stdout__
 
 button = tk.Button(window,
