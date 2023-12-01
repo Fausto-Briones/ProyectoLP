@@ -1,3 +1,9 @@
+fn main(){
+	let mut x:i64 = 5;
+	let mut y:i64 = 10;
+
+	funcion(x,y);
+}
 fn funcion (x: i64, y: i64){
 	let sum = x + y;
 	let res = x - y;
@@ -7,11 +13,4 @@ fn funcion (x: i64, y: i64){
 	println!("{} + {} = {}",x,y,res);
 	println!("{} + {} = {}",x,y,mult);
 	println!("{} + {} = {}",x,y,div);
-}
-
-fn main(){
-	let mut x:i64 = 5;
-	let mut y:i64 = 10;
-
-	funcion(x,y);
 }
