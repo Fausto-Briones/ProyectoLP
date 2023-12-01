@@ -3,6 +3,8 @@ from tokens import tokens
 from lexico import *
 import tkinter as tk
 import sys
+import io
+from contextlib import redirect_stdout
 
 #Axcel
 def p_codigoRust(p):
@@ -337,14 +339,19 @@ entry.pack()
 
 def runCode(result):
   output.delete(1.0,tk.END)
+  out=''
   lexer.input(result)
   try:
     for t in lexer:
-      print(t)
+      with io.StringIO() as buf, redirect_stdout(buf):
+        print(t)
+        out += buf.getvalue()
+      output.insert(tk.END,out)
+        
     parser.parse(result)
   except Exception as e:
     print(f"Error: {e}")
-
+  sys.stdout = sys.__stdout__
 
 button = tk.Button(window,
     text="Validar",
