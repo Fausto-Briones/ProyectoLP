@@ -318,13 +318,11 @@ parser = sint.yacc()
 
 def validarCodigo():
   error.pack_forget()
-  result = parser.parse(entry.get(1.0, "end-1c"))
   error.config(text="error")
   error.pack()
-  runCode(result)
-  if(result==None):
-    error.config(text="No hay ningun error en su codigo")
-    error.pack()
+  codigo=entry.get(1.0, "end-1c")
+  runCode(codigo)
+
     
 
 window = tk.Tk()
