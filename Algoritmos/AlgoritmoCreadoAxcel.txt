@@ -1,3 +1,4 @@
+fn main(){
 let mut contador = 0;
 let arreglo = [1,2,3,3];
 let primero = arreglo[0];
@@ -11,7 +12,7 @@ let contador = contador +1;
 if segundo>=primero && tercero>=segundo && cuarto>=tercero{
     println!("El arreglo de {} numeros esta ordenado",contador);
     }
-
+}
 fn mostrar()->bool{
     println!("Funcion para probar impresion");
     return true;

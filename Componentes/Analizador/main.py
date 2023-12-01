@@ -3,6 +3,25 @@ from tokens import tokens
 from lexico import *
 import tkinter as tk
 
+
+#Axcel
+def p_codigoRust(p):
+  '''codigoRust : funciones main funciones
+                | funciones main
+                | main funciones
+                | main
+  
+  
+  '''
+#Axcel
+def p_funciones(p):
+  '''funciones : funcion
+                | funcion funciones
+  
+  '''
+
+
+
 #Fausto
 def p_programa(p):
   '''programa : sentencias
@@ -12,7 +31,7 @@ def p_programa(p):
 #Fausto & Emilio
 #Emilio regla semántica 2: asignación de tipos de datos con sus valores correspondientes y declaración de variables sin valores
 def p_asignacion_variable(p):
-  '''asignacion_variable : LET IDENFTIFIER ASIG valor
+  '''asignacion_variable : LET IDENTIFIER ASIG valor
                   | LET MUT ASIG valor
                   | LET IDENTIFIER COLON asignacion
                   | LET MUT IDENTIFIER COLON asignacion
@@ -95,7 +114,6 @@ def p_sentencias(p):
   sentencias : asignacion_variable SEMICOLON
               | declaracion_variable SEMICOLON
               | impresion SEMICOLON
-              | funcion 
               | ingreso_datos SEMICOLON
               | arreglos SEMICOLON
               | control_structure 
@@ -114,8 +132,6 @@ def p_impresion(p):
 def p_funcion(p):
   '''
   funcion : FN IDENTIFIER LPAREN parameters RPAREN LLLAVE programa RLLAVE
-          | FN MAIN LPAREN parameters RPAREN LLLAVE programa RLLAVE
-          | FN MAIN LPAREN RPAREN LLLAVE programa RLLAVE
           | FN IDENTIFIER LPAREN RPAREN LLLAVE programa RLLAVE
           | FN IDENTIFIER LPAREN parameters RPAREN MINUS RIGHTARROW data_type LLLAVE programa retorno RLLAVE
           | FN IDENTIFIER LPAREN RPAREN MINUS RIGHTARROW data_type LLLAVE programa retorno RLLAVE
@@ -290,9 +306,9 @@ parser = sint.yacc()
    if not s: continue
    result = parser.parse(s)
    print(result)'''
-
+window = tk.Tk()
 def validarCodigo():
-    error.pack_forget()
+    error.pack_forget
     result = parser.parse(entry.get(1.0, "end-1c"))
     error.pack()
     if(result==None):
@@ -300,7 +316,7 @@ def validarCodigo():
       error.pack()
     
 
-window = tk.Tk()
+
 window.title("Analizador Rust")
 window.geometry("300x200")
 text = tk.Label(window, text="Ingresa el codigo de Rust: ")
@@ -322,3 +338,4 @@ error = tk.Label(window, text="Error", fg="red")
 #crear label para respuesta de analizador sintactico
 #crear errores personalizados a show error in label
 window.mainloop()
+
