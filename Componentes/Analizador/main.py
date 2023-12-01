@@ -293,6 +293,12 @@ def p_llamada(p):
   
   '''
 
+#Fausto
+def p_sentencias_error(p):
+	'''sentencias: error	
+	'''
+	print("Error en la escritura de la sentencia")
+
 #Emilio regla semántica #1:  debe haber una función main en el programa
 def p_fnmain(p):
   '''fnmain : FN MAIN LPAREN RPAREN LLLAVE programa RLLAVE
